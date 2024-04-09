@@ -1,0 +1,17 @@
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Descripción del Problema 3}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Contexto y beneficios de resolver el problema}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objetivo que persigue el tomador de decisiones}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Modelación del problema 4}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Conjuntos}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Parámetros}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Variables de decisión}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Función Objetivo}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Restricciones}{3}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Naturaleza de las variables}{3}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Definición de datos}{3}{section.3}%
+\contentsline {section}{\numberline {4}Resolución del problema}{3}{section.4}%
+\contentsline {section}{\numberline {5}Validación del resultado}{3}{section.5}%
+\contentsline {section}{\numberline {6}Análisis de sensibilidad}{3}{section.6}%
+\contentsline {section}{\numberline {7}Conclusión}{4}{section.7}%
