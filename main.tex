@@ -97,20 +97,36 @@ Nombre integrante 6 número de alumno 6 sección alumno 6\\
 
 \end{quote}
 
-\subsection{Objetivo que persigue el tomador de decisiones} \dots 4
+\subsection{Objetivo que persigue el tomador de decisiones}
+\begin{quote}
+    El objetivo principal del equipo de planificación estratégica de Shell es identificar las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos, de modo que se maximice la cobertura de la red, se minimicen los tiempos de espera y se optimice la rentabilidad económica. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible. 
+\end{quote}
 
 \section{Modelación del problema 4}
-\subsection{Conjuntos} \dots 4
-\subsection{Parámetros} \dots 5
-\subsection{Variables de decisión} \dots 5
-\subsection{Función Objetivo} \dots 5s
-\subsection{Restricciones} \dots 6
-\subsection{Naturaleza de las variables} \dots 7
+\subsection{Conjuntos}
+\begin{itemize}
+    \item $t \in \{1, \ldots, 5\}$, el año desde la implementación del proyecto.
+\end{itemize}
+\subsection{Parámetros}
+\begin{itemize}
+    \item $i \in \{1, \ldots, N\}$, la ubicación de un centro de carga.
+    \item $j \in \{1, \ldots, N\}$, la ubicación de otro centro de carga.
+    \item $N$, el número de posibles ubicaciones para los centros de carga.
+\end{itemize}
+\subsection{Variables de decisión} 
+\begin{itemize}
+    \item $x_i$, una variable binaria que indica si se instala un centro de carga en la ubicación $i$ ($x_i = 1$) o no ($x_i = 0$).
+    \item $C_i$, una variable continua que da la cantidad de cargadores por estación.
+    \item $D_{it}$, una variable que representa la demanda en la estación $i$ para el periodo $t$.
+\end{itemize}
+\subsection{Función Objetivo} 
+\subsection{Restricciones} 
+\subsection{Naturaleza de las variables} 
 
-\section{Definición de datos} \dots 7
-\section{Resolución del problema} \dots 9
-\section{Validación del resultado} \dots 10
-\section{Análisis de sensibilidad} \dots 11
+\section{Definición de datos} 
+\section{Resolución del problema} 
+\section{Validación del resultado} 
+\section{Análisis de sensibilidad} 
 \section{Conclusión} \dots 14
 \end{flushleft}
 
