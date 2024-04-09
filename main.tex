@@ -106,34 +106,42 @@ Nombre integrante 6 número de alumno 6 sección alumno 6\\
 \subsection{Conjuntos}
 \begin{itemize}
     \item $t \in \{1, \ldots, 5\}$, el año desde la implementación del proyecto.
-\end{itemize}
-\subsection{Parámetros}
-\begin{itemize}
-    \item $i \in \{1, \ldots, N\}$, la ubicación de un centro de carga.
-    \item $j \in \{1, \ldots, N\}$, la ubicación de otro centro de carga.
+    \item $i \in \{1, \ldots, N\}$, donde $i$ pertenece al conjunto de ubicaciones de los centros de carga.
+    \item $j \in \{1, \ldots, N\}$, donde $j$ pertenece al conjunto de ubicaciones de los centros de carga.
     \item $N$, el número de posibles ubicaciones para los centros de carga.
 \end{itemize}
+
+\subsection{Parámetros}
+\begin{itemize}
+    \item $D_{ij}$, la distancia entre las ubicaciones $i$ y $j$.
+    \item $C_i$, el costo de instalar un centro de carga en la ubicación $i$.
+    \item $T_{ij}$, el tiempo de viaje estimado entre las ubicaciones $i$ y $j$.
+    \item $G_i$, la ganancia estimada a 5 años por centro de carga.
+\end{itemize}
++
 \subsection{Variables de decisión} 
 \begin{itemize}
     \item $x_i$, una variable binaria que indica si se instala un centro de carga en la ubicación $i$ ($x_i = 1$) o no ($x_i = 0$).
     \item $C_i$, una variable continua que da la cantidad de cargadores por estación.
     \item $D_{it}$, una variable que representa la demanda en la estación $i$ para el periodo $t$.
 \end{itemize}
-\subsection{Función Objetivo} 
-\subsection{Restricciones} 
-\subsection{Naturaleza de las variables} 
+\subsection{Función Objetivo}
+\begin{quote}
+    Maximizar $\sum_{i=1}^{N}\sum_{j=1}^{N} T_{ij} \cdot x_i \cdot x_j$
+\end{quote}
+\subsection{Restricciones}
+\begin{itemize}
+    \item $\sum_{i=1}^{N} C_i \cdot x_i \leq B$ (Restricción de presupuesto)
+    \item $(G_i - C_i) \cdot x_i \geq 0 \quad \forall i=1,2,\ldots,N$ (Restricción de rentabilidad)
+    \item $\sum_{i=1}^{N} \sum_{j=1}^{N} D_{ij} \cdot x_i \cdot x_j \leq D_{\text{max}}$ (Restricción de distancia máxima)
+\end{itemize}
+\subsection{Naturaleza de las variables}
+\begin{itemize}
+    \item Las variables de decisión $x_i$ y $C_i$ son variables binarias
+    \item La variable $D_{it}$ es una variable continua.
+\end{itemize}
+\subsection{Definición de datos} 
+$B$ es el presupuesto total disponible.
+$D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
 
-\section{Definición de datos} 
-\section{Resolución del problema} 
-\section{Validación del resultado} 
-\section{Análisis de sensibilidad} 
-\section{Conclusión} \dots 14
-\end{flushleft}
 
-\subsection{Contexto y beneficios de resolver el problema} 
-
-
-
-
-
-\end{document}
