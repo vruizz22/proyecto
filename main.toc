@@ -12,6 +12,6 @@
 \contentsline {subsection}{\numberline {2.6}Naturaleza de las variables}{3}{subsection.2.6}%
 \contentsline {section}{\numberline {3}Definición de datos}{3}{section.3}%
 \contentsline {section}{\numberline {4}Resolución del problema}{3}{section.4}%
-\contentsline {section}{\numberline {5}Validación del resultado}{3}{section.5}%
-\contentsline {section}{\numberline {6}Análisis de sensibilidad}{3}{section.6}%
+\contentsline {section}{\numberline {5}Validación del resultado}{4}{section.5}%
+\contentsline {section}{\numberline {6}Análisis de sensibilidad}{4}{section.6}%
 \contentsline {section}{\numberline {7}Conclusión}{4}{section.7}%
