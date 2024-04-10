@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.16)  9 APR 2024 21:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.16)  9 APR 2024 21:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main_base.tex
-(main_base.tex
+**./E24_Entrega1.tex
+(E24_Entrega1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\Victor\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -445,13 +445,13 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 149.
 
 (C:\Users\Victor\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
-)) (main_base.aux
+)) (E24_Entrega1.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
-\openout1 = `main_base.aux'.
+\openout1 = `E24_Entrega1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
@@ -500,9 +500,9 @@ cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 32.
- (main_base.out) (main_base.out)
+ (E24_Entrega1.out) (E24_Entrega1.out)
 \@outlinefile=\write3
-\openout3 = `main_base.out'.
+\openout3 = `E24_Entrega1.out'.
 
 
 *geometry* driver: auto-detecting
@@ -563,88 +563,31 @@ Overfull \hbox (8.55457pt too wide) in paragraph at lines 34--55
 [1
 
 {C:/Users/Victor/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./LogoUC.jp
-g>] (main_base.toc
+g>] (E24_Entrega1.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
 \tf@toc=\write4
-\openout4 = `main_base.toc'.
+\openout4 = `E24_Entrega1.toc'.
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 91--93
+Underfull \hbox (badness 10000) in paragraph at lines 91--101
 
  []
 
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.94 		\newline
-               
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 95--97
+Underfull \hbox (badness 10000) in paragraph at lines 91--101
 
  []
 
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.98 		\newline
-               
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 99--101
+Underfull \hbox (badness 10000) in paragraph at lines 91--101
 
  []
 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.102 		\newline
-                
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
-
- []
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.106 		\newline
-                
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[3] [4] (main_base.aux
+[3] [4] (E24_Entrega1.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 LaTeX Info: Redefining \. on input line 12.
@@ -654,17 +597,17 @@ LaTeX Info: Redefining \% on input line 12.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `main_base.out' has not changed.
+Package rerunfilecheck Info: File `E24_Entrega1.out' has not changed.
 (rerunfilecheck)             Checksum: 2FF9ECC2B63FA7D67FB0339500079A2E;1956.
  ) 
 Here is how much of TeX's memory you used:
  13800 strings out of 474485
- 219137 string characters out of 5743262
+ 219275 string characters out of 5743262
  1939542 words of memory out of 5000000
  35889 multiletter control sequences out of 15000+600000
  563405 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,9n,93p,697b,607s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,9n,93p,700b,607s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmbx10.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmbx12.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type
@@ -676,10 +619,11 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/User
 s/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb
 ><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr7.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb>
-Output written on main_base.pdf (4 pages, 172061 bytes).
+onts/cm/cmsy10.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmsy7.pfb>
+Output written on E24_Entrega1.pdf (4 pages, 180768 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)
  94 words of extra memory for PDF output out of 10000 (max. 10000000)
 
