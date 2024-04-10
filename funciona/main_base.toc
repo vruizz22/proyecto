@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}\relax 
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Descripción del Problema}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Contexto y beneficios de resolver el problema}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objetivo que persigue el tomador de decisiones}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Modelación del problema}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Conjuntos}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Parámetros}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Variables de decisión}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Función Objetivo}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Restricciones}{4}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Naturaleza de las variables}{4}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Definición de datos}{4}{subsection.2.7}%

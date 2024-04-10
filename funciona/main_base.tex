@@ -1,0 +1,158 @@
+\documentclass[letterpaper]{article}
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lipsum}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+
+
+\graphicspath{ {./figures/} }
+
+%\usepackage[pass]{geometry}
+\usepackage[left=1.25in,right=1.25in,top=1.0in,bottom=1.0in]{geometry}
+\usepackage{listings}
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.65}
+\definecolor{deepred}{rgb}{0.7,0,0}
+\definecolor{deepgreen}{rgb}{0,0.6,0}
+
+\newcommand{\mytitle}{Tarea 1}
+\newcommand{\myauthor}{Mariana Ortega}
+\newcommand{\mydate}{\today}
+
+\begin{document}
+	
+	\begin{minipage}[t]{.13\textwidth}
+		\vspace{-0.25in}
+		\begin{figure}[H]
+			\includegraphics[width=0.90\textwidth]{LogoUC.jpg}
+		\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{.85\textwidth}
+		\vspace{0pt}
+		\begin{flushleft}
+			\begin{tabular}{l}
+				{\sc Pontificia Universidad Cat\'olica de Chile}\\
+				{\sc Escuela de Ingenier\'ia}\\
+				{\sc Departamento de Ingenier\'ia Industrial y Sistemas}\\
+				{\sc ICS1113-Optimizaci\'on}
+			\end{tabular}
+		\end{flushleft}
+	\end{minipage}
+	\vspace{0pt}
+	\hfill
+	\vspace*{6cm}
+	\begin{center}{}
+		\vspace*{2mm}
+		{\Huge\bf Informe 1}\\
+		\vspace*{4mm}
+		\hrule\vspace*{1pt}\hrule
+		\vspace*{4mm}
+		{\LARGE\bf Optimizar la posición de estaciones de carga eléctrica para vehículos}\\
+		\vspace*{4mm}
+		{\huge\bf Grupo 24 }\\
+		\vspace*{1mm}
+	\end{center}
+	
+	\vspace*{30mm}
+	\flushright 
+	
+	Gabriel Cornejo 23647086 Sección 1\\
+	Sebastián Lorca 23200316 Sección 2\\
+	Pablo Rojas	23645016 Sección 1\\
+	Benjamín Sánchez  23205873 Sección 1\\
+	Víctor Ruiz 2320012J Sección1\\
+	
+	
+	\vspace*{5mm}
+	{\large Fecha entrega: 09 de 04 de 2024\\}
+	
+	\newpage
+	\begin{flushleft}
+		\tableofcontents
+	\end{flushleft}
+	
+	\newpage
+	\begin{flushleft}
+		\justifying
+		\section{Descripción del Problema}
+		\subsection{Contexto y beneficios de resolver el problema}
+		
+		En el contexto actual de transición hacia una movilidad más sostenible, Shell, una empresa líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos. Como parte de esta iniciativa, se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
+		\newline
+		
+		\newline
+		El tomador de decisiones en este caso es el equipo de planificación estratégica de Shell, que busca maximizar la eficiencia de su red de centros de carga para satisfacer la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
+		\newline
+		
+		\newline
+		Resolver esta problemática es de suma importancia para Shell por varias razones. En primer lugar, la correcta ubicación de los centros de carga para vehículos eléctricos puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático. 
+		\newline
+		
+		\newline
+		Además, optimizar el posicionamiento de estos centros puede tener un impacto económico significativo para Shell. Al maximizar la eficiencia de la red de carga, la empresa puede aumentar sus ingresos al atraer a más clientes y al mismo tiempo reducir los costos operativos asociados con la gestión de la infraestructura de carga. 
+		\newline
+		
+		\newline
+		\subsection{Objetivo que persigue el tomador de decisiones}
+		El objetivo principal del equipo de planificación estratégica de Shell es identificar las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos, de modo que se maximice la cobertura de la red, se minimicen los tiempos de espera y se optimice la rentabilidad económica. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible. 
+		
+		\section{Modelación del problema}
+		\subsection{Conjuntos}
+		\begin{itemize}
+			\item $t \in \{1, \ldots, 5\}$, el año desde la implementación del proyecto.
+			\item $i \in \{1, \ldots, N\}$, donde $i$ pertenece al conjunto de ubicaciones de los centros de carga.
+			\item $j \in \{1, \ldots, N\}$, donde $j$ pertenece al conjunto de ubicaciones de los centros de carga.
+			\item $m \in M$, donde m es el tipo de cargador. (Intercambio de batería, carga rapida)
+		\end{itemize}
+		
+		\subsection{Parámetros}
+		\begin{itemize}
+			\item $D_{ij}$, la distancia entre las ubicaciones $i$ y $j$.
+			\item $C_i$, el costo de instalar un centro de carga en la ubicación $i$.
+			\item $T_{ij}$, el tiempo de viaje estimado entre las ubicaciones $i$ y $j$.
+			\item $G_i$, la ganancia estimada a 5 años por centro de carga.
+		\end{itemize}
+		\subsection{Variables de decisión} 
+		\begin{itemize}
+			\item $x_{im}$, una variable binaria que indica si se instala un centro de carga en la ubicación $i$ ($x_i = 1$) o no ($x_i = 0$).
+			\item $C_{im}$, una variable continua que da la cantidad de cargadores por estación.
+			\item $P_{mit}$, una variable que representa el precio para la cargador tipo $m$, para la ubicación $i$ en el periodo $t$.
+		\end{itemize}
+		\subsection{Función Objetivo}
+		\begin{quote}
+			\begin{center}
+				Maximizar $\sum_{i=1}^{N}\sum_{j=1}^{N} T_{ij} \cdot x_i \cdot x_j$
+			\end{center}
+		\end{quote}
+		\subsection{Restricciones}
+		\begin{itemize}
+			\item $\sum_{i=1}^{N} C_i \cdot x_i \leq B$ (Restricción de presupuesto)
+			\item $(G_i - C_i) \cdot x_i \geq 0 \quad \forall i=1,2,\ldots,N$ (Restricción de rentabilidad)
+			\item $\sum_{i=1}^{N} \sum_{j=1}^{N} D_{ij} \cdot x_i \cdot x_j \leq D_{\text{max}}$ (Restricción de distancia máxima)
+		\end{itemize}
+		\subsection{Naturaleza de las variables}
+		\begin{itemize}
+			\item Las variables de decisión $x_i$ y $C_i$ son variables binarias
+			\item La variable $D_{it}$ es una variable continua.
+		\end{itemize}
+		\subsection{Definición de datos}
+		\begin{itemize}
+			\item $B$ es el presupuesto total disponible.
+			\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
+			\item $N$, el número de posibles ubicaciones para los centros de carga.
+		\end{itemize}
+		
+	\end{flushleft}
+	
+\end{document}
