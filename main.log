@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.16)  9 APR 2024 21:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.16)  10 APR 2024 08:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,21 +524,11 @@ Package hyperref Info: Link coloring OFF on input line 30.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count314
-
-LaTeX Warning: File `LogoUC.jpg' not found on input line 35.
-
-
-! Package pdftex.def Error: File `LogoUC.jpg' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 ...graphics[width=0.90\textwidth]{LogoUC.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<LogoUC.jpg, id=47, 147.55125pt x 193.47281pt>
+File: LogoUC.jpg Graphic file (type jpg)
+<use LogoUC.jpg>
+Package pdftex.def Info: LogoUC.jpg  used on input line 35.
+(pdftex.def)             Requested size: 50.73509pt x 66.52382pt.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
 (C:\Users\Victor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -556,7 +546,8 @@ Overfull \hbox (8.55457pt too wide) in paragraph at lines 32--53
 
 [1
 
-{C:/Users/Victor/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (main.toc
+{C:/Users/Victor/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./LogoUC.jp
+g>] (main.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 2.
@@ -579,11 +570,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2FF9ECC2B63FA7D67FB0339500079A2E;1956.
  ) 
 Here is how much of TeX's memory you used:
- 13739 strings out of 474485
- 217588 string characters out of 5743262
+ 13713 strings out of 474485
+ 217072 string characters out of 5743262
  1938542 words of memory out of 5000000
- 35831 multiletter control sequences out of 15000+600000
- 563573 words of font info for 57 fonts, out of 8000000 for 9000
+ 35806 multiletter control sequences out of 15000+600000
+ 563405 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,9n,93p,692b,605s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
@@ -597,11 +588,10 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/User
 s/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb
 ><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr7.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb><C:/Users/Victor/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmtt10.pfb>
-Output written on main.pdf (4 pages, 154788 bytes).
+onts/cm/cmsy10.pfb>
+Output written on main.pdf (4 pages, 170109 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 94 words of extra memory for PDF output out of 10000 (max. 10000000)
 
