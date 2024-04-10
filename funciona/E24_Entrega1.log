@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.10)  10 APR 2024 13:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.10)  10 APR 2024 13:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -453,7 +453,7 @@ Package hyperref Info: Link coloring OFF on input line 32.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count315
-<LogoUC.jpg, id=47, 147.55125pt x 193.47281pt>
+<LogoUC.jpg, id=67, 147.55125pt x 193.47281pt>
 File: LogoUC.jpg Graphic file (type jpg)
 <use LogoUC.jpg>
 Package pdftex.def Info: LogoUC.jpg  used on input line 37.
@@ -507,20 +507,20 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
  ***********
 Package rerunfilecheck Info: File `E24_Entrega1.out' has not changed.
-(rerunfilecheck)             Checksum: 2FF9ECC2B63FA7D67FB0339500079A2E;1956.
+(rerunfilecheck)             Checksum: 04FF1D031249CC5CDCA5162615DFC2E9;2715.
  ) 
 Here is how much of TeX's memory you used:
- 13769 strings out of 474424
- 217776 string characters out of 5743155
+ 13779 strings out of 474424
+ 217876 string characters out of 5743155
  1940496 words of memory out of 5000000
- 35918 multiletter control sequences out of 15000+600000
+ 35923 multiletter control sequences out of 15000+600000
  563405 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,9n,93p,741b,607s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on E24_Entrega1.pdf (4 pages, 180821 bytes).
+Output written on E24_Entrega1.pdf (4 pages, 186689 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 94 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 165 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 

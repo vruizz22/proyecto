@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1712769846.88985 "c:/Users/JS/Repositorios/proyecto/funciona/E24_Entrega1.tex" "E24_Entrega1.pdf" "E24_Entrega1" 1712769848.68035 0
-  "C:/Users/JS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1712769811 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1712770682.27795 "c:/Users/JS/Repositorios/proyecto/funciona/E24_Entrega1.tex" "E24_Entrega1.pdf" "E24_Entrega1" 1712770683.32114 0
+  "C:/Users/JS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1712770121 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/JS/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1712769372 24234590 ffcc1f9bcd89dafeab7d46f9d0974b70 ""
   "C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Users/JS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -100,12 +100,12 @@
   "C:/Users/JS/AppData/Local/Programs/MiKTeX/tex/latex/subfigure/subfigure.sty" 1114300570 14815 1d3da78e0f66f3c62133fbabffd13cf5 ""
   "C:/Users/JS/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1700599895 12667 e4b5eb11e4b7239e6c8a52bbe074a6c6 ""
   "C:/Users/JS/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "E24_Entrega1.aux" 1712769848 1762 8c6ce8ee070d74fb4d2b843369c5123c "pdflatex"
-  "E24_Entrega1.out" 1712769848 1956 2ff9ecc2b63fa7d67fb0339500079a2e "pdflatex"
-  "E24_Entrega1.tex" 1712769845 6813 cb977db853d8a275900d87ca54774392 ""
-  "E24_Entrega1.toc" 1712769848 1025 1dcdf7627e9d57646face1ef5d13d092 "pdflatex"
+  "E24_Entrega1.aux" 1712770683 2357 69797be0205229d04c7b8e96bfe4f1f3 "pdflatex"
+  "E24_Entrega1.out" 1712770683 2715 04ff1d031249cc5cdca5162615dfc2e9 "pdflatex"
+  "E24_Entrega1.tex" 1712770680 6988 ca03f9ce77b9e8c32ca1ef14be7a9226 ""
+  "E24_Entrega1.toc" 1712770683 1415 805d150c79e88218c3008787a198adb3 "pdflatex"
   "LogoUC.jpg" 1712765082 26298 7d1dd9b3f3e4ebfeff8492ee1f363b7c ""
-  "c:/Users/JS/Repositorios/proyecto/funciona/E24_Entrega1.tex" 1712769845 6813 cb977db853d8a275900d87ca54774392 ""
+  "c:/Users/JS/Repositorios/proyecto/funciona/E24_Entrega1.tex" 1712770680 6988 ca03f9ce77b9e8c32ca1ef14be7a9226 ""
   (generated)
   "E24_Entrega1.aux"
   "E24_Entrega1.log"
