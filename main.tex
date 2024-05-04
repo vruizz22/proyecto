@@ -87,51 +87,64 @@
 		\subsection{Contexto y beneficios de resolver el problema}
 		% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
 		% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
-		En el contexto actual de transición hacia una movilidad más sostenible, Shell, una empresa líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos. Como parte de esta iniciativa, se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica. 
-		\newline
-		
-		El tomador de decisiones en este caso es el equipo de planificación estratégica de Shell, que busca maximizar la eficiencia de su red de centros de carga para satisfacer la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
-		\newline
-		Resolver esta problemática es de suma importancia para Shell por varias razones. En primer lugar, la correcta ubicación de los centros de carga para vehículos eléctricos puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático.
-		\newline
-		\newline
-		Además, optimizar el posicionamiento de estos centros puede tener un impacto económico significativo para Shell. Al maximizar la eficiencia de la red de carga, la empresa puede aumentar sus ingresos al atraer a más clientes y al mismo tiempo reducir los costos operativos asociados con la gestión de la infraestructura de carga. 
-		\newline
+		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos (CITA).
+		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, entre 2018 y 2019 la cantidad de vehículos eléctricos en Chile se incrementó en un 68\%, o NUMERO DE AUTOS (CITA). 
+
+		Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.). Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2. 
+		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica. 
+
+		El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
+
+		Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad. 
+
+		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022). Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. 
+ 
 		\subsection{Descripción del Problema}
 		\subsection{Objetivo que persigue el tomador de decisiones}
-		El objetivo principal del equipo de planificación estratégica de Shell es identificar las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos, de modo que se maximice la cobertura de la red, se minimicen los tiempos de espera y se optimice la rentabilidad económica. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible. 
-		
+		El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones. 		
 		\section{Modelación del problema}
 		\subsection{Conjuntos}
 		\begin{itemize}
-			\item $t \in \{1, \ldots, 5\}$, el año desde la implementación del proyecto.
-			\item $i \in \{1, \ldots, N\}$, donde $i$ pertenece al conjunto de ubicaciones de los centros de carga.
-			\item $j \in \{1, \ldots, N\}$, donde $j$ pertenece al conjunto de ubicaciones de los centros de carga.
-			\item $N$, el número de posibles ubicaciones para los centros de carga.
+			\item $t \in \{1, \ldots, 60\}$, el mes desde la implementación del modelo.
+			\item $i \in \{1, \ldots, I\}$, donde $i$ pertenece al conjunto de ubicaciones de los centros de carga.
+			\item $m \in M$, donde $m$ pertenece al conjunto de tipos de cargadores.
 		\end{itemize}
 		
 		\subsection{Parámetros}
 		\begin{itemize}
-			\item $D_{ij}$, la distancia entre las ubicaciones $i$ y $j$.
-			\item $C_i$, el costo de instalar un centro de carga en la ubicación $i$.
-			\item $T_{ij}$, el tiempo de viaje estimado entre las ubicaciones $i$ y $j$.
-			\item $G_i$, la ganancia estimada a 5 años por centro de carga.
+			\item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
+			\item $Ci_{t}$, el costo de instalar un centro de carga en el periodo $t$.
+			\item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$.
+			\item $Cc_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+			\item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-hora para un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+			\item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+			\item $\alpha$, coeficiente de rentabilidad.
 		\end{itemize}
 		\subsection{Variables de decisión} 
 		\begin{itemize}
-			\item $x_i$, una variable binaria que indica si se instala un centro de carga en la ubicación $i$ ($x_i = 1$) o no ($x_i = 0$).
-			\item $C_i$, una variable continua que da la cantidad de cargadores por estación.
-			\item $D_{it}$, una variable que representa la demanda en la estación $i$ para el periodo $t$.
+			\item $x_{mit}$ cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
+			\item \[
+				y_{it} = 
+					 \begin{cases}
+					   1 &\quad\text{si se instala la infraestructura eléctrica para }i\text{ en }t\\
+					   0 &\quad\text{en cualquier otro caso.}
+					 \end{cases}
+				\]
+			\item $a_{mt}$, cantidad de cargadores tipo $m$ que se compran en el periodo $t$.
+			\item $b_{mit}$, cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$.
+			\item $d_{mit}$, demanda de cargadores tipo $m$ en la estación $i$ en el periodo $t$.
 		\end{itemize}
 		\subsection{Función Objetivo}
-		\begin{quote}
-			\begin{center}
-				Maximizar $\sum_{i=1}^{N}\sum_{j=1}^{N} T_{ij} \cdot x_i \cdot x_j$
-			\end{center}
-		\end{quote}
+		\begin{center}
+			Maximizar $\sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
+		\end{center}	
+		
 		\subsection{Restricciones}
 		\begin{itemize}
-			\item $\sum_{i=1}^{N} C_i \cdot x_i \leq B$ (Restricción de presupuesto)
+			\item $a_{mt} + S_{mt} \geq \sum_{i \in I} b_{mit} \quad \forall m \in M, t \in \{1, \ldots, 60\}$ (No instalar más de lo que se tiene en Stock)
+			\item $S_{mt-1} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} \quad \forall m \in M, t \in \{2, \ldots, 60\}$ (Restricción de Stock)
+			\item $a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  \quad \forall m \in M$ (Restricción inicial de Stock)
+			\item $N + \sum_{t=1}^{60} y_{it} \leq x_{mit} \quad \forall m \in M, \forall i \in I, \forall t \in \{1, \ldots, 60\}$ (Restricción de cantidad de cargadores instalados)
 			\item $(G_i - C_i) \cdot x_i \geq 0 \quad \forall i=1,2,\ldots,N$ (Restricción de rentabilidad)
 			\item $\sum_{i=1}^{N} \sum_{j=1}^{N} D_{ij} \cdot x_i \cdot x_j \leq D_{\text{max}}$ (Restricción de distancia máxima)
 		\end{itemize}
