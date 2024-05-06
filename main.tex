@@ -121,8 +121,8 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$.
 		\item $\alpha$, coeficiente de ganancia que se quiere obtener por KW de electricidad vendido.
 		\item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica.
-		\item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$.
-		\item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$.
+		\item $EI_{it}$, si ya existe la infraestructura eléctrica en la estación $i$.
+		\item $EC_{mit}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$
 	\end{itemize}
 	\subsection{Variables de decisión}
 	\begin{itemize}
@@ -147,7 +147,7 @@ Víctor Ruiz 2320012J Sección 1\\
 	\end{itemize}
 	\subsection{Función Objetivo}
 	\begin{center}
-		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
+		Maximizar $\sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
 	\end{center}
 
 	\subsection{Restricciones}
@@ -156,10 +156,10 @@ Víctor Ruiz 2320012J Sección 1\\
 		S_{mt-1} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, t \in \{2, \ldots, 60\}\\
 		a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  \qquad\qquad \forall \; m \in M\\
 		N \cdot \sum_{t=1}^{60} y_{it} \geq x_{mit} \qquad\qquad \forall \; m \in M, \forall i \in I,\; t \in \{1, \ldots, 60\}\\
-		\sum_{t \in T} y_{it} \leq 1 - EI_i \qquad\qquad \forall \; i \in I\\
+		\sum_{t \in T} y_{it} \leq 1 \qquad\qquad \forall \; i \in I\\
 		K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi \qquad\qquad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
 		z_{it} \geq y_{it} + z_{i(t-1)} \qquad\qquad \forall \; i \in I, \;t \in \{2, \ldots, 60\}\\
-		z_{i1} \geq y_{i1} + EI_i \qquad\qquad \forall \; i \in I\\
+		z_{i1} \geq y_{i1} \qquad\qquad \forall \; i \in I\\
 		\sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 \qquad\qquad \forall \; \in I, \; t \in \{1, \ldots, 60\}\\
 		x_{mit} = b_{mit} + x_{mi(t-1)} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\}\\
 		x_{mi1} = b_{mi1} \qquad\qquad \forall \; m \in M, \; i \in I\\
