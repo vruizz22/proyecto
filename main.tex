@@ -87,11 +87,12 @@
 		\subsection{Contexto y beneficios de resolver el problema}
 		% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
 		% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
-		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos (CITA).
-		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, entre 2018 y 2019 la cantidad de vehículos eléctricos en Chile se incrementó en un 68\%, o NUMERO DE AUTOS (CITA). 
+		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos.
+		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. (Falta el APA)
+
 
 		Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.). Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2. 
-		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica. 
+		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
 
 		El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
 
@@ -175,12 +176,18 @@
 			\item Restricción de cantidad de cargadores instalados
 			\item Restricción de rentabilidad
 			\item Restricción de distancia máxima
+			\item Restricción de no cerrar estaciones con infraestructura instalada
+			\item Restricción de la demanda, no se puede satisfacer más de lo que se demanda
 		\end{enumerate}
 
 		\subsection{Naturaleza de las variables}
 		\begin{itemize}
-			\item Las variables de decisión $x_i$ y $C_i$ son variables binarias
-			\item La variable $D_{it}$ es una variable continua.
+			\item $x_{mit}$: Cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$. Es una variable entera no negativa.
+			\item $a_{mit}$: Cantidad de cargadores tipo $m$ que se compran en el periodo $t$. Es una variable entera no negativa.
+			\item $b_{mit}$: Cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
+			\item $d_{mit}$: Demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
+			\item $y_{it}$: Variable binaria que indica si se instala la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si se instala la infraestructura y 0 en cualquier otro caso.
+			\item $z_{it}$: Variable binaria que indica si existe la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si la infraestructura existe y 0 en cualquier otro caso.
 		\end{itemize}
 		\subsection{Definición de datos}
 		\begin{itemize}
