@@ -28,173 +28,173 @@
 \newcommand{\mydate}{\today}
 
 \begin{document}
-	
-	\begin{minipage}[t]{.13\textwidth}
-		\vspace{-0.25in}
-		\begin{figure}[H]
-			\includegraphics[width=0.90\textwidth]{LogoUC.jpg}
-		\end{figure}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{.85\textwidth}
-		\vspace{0pt}
-		\begin{flushleft}
-			\begin{tabular}{l}
-				{\sc Pontificia Universidad Cat\'olica de Chile}\\
-				{\sc Escuela de Ingenier\'ia}\\
-				{\sc Departamento de Ingenier\'ia Industrial y Sistemas}\\
-				{\sc ICS1113-Optimizaci\'on}
-			\end{tabular}
-		\end{flushleft}
-	\end{minipage}
+
+\begin{minipage}[t]{.13\textwidth}
+	\vspace{-0.25in}
+	\begin{figure}[H]
+		\includegraphics[width=0.90\textwidth]{LogoUC.jpg}
+	\end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.85\textwidth}
 	\vspace{0pt}
-	\hfill
-	\vspace*{6cm}
-	\begin{center}{}
-		\vspace*{2mm}
-		{\Huge\bf Informe 1}\\
-		\vspace*{4mm}
-		\hrule\vspace*{1pt}\hrule
-		\vspace*{4mm}
-		{\LARGE\bf Optimizar la posición de estaciones de carga eléctrica para vehículos}\\
-		\vspace*{4mm}
-		{\huge\bf Grupo 24 }\\
-		\vspace*{1mm}
+	\begin{flushleft}
+		\begin{tabular}{l}
+			{\sc Pontificia Universidad Cat\'olica de Chile}         \\
+			{\sc Escuela de Ingenier\'ia}                            \\
+			{\sc Departamento de Ingenier\'ia Industrial y Sistemas} \\
+			{\sc ICS1113-Optimizaci\'on}
+		\end{tabular}
+	\end{flushleft}
+\end{minipage}
+\vspace{0pt}
+\hfill
+\vspace*{6cm}
+\begin{center}{}
+	\vspace*{2mm}
+	{\Huge\bf Informe 1}\\
+	\vspace*{4mm}
+	\hrule\vspace*{1pt}\hrule
+	\vspace*{4mm}
+	{\LARGE\bf Optimizar la posición de estaciones de carga eléctrica para vehículos}\\
+	\vspace*{4mm}
+	{\huge\bf Grupo 24 }\\
+	\vspace*{1mm}
+\end{center}
+
+\vspace*{30mm}
+\flushright
+
+Gabriel Cornejo 23647086 Sección 1\\
+Sebastián Lorca 23200316 Sección 2\\
+Pablo Rojas 23645016 Sección 1\\
+Benjamín Sánchez  23205873 Sección 1\\
+Víctor Ruiz 2320012J Sección 1\\
+
+
+\vspace*{5mm}
+{\large Fecha entrega: 07 de Mayo de 2024\\}
+
+\newpage
+\begin{flushleft}
+	\tableofcontents
+\end{flushleft}
+
+\newpage
+\begin{flushleft}
+
+	\section{Descripción del Problema}
+	\subsection{Contexto y beneficios de resolver el problema}
+	% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
+	% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
+	La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos.
+	Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. (Falta el APA)
+
+
+	Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.). Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2.
+	Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
+
+	El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo.
+
+	Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad.
+
+	Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022). Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria.
+
+	\subsection{Descripción del Problema}
+	\subsection{Objetivo que persigue el tomador de decisiones}
+	El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
+	\section{Modelación del problema}
+	\subsection{Conjuntos}
+	\begin{itemize}
+		\item $t \in \{1, \ldots, 60\}$, el mes desde la implementación del modelo.
+		\item $i \in I$, donde $I$ es el conjunto de ubicaciones de los posibles centros de carga.
+		\item $m \in M$, donde $M$ es el conjunto de tipos de cargadores.
+	\end{itemize}
+
+	\subsection{Parámetros}
+	\begin{itemize}
+		\item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
+		\item $CI_{t}$, el costo de instalar un centro de carga en el periodo $t$.
+		\item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$.
+		\item $CC_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+		\item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-hora para un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+		\item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$.
+		\item $\alpha$, coeficiente de ganancia que se quiere obtener por KW de electricidad vendido.
+		\item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica.
+		\item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$.
+		\item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$.
+	\end{itemize}
+	\subsection{Variables de decisión}
+	\begin{itemize}
+		\item $x_{mit}$ cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
+		\item \[
+			      y_{it} =
+			      \begin{cases}
+				      1 & \quad\text{si se instala la infraestructura eléctrica para }i\text{ en }t \\
+				      0 & \quad\text{en cualquier otro caso.}
+			      \end{cases}
+		      \]
+		\item \[
+			      z_{it} =
+			      \begin{cases}
+				      1 & \quad\text{si existe la infraestructura eléctrica para }i\text{ en }t \\
+				      0 & \quad\text{en cualquier otro caso.}
+			      \end{cases}
+		      \]
+		\item $a_{mt}$, cantidad de cargadores tipo $m$ que se compran en el periodo $t$.
+		\item $b_{mit}$, cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$.
+		\item $d_{mit}$, demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
+	\end{itemize}
+	\subsection{Función Objetivo}
+	\begin{center}
+		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
 	\end{center}
-	
-	\vspace*{30mm}
-	\flushright 
-	
-	Gabriel Cornejo 23647086 Sección 1\\
-	Sebastián Lorca 23200316 Sección 2\\
-	Pablo Rojas 23645016 Sección 1\\
-	Benjamín Sánchez  23205873 Sección 1\\
-	Víctor Ruiz 2320012J Sección 1\\
-	
-	
-	\vspace*{5mm}
-	{\large Fecha entrega: 07 de Mayo de 2024\\}
-	
-	\newpage
-	\begin{flushleft}
-		\tableofcontents
-	\end{flushleft}
-	
-	\newpage
-	\begin{flushleft}
-		
-		\section{Descripción del Problema}
-		\subsection{Contexto y beneficios de resolver el problema}
-		% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
-		% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
-		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos.
-		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. (Falta el APA)
 
+	\subsection{Restricciones}
+	\begin{gather}
+		a_{mt} + S_{mt} \geq \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, \; t \in \{1, \ldots, 60\}\\
+		S_{mt-1} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, t \in \{2, \ldots, 60\}\\
+		a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  \qquad\qquad \forall \; m \in M\\
+		N \cdot \sum_{t=1}^{60} y_{it} \geq x_{mit} \qquad\qquad \forall \; m \in M, \forall i \in I,\; t \in \{1, \ldots, 60\}\\
+		\sum_{t \in T} y_{it} \leq 1 - EI_i \qquad\qquad \forall \; i \in I\\
+		K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi \qquad\qquad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
+		z_{it} \geq y_{it} + z_{i(t-1)} \qquad\qquad \forall \; i \in I, \;t \in \{2, \ldots, 60\}\\
+		z_{i1} \geq y_{i1} + EI_i \qquad\qquad \forall \; i \in I\\
+		\sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 \qquad\qquad \forall \; \in I, \; t \in \{1, \ldots, 60\}\\
+		x_{mit} = b_{mit} + x_{mi(t-1)} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\}\\
+		x_{mi1} = b_{mi1} \qquad\qquad \forall \; m \in M, \; i \in I\\
+		d_{mit} \leq D_{mit} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
+		d_{mit} \cdot \delta \leq x_{mit} \cdot \phi \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
+		y_{it}, z_{it} \in \{0, 1\} \quad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
+		x_{mit}, a_{mit}, b_{mit}, d_{mit} \in \mathbb{Z}^{+}_0 \quad \forall \; m\in M, i\in I, t\in T\\
+	\end{gather}
 
-		Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.). Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2. 
-		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
+	\begin{enumerate}
+		\item No instalar más de lo que se tiene en Stock (COMENTAR CON ANTO)
+		\item Restricción de almacenamiento (\textit{storage})
+		\item Restricción de almacenamiento inicial (\textit{storage})
+		\item Restricción de cantidad de cargadores instalados
+		\item Restricción de rentabilidad
+		\item Restricción de distancia máxima
+		\item Restricción de no cerrar estaciones con infraestructura instalada
+		\item Restricción de la demanda, no se puede satisfacer más de lo que se demanda
+	\end{enumerate}
 
-		El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
+	\subsection{Naturaleza de las variables}
+	\begin{itemize}
+		\item $x_{mit}$: Cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$. Es una variable entera no negativa.
+		\item $a_{mit}$: Cantidad de cargadores tipo $m$ que se compran en el periodo $t$. Es una variable entera no negativa.
+		\item $b_{mit}$: Cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
+		\item $d_{mit}$: Demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
+		\item $y_{it}$: Variable binaria que indica si se instala la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si se instala la infraestructura y 0 en cualquier otro caso.
+		\item $z_{it}$: Variable binaria que indica si existe la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si la infraestructura existe y 0 en cualquier otro caso.
+	\end{itemize}
+	\subsection{Definición de datos}
+	\begin{itemize}
+		\item $B$ es el presupuesto total disponible.
+		\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
+	\end{itemize}
 
-		Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad. 
+\end{flushleft}
 
-		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022). Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. 
- 
-		\subsection{Descripción del Problema}
-		\subsection{Objetivo que persigue el tomador de decisiones}
-		El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones. 		
-		\section{Modelación del problema}
-		\subsection{Conjuntos}
-		\begin{itemize}
-			\item $t \in \{1, \ldots, 60\}$, el mes desde la implementación del modelo.
-			\item $i \in I$, donde $I$ es el conjunto de ubicaciones de los posibles centros de carga.
-			\item $m \in M$, donde $M$ es el conjunto de tipos de cargadores.
-		\end{itemize}
-		
-		\subsection{Parámetros}
-		\begin{itemize}
-			\item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
-			\item $CI_{t}$, el costo de instalar un centro de carga en el periodo $t$.
-			\item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$.
-			\item $CC_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-			\item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-hora para un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-			\item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-			\item $\alpha$, coeficiente de ganancia que se quiere obtener por KW de electricidad vendido.
-			\item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica.
-			\item $EI_{it}$, si ya existe la infraestructura eléctrica en la estación $i$.
-			\item $EC_{mit}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$
-		\end{itemize}
-		\subsection{Variables de decisión} 
-		\begin{itemize}
-			\item $x_{mit}$ cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
-			\item \[
-				y_{it} = 
-					 \begin{cases}
-					   1 &\quad\text{si se instala la infraestructura eléctrica para }i\text{ en }t\\
-					   0 &\quad\text{en cualquier otro caso.}
-					 \end{cases}
-				\]
-			\item \[
-				z_{it} = 
-						\begin{cases}
-						1 &\quad\text{si existe la infraestructura eléctrica para }i\text{ en }t\\
-						0 &\quad\text{en cualquier otro caso.}
-						\end{cases}
-				\]
-			\item $a_{mt}$, cantidad de cargadores tipo $m$ que se compran en el periodo $t$.
-			\item $b_{mit}$, cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$.
-			\item $d_{mit}$, demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
-		\end{itemize}
-		\subsection{Función Objetivo}
-		\begin{center}
-			Maximizar $\sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
-		\end{center}	
-		
-		\subsection{Restricciones}
-		\begin{gather}
-			a_{mt} + S_{mt} \geq \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, \; t \in \{1, \ldots, 60\}\\
-			S_{mt-1} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, t \in \{2, \ldots, 60\}\\
-			a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  \qquad\qquad \forall \; m \in M\\
-			N \cdot \sum_{t=1}^{60} y_{it} \geq x_{mit} \qquad\qquad \forall \; m \in M, \forall i \in I,\; t \in \{1, \ldots, 60\}\\
-			\sum_{t \in T} y_{it} \leq 1 \qquad\qquad \forall \; i \in I\\
-			K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi \qquad\qquad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
-			z_{it} \geq y_{it} + z_{i(t-1)} \qquad\qquad \forall \; i \in I, \;t \in \{2, \ldots, 60\}\\
-			z_{i1} \geq y_{i1} \qquad\qquad \forall \; i \in I\\
-			\sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 \qquad\qquad \forall \; \in I, \; t \in \{1, \ldots, 60\}\\
-			x_{mit} = b_{mit} + x_{mi(t-1)} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\}\\
-			x_{mi1} = b_{mi1} \qquad\qquad \forall \; m \in M, \; i \in I\\
-			d_{mit} \leq D_{mit} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
-			d_{mit} \cdot \delta \leq x_{mit} \cdot \phi \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
-			y_{it}, z_{it} \in \{0, 1\} \quad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
-			x_{mit}, a_{mit}, b_{mit}, d_{mit} \in \mathbb{Z}^{+}_0 \quad \forall \; m\in M, i\in I, t\in T\\
-		\end{gather}
-
-		\begin{enumerate}
-			\item No instalar más de lo que se tiene en Stock (COMENTAR CON ANTO)
-			\item Restricción de almacenamiento (\textit{storage})
-			\item Restricción de almacenamiento inicial (\textit{storage})
-			\item Restricción de cantidad de cargadores instalados
-			\item Restricción de rentabilidad
-			\item Restricción de distancia máxima
-			\item Restricción de no cerrar estaciones con infraestructura instalada
-			\item Restricción de la demanda, no se puede satisfacer más de lo que se demanda
-		\end{enumerate}
-
-		\subsection{Naturaleza de las variables}
-		\begin{itemize}
-			\item $x_{mit}$: Cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$. Es una variable entera no negativa.
-			\item $a_{mit}$: Cantidad de cargadores tipo $m$ que se compran en el periodo $t$. Es una variable entera no negativa.
-			\item $b_{mit}$: Cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
-			\item $d_{mit}$: Demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$. Es una variable entera no negativa.
-			\item $y_{it}$: Variable binaria que indica si se instala la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si se instala la infraestructura y 0 en cualquier otro caso.
-			\item $z_{it}$: Variable binaria que indica si existe la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si la infraestructura existe y 0 en cualquier otro caso.
-		\end{itemize}
-		\subsection{Definición de datos}
-		\begin{itemize}
-			\item $B$ es el presupuesto total disponible.
-			\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
-		\end{itemize}
-		
-	\end{flushleft}
-	
 \end{document}
