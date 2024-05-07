@@ -87,21 +87,20 @@ Víctor Ruiz 2320012J Sección 1\\
 	\section{Descripción del Problema}
 	\subsection{Contexto y beneficios de resolver el problema}
 	\justifying
-	% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
-	% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
-	La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos.
-	Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. (Falta el APA)
+		% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
+		% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
+		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos. \cite{Gobierno 1}
+		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. Statista. (2023, 15 octubre). \cite{Gobierno 2}
 
 
-	Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.). Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2.
-	Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
+		Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.) \cite{copec}. Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2. 
+		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
 
-	El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo.
+		El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
 
-	Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad.
+		Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad. 
 
-	Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022). Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria.
-
+		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022) \cite{scheer}. Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. 
 	\subsection{Descripción del Problema}
 	\subsection{Objetivo que persigue el tomador de decisiones}
 	El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
@@ -230,7 +229,46 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $B$ es el presupuesto total disponible.
 		\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
 	\end{itemize}
+	\newpage
+	\begin{thebibliography}{9}
+	\bibitem{statista}
+	Statista. (2023, 15 octubre). Chile: volumen de ventas de vehículos eléctricos 2013-2022. Recuperado de \url{https://es.statista.com/estadisticas/1179792/volumen-ventas-vehiculos-electricos-chile/}
 
-\end{flushleft}
+	\bibitem{copec}
+	Nosotros. (s. f.). Tienda Copec Voltex. Recuperado de \url{https://copecvoltex.cl/pages/nosotros}
+	\bibitem{scheer}
+	Scheer, H. (2022). Mazda MX-30 EV no logra cruzar las distancias entre electrolineras en Chile. Recuperado de \url{https://www.scheer.cl/mazda-mx-30-ev-no-logra-cruzar-las-distancias-entre-electrolineras-en-chile/}
 
+	\bibitem{Gobierno 1}
+	Plataforma de Electromovilidad - políticas, estrategias de electromovilidad en Chile. (s. f.). Recuperado de\url{https://energia.gob.cl/electromovilidad/orientaciones-de-politicas-publicas#:~:text=Este%20documento%20fue%20el%20primero,sean%20el%2040%25%20del%20parque}
+	\bibitem{Gobierno 2}
+	ShieldSquare Block. (s. f.). Recuperado de \url{https://www.energia.gob.cl/sites/default/files/energia_2050_-_politica_energetica_de_chile.pdf}
+
+	\bibitem{Enel}
+	Autos Eléctricos: los números de la electromovilidad en Chile. (s. f.). Enel X. \url{https://www.enelx.com/cl/es/historias/autos-electricos-el-futuro-de-la-electromovilidad-en-chile}
+
+	\bibitem{UCH}
+	Luis, V. D., De Souza Antonio, Z., Rodrigo, M. V., Sebastián, M. A., \& Manuel, P. D. V. (2022). Metodologías de proyección de demanda y evaluación del impacto de vehículos eléctricos en redes de distribución. \url{https://repositorio.uchile.cl/handle/2250/187735}
+
+	\bibitem{paredes}
+	Paredes, G. (2022).
+	\end{thebibliography}
+
+	\newpage
+	\section{Anexos}
+	\begin{figure}[htbp]
+			\centering
+			\includegraphics[scale=0.4]{grafica-1}
+			\caption{Número de vehículos eléctricos vendidos en Chile entre 2013 y 2022. \cite{statista}}
+			\label{fig:grafica1}
+		\end{figure}
+	
+	\begin{figure}[htbp]
+			\centering
+			\includegraphics[scale=0.5]{grafica-2}
+			\caption{Número de autos privados \cite{paredes}}
+			\label{fig:grafica2}
+		\end{figure}
+
+	\end{flushleft}
 \end{document}
