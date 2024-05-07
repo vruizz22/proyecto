@@ -10,6 +10,7 @@
 \usepackage{subfigure}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{ragged2e}
 
 \graphicspath{ {./figures/} }
 
@@ -52,11 +53,11 @@
 \vspace*{6cm}
 \begin{center}{}
 	\vspace*{2mm}
-	{\Huge\bf Informe 1}\\
+	{\Huge\bf Informe 2}\\
 	\vspace*{4mm}
 	\hrule\vspace*{1pt}\hrule
 	\vspace*{4mm}
-	{\LARGE\bf Optimizar la posición de estaciones de carga eléctrica para vehículos}\\
+	{\LARGE\bf Optimizar la posici\'on de electrolineras y su rentabilidad para Copec}\\
 	\vspace*{4mm}
 	{\huge\bf Grupo 24 }\\
 	\vspace*{1mm}
@@ -85,6 +86,7 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\section{Descripción del Problema}
 	\subsection{Contexto y beneficios de resolver el problema}
+	\justifying
 	% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
 	% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
 	La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos.
@@ -113,7 +115,7 @@ Víctor Ruiz 2320012J Sección 1\\
 	\section{Modelación del problema}
 	\subsection*{Supuestos}
 	\begin{itemize}
-		\item 
+		\item
 	\end{itemize}
 	\subsection{Conjuntos}
 	\begin{itemize}
@@ -161,54 +163,57 @@ Víctor Ruiz 2320012J Sección 1\\
 	\subsection{Función Objetivo}
 	% COLOCAR COSTOS DE INSTALACION
 	\begin{center}
-		Maximizar $\sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
+		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
 	\end{center}
 
 	\subsection{Restricciones}
-	\begin{gather}
-		S_{m(t-1)} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} \qquad\qquad \forall \; m \in M, t \in \{2, \ldots, 60\}\\
-		a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  \qquad\qquad \forall \; m \in M\\
-		N \cdot \sum_{t'=1}^{t} y_{it'} \geq x_{mit} \qquad\qquad \forall \; m \in M, \; i \in I,\; t \in \{1, \ldots, 60\}\\
-		\sum_{t \in T} y_{it} \leq 1 - EI_i \qquad\qquad \forall \; i \in I\\
-		K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi_m \qquad\qquad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
-		z_{it} \geq y_{it} + z_{i(t-1)} \qquad\qquad \forall \; i \in I, \;t \in \{2, \ldots, 60\}\\
-		z_{i1} \geq y_{i1} + EI_i \qquad\qquad \forall \; i \in I\\
-		\sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 \qquad\qquad \forall \; j \in I, \; t \in \{1, \ldots, 60\}\\
-		x_{mit} = b_{mit} + x_{mi(t-1)} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\}\\
-		x_{mi1} = b_{mi1} + EC_{mi} \qquad\qquad \forall \; m \in M, \; i \in I\\
-		d_{mit} \leq D_{mit} \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
-		d_{mit} \cdot \delta \leq x_{mit} \cdot \phi \qquad\qquad \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}\\
-		y_{it}, z_{it} \in \{0, 1\} \quad \forall \; i \in I, \; t \in \{1, \ldots, 60\}\\
-		x_{mit}, a_{mit}, b_{mit}, d_{mit} \in \mathbb{Z}^{+}_0 \quad \forall \; m\in M, i\in I, t\in T
-	\end{gather}
-	
+
 	% COSTO POR INVENTARIO
 	\begin{enumerate}
 		\item Restricción de inventario, incluyendo la condici\'on inicial (\textit{storage}).
-		\begin{align*}
-			&S_{m(t-1)} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} &&\forall \; m \in M, t \in \{2, \ldots, 60\}\\
-			&a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}  && \forall \; m \in M
-		\end{align*}
+		      \begin{align*}
+			       & S_{m(t-1)} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} &  & \forall \; m \in M, t \in \{2, \ldots, 60\} \\
+			       & a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}              &  & \forall \; m \in M
+		      \end{align*}
 		\item Restricción de cantidad de cargadores instalados ($x$) que solo puede ser mayor a $0$ cuando se instala la infraestructura eléctrica ($y$).
-		\begin{align*}
-			&N \cdot \sum_{t'=1}^{t} y_{it'} \geq x_{mit} && \forall \; m \in M, \; i \in I,\; t \in \{1, \ldots, 60\}
-		\end{align*}
-		\item Restricción de rentabilidad
-		\begin{align*}
-			&\sum_{t \in T} y_{it} \leq 1 - EI_i && \forall \; i \in I
-		\end{align*}
-		\item Restricción de distancia máxima
-		\begin{align*}
-			&K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi_m && \forall \; i \in I, \; t \in \{1, \ldots, 60\}
-		\end{align*}
-		\item Restricción de no cerrar estaciones con infraestructura instalada
-		\begin{align*}
-			&z_{it} \geq y_{it} + z_{i(t-1)} && \forall \; i \in I, \;t \in \{2, \ldots, 60\}\\
-			&z_{i1} \geq y_{i1} + EI_i && \forall \; i \in I
-		\end{align*}
-		\item Restricción de la demanda, no se puede satisfacer más de lo que se demanda
-		\begin{align*}
-		\end{align*}
+		      \begin{align*}
+			       & N \cdot \sum_{t'=1}^{t} y_{it'} \geq x_{mit} &  & \forall \; m \in M, \; i \in I,\; t \in \{1, \ldots, 60\}
+		      \end{align*}
+		\item S\'olo se puede instalar la infraestructura el\'ectrica una vez si no se ha instalado antes ($EI$).
+		      \begin{align*}
+			       & \sum_{t \in T} y_{it} \leq 1 - EI_i &  & \forall \; i \in I
+		      \end{align*}
+		\item La capacidad en KW de los cargadores instalados ($x$) no puede superar la capacidad m\'axima de KW de la infraestructura el\'ectrica ($K$).
+		      \begin{align*}
+			       & K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi_m &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\}
+		      \end{align*}
+		\item Solo puede haber infraestructura el\'ectrica en una ubicaci\'on ($z$) si se ha instalado anteriormente ($y$)
+		      \begin{align*}
+			       & z_{it} \geq y_{it} + z_{i(t-1)} &  & \forall \; i \in I, \;t \in \{2, \ldots, 60\} \\
+			       & z_{i1} \geq y_{i1} + EI_i       &  & \forall \; i \in I
+		      \end{align*}
+		\item Solo puede haber un centro de carga en una ubicaci\'on $j$ existe al menos una estaci\'on cuya distancia es menor a la distancia m\'axima permitida ($AM$).
+		      \begin{align*}
+			       & \sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 &  & \forall \; j \in I, \; t \in \{1, \ldots, 60\}
+		      \end{align*}
+		\item La cantidad de cargadores en una estaci\'on ($x$) debe ser igual a la cantidad instalada en el periodo más la existente en el periodo anterior, considerando la condici\'on inicial.
+		      \begin{align*}
+			       & x_{mit} = b_{mit} + x_{mi(t-1)} &  & \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\} \\
+			       & x_{mi1} = b_{mi1} + EC_{mi}     &  & \forall \; m \in M, \; i \in I
+		      \end{align*}
+		\item La demanda a satisfacer, entendida como cantidad de vehículos, no puede superar la demanda total de cargadores en una estación.
+		      \begin{align*}
+			       & d_{mit} \leq D_{mit} &  & \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}
+		      \end{align*}
+		\item La cantidad de KW que se van a proveer no puede superar la capacidad de carga de los cargadores instalados.
+		      \begin{align*}
+			       & \delta \cdot d_{mit} \leq x_{mit} \cdot \phi_m &  & \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}
+		      \end{align*}
+		\item Naturaleza de las variables.
+		      \begin{align*}
+			       & y_{it}, z_{it} \in \{0, 1\}                             &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\} \\
+			       & x_{mit}, a_{mit}, b_{mit}, d_{mit} \in \mathbb{Z}^{+}_0 &  & \forall \; m\in M, i\in I, t\in T
+		      \end{align*}
 	\end{enumerate}
 
 	\subsection{Naturaleza de las variables}
