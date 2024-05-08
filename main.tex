@@ -126,9 +126,10 @@ Víctor Ruiz 2320012J Sección 1\\
 		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022) \cite{scheer}. Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. \\
 
 		Continuando en este eje, según una encuesta realizada por el diario la Tercera el 15\% de los encuestados cree que una de las barreras para adquirir un vehiculo electrico es la que la red de carga no avanza del todo de acuerdo a lo esperado \cite{Tercera}. Respecto a este desafío ya conocido Diego Pardow, el ministro de energía habló sobre la Hoja de Ruta para el Avance de la Electromovilidad en Chile, donde uno de los ejes estratégicos para incentivar el uso de vehículos eléctricos es precisamente mejorar la red de carga.
-		Es en esta línea que se considera de gran valor el problema a optimizar, ya que, según Diego Mendoza, secretario general de ANAC (Asociación Nacional Automotriz de Chile) el parque electrificado a la fecha de septiembre del 2023 es de 4610 vehículos, y se espera que para el año 2025 el 5\% del mercado Automotriz sea de vehículos eléctricos. Tomando datos anteriores, en el año 2023 se comercializaron 313.865 vehículos \cite{chileautos} mientras que en el año 2022 la cifra fue de 426.772 \cite{Tercera-1}. Suponiendo que en el año 2025 en el mercado habran 350.000 vehículos en el mercado, si se cumple la proyección esperada se estarían comercializando 17.500 vehículos eléctricos aproximadamente. A su vez, asumiendo que habrá una especie de crecimiento lineal de comercialización de vehículos eléctricos y considerando los que ya hay en circulación, se puede estimar que para el año 2025 habrian alrededor de 30.000 vehículos eléctricos en circulación lo cual representa el 650\% de la cantidad actual. Siguiendo en esta línea considerando que Copec tiene la mayor implicancia en el mercado de puntos de carga para EVs para el año 2025 se habría ayudado a más de 10.000 vehículos eléctricos generando una red de puntos de carga óptima acorde al crecimiento esperado y que se está desarrollando en el país.
+
+		Es en esta línea que se considera de gran valor el problema a optimizar, ya que, según Diego Mendoza, secretario general de ANAC (Asociación Nacional Automotriz de Chile) el parque electrificado a la fecha de septiembre del 2023 es de 4610 vehículos, y se espera que para el año 2025 el 5\% del mercado Automotriz sea de vehículos eléctricos. Tomando datos anteriores, en el año 2023 se comercializaron 313.865 vehículos \cite{chileautos} mientras que en el año 2022 la cifra fue de 426.772 \cite{Tercera-1}. Suponiendo que en el año 2025 en el mercado habran 350.000 vehículos en el mercado, si se cumple la proyección esperada se estarían comercializando 17.500 vehículos eléctricos aproximadamente. A su vez, asumiendo que habr\'a un crecimiento lineal de comercializaci\'on de veh\'iculos el\'ectricos y considerando los que ya hay en circulaci\'on, se puede estimar que para el año 2025 habr\'ian alrededor de 30.000 vehículos eléctricos en circulación lo cual representa el 650\% de la cantidad actual. Siguiendo en esta línea, considerando que Copec tiene la mayor implicancia en el mercado de puntos de carga para EVs para el año 2025, se habr\'ia ayudado a más de 10.000 vehículos eléctricos generando una red de puntos de carga óptima acorde al crecimiento esperado y que se está desarrollando en el país.
 	\subsection{Objetivo que persigue el tomador de decisiones}
-		El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
+		El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos considerando la cantidad de autos a satisfacer. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
 	
 	\section{Modelación del problema}
 	\subsection*{Supuestos}
@@ -147,7 +148,7 @@ Víctor Ruiz 2320012J Sección 1\\
 	\subsection{Parámetros}
 	\begin{itemize}
 		\item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
-		\item $CI_{t}$, el costo de instalar un centro de carga en el periodo $t$.
+		\item $CI_{it}$, el costo de instalar la infraestructura el\'ectrica en el periodo $t$ para la estaci\'on $I$.
 		\item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$.
 		\item $CC_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$.
 		\item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-hora para un cargador tipo $m$ en la estación $i$ en el periodo $t$.
@@ -179,13 +180,14 @@ Víctor Ruiz 2320012J Sección 1\\
 		      \]
 		\item $a_{mt}$, cantidad de cargadores tipo $m$ que se compran en el periodo $t$.
 		\item $b_{mit}$, cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$.
-		\item $d_{mit}$, (Cant de vehiculos)demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
+		\item $d_{mit}$, (Cant. de vehiculos)demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
+		\item $S_{mt}$, cantidad de cargadores almacenados de tipo $m$ el periodo $t$.
 	\end{itemize}
 	\subsection{Función Objetivo}
 	% COLOCAR COSTOS DE INSTALACION carga y insgractuructura
 	% Costo de mantener inventario
 	\begin{center}
-		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt} \; $ 
+		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit} - b_{mit} \cdot CC_{mit}) - \sum_{t \in T} \sum_{m \in M} a_{mt} \cdot CP_{mt} - \sum_{t \in T}\sum_{m \in M} CS_{mt} \cdot S_{mt} - \sum_{t \in T} \sum_{i \in I} y_{it} \cdot CI_{it}$ 
 	\end{center}
 
 	\subsection{Restricciones}
