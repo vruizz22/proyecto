@@ -24,9 +24,32 @@
 \definecolor{deepred}{rgb}{0.7,0,0}
 \definecolor{deepgreen}{rgb}{0,0.6,0}
 
-\newcommand{\mytitle}{Tarea 1}
-\newcommand{\myauthor}{Mariana Ortega}
+\newcommand{\mytitle}{Informe}
+\newcommand{\myauthor}{Grupo 24}
 \newcommand{\mydate}{\today}
+
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section{\bibname}% <-- Cambiado de \chapter* a \section*
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
 
 \begin{document}
 
@@ -89,32 +112,30 @@ Víctor Ruiz 2320012J Sección 1\\
 	\justifying
 		% Contexto -> Como Copec se enfrenta al desafío de optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE).
 		% Mejorar la rentabilidad de estaciones de carga eléctrica para beneficio de la empresa y para masificar la adopción de vehículos eléctricos.
-		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos. \cite{Gobierno 1}
-		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. Statista. (2023, 15 octubre). \cite{Gobierno 2}
+		La transición energética es tema mundial por la importancia de generar un cambio a corto plazo en materia ambiental. En esta línea, Chile tiene metas propuestas para reducir la huella de carbono y para ello, uno de los principales desafíos es en materia automotriz, donde los automóviles eléctricos están cada vez más presentes y se proyecta que para el año 2050 el 40 \% de los vehículos de uso particular sean eléctricos. \cite{Gobierno 1} \\
+		Esta proyección se está cumpliendo, ya que se ha visto un crecimiento acorde a lo esperado. Por ejemplo, según datos del sitio Statista en Chile las ventas de autos eléctricos han aumentado considerablemente, teniendo el año 2022, 1295 ventas, que representa más del 200 \% respecto al año 2021 y más del 500\% respecto al 2019. Statista. (2023, 15 octubre). \cite{Gobierno 2} \\
 
 
 		Entonces, en este contexto de transición hacia una movilidad más sostenible, Copec, una empresa chilena líder en la distribución de combustibles en América Latina, ha decidido incursionar en el mercado de vehículos eléctricos con su plan de movilidad sustentable (Copec Voltex, s.f.) \cite{copec}. Este plan consiste en la implementación de electrolineras, que son puntos de carga públicos para BEV1 a lo largo de todo Chile, para hacer posible una red conectada, donde usuarios puedan desplazarse sin depender de la autonomía de su EV2. 
-		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica.
+		Uno de los mayores desafíos presentes en esta iniciativa es lograr optimizar el posicionamiento de sus centros de carga para vehículos eléctricos (CVE). Este proceso implica identificar las ubicaciones óptimas para instalar estos centros de carga, considerando diversos factores como la demanda potencial, la infraestructura eléctrica disponible, la accesibilidad y la rentabilidad económica. \\
 
 		El tomador de decisiones en este caso es el equipo de planificación estratégica de Copec Voltex, que busca maximizar la rentabilidad de los centros de carga eléctricos en Chile, satisfaciendo la creciente demanda de vehículos eléctricos. El horizonte de planificación adecuado abarca al menos un período de 5 años, ya que se espera que la adopción de vehículos eléctricos continúe en aumento durante este tiempo. 
 
-		Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad. 
+		Resolver este desafío le entregará a Copec Voltex la iniciativa de aumentar la cantidad de electrolineras, lo que, a su vez, no solo facilitará el acceso a esta tecnología emergente, sino que puede impulsar la adopción de esta tecnología al reducir las barreras de acceso para los conductores. De esta manera, lo que contribuirá significativamente a la reducción de emisiones contaminantes y al combate del cambio climático que es justamente el compromiso de Copec con su comunidad. \\
 
-		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022) \cite{scheer}. Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. 
-	\subsection{Descripción del Problema}
+		Actualmente, Copec Voltex cuenta con una red de carga de 68 electrolineras en la Región Metropolitana, y 128 puntos a lo largo de todo el país. Eso significa una conexión de 1400 kilómetros, según indican en su sitio (Copec Voltex, s.f.). Sin embargo, tras un análisis de la autonomía de los EVs en promedio, y las distancias entre electrolineras en Chile, algunos EVs económicos como el Mazda MX-30 EV no logran cruzar las distancias entre electrolineras (Scheer, 2022) \cite{scheer}. Por esto, un modelo que sea capaz de encontrar una solución de red para todo vehículo se hace necesaria. \\
+
+		Continuando en este eje, según una encuesta realizada por el diario la Tercera el 15\% de los encuestados cree que una de las barreras para adquirir un vehiculo electrico es la que la red de carga no avanza del todo de acuerdo a lo esperado \cite{Tercera}. Respecto a este desafío ya conocido Diego Pardow, el ministro de energía habló sobre la Hoja de Ruta para el Avance de la Electromovilidad en Chile, donde uno de los ejes estratégicos para incentivar el uso de vehículos eléctricos es precisamente mejorar la red de carga.
+		Es en esta línea que se considera de gran valor el problema a optimizar, ya que, según Diego Mendoza, secretario general de ANAC (Asociación Nacional Automotriz de Chile) el parque electrificado a la fecha de septiembre del 2023 es de 4610 vehículos, y se espera que para el año 2025 el 5\% del mercado Automotriz sea de vehículos eléctricos. Tomando datos anteriores, en el año 2023 se comercializaron 313.865 vehículos \cite{chileautos} mientras que en el año 2022 la cifra fue de 426.772 \cite{Tercera-1}. Suponiendo que en el año 2025 en el mercado habran 350.000 vehículos en el mercado, si se cumple la proyección esperada se estarían comercializando 17.500 vehículos eléctricos aproximadamente. A su vez, asumiendo que habrá una especie de crecimiento lineal de comercialización de vehículos eléctricos y considerando los que ya hay en circulación, se puede estimar que para el año 2025 habrian alrededor de 30.000 vehículos eléctricos en circulación lo cual representa el 650\% de la cantidad actual. Siguiendo en esta línea considerando que Copec tiene la mayor implicancia en el mercado de puntos de carga para EVs para el año 2025 se habría ayudado a más de 10.000 vehículos eléctricos generando una red de puntos de carga óptima acorde al crecimiento esperado y que se está desarrollando en el país.
 	\subsection{Objetivo que persigue el tomador de decisiones}
-	El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
-
-	Supuestos:
-	La cantidad de estaciones existente no supera la capacidad máxima de la infraestructura eléctrica.
-
-	Los \textit{EV}s van a cargar en promedio $\delta$ KW en un mes.
-
-	La demanda total se considerar\'a como la cantidad de veh\'iculos disponibles en la regi\'on.
+		El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
+	
 	\section{Modelación del problema}
 	\subsection*{Supuestos}
 	\begin{itemize}
-		\item
+		\item La cantidad de estaciones existente no supera la capacidad máxima de la infraestructura eléctrica.
+		\item Los \textit{EV}s van a cargar en promedio $\delta$ KW en un mes.
+		\item La demanda total se considerar\'a como la cantidad de veh\'iculos disponibles en la regi\'on.
 	\end{itemize}
 	\subsection{Conjuntos}
 	\begin{itemize}
@@ -137,6 +158,7 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica.
 		\item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$.
 		\item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$
+		\item $CS_{mt}$, el costo de almacenar un cargador tipo $m$ en el periodo $t$.
 	\end{itemize}
 	\subsection{Variables de decisión}
 	\begin{itemize}
@@ -160,9 +182,10 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $d_{mit}$, (Cant de vehiculos)demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
 	\end{itemize}
 	\subsection{Función Objetivo}
-	% COLOCAR COSTOS DE INSTALACION
+	% COLOCAR COSTOS DE INSTALACION carga y insgractuructura
+	% Costo de mantener inventario
 	\begin{center}
-		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt}$
+		$\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit}) - \sum_{i \in I} \sum_{t=1}^{60} a_{mt} \cdot CP_{mt} \; $ 
 	\end{center}
 
 	\subsection{Restricciones}
@@ -229,8 +252,10 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $B$ es el presupuesto total disponible.
 		\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
 	\end{itemize}
+
 	\newpage
-	\begin{thebibliography}{9}
+	
+	\begin{thebibliography}{15}
 	\bibitem{statista}
 	Statista. (2023, 15 octubre). Chile: volumen de ventas de vehículos eléctricos 2013-2022. Recuperado de \url{https://es.statista.com/estadisticas/1179792/volumen-ventas-vehiculos-electricos-chile/}
 
@@ -252,6 +277,15 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\bibitem{paredes}
 	Paredes, G. (2022).
+
+	\bibitem{Tercera}
+	Gil, L. G. (2023, 8 septiembre). ¿Cuántos hay? ¿Cuánto valen? ¿Es factible? Radiografía al mercado de los autos eléctricos e híbridos en Chile. La Tercera. Recuperado de \url{https://www.latercera.com/mtonline/noticia/cuantos-hay-cuanto-valen-es-factible-radiografia-al-mercado-de-los-autos-electricos-e-hibridos-en-chile/KXXHOYPUSNHE3HOQ6J4VKOEYOM/#}
+	
+	\bibitem{chileautos}
+	Loyola, A. (2024, 9 enero). Venta de autos nuevos registra caída de un 26,5\% en el 2023. Recuperado de \url{https://www.chileautos.cl/noticias/detalle/venta-de-autos-nuevos-registra-caida-de-un-265-en-el-2023--29449/#:~:text=Informe%20de%20ANAC%20se%C3%B1al%C3%B3%20que,5%25%20respecto%20del%20a%C3%B1o%20anterior}
+
+	\bibitem{Tercera-1}
+	Gil, L. G. (2023a, enero 5). Chile logra récord histórico en venta de autos nuevos y nuevamente es el segundo mayor mercado de Sudamérica. La Tercera. Recupera de \url{https://www.google.com/amp/s/www.latercera.com/mtonline/noticia/venta-de-autos-supera-las-420-mil-unidades-y-chile-nuevamente-es-el-segundo-mayor-mercado-de-sudamerica/GHIJNCAWTBF5XFJSCYCGKGMNKA/%3foutputType=amp}
 	\end{thebibliography}
 
 	\newpage
