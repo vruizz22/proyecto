@@ -228,6 +228,7 @@ class Modelo:
              for i in self.I),
             name='restriccion_infraestructura_unica'
         )
+        ###
         model.addConstrs(
             (quicksum(x_mit[m, i, t] * self.phi_m[m]
              for m in self.M) <= self.K for i in self.I for t in self.T),
@@ -243,6 +244,7 @@ class Modelo:
              for i in self.I for t in self.T if t >= 2),
             name='restriccion_infraestructura_existente_2'
         )
+
         model.addConstrs(
             (z_it[i, 1] >= y_it[i, 1] + self.EI_i[i]
              for i in self.I),
@@ -253,6 +255,7 @@ class Modelo:
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
+
         model.addConstrs(
             (x_mit[m, i, t] == b_mit[m, i, t] + x_mit[m, i, t - 1]
              for m in self.M for i in self.I for t in self.T if t >= 2),
@@ -291,13 +294,12 @@ class Modelo:
 
         model.optimize()
 
-        if model.status == GRB.INFEASIBLE:
+        if model.status == GRB.INFEASIBLE or model.status == GRB.INF_OR_UNBD:
             print('El modelo es infactible')
             model.computeIIS()
             model.write('modelo.ilp')
         else:
-
-            print('solucion: ', model.ObjVal)
+            print('Función objetivo:', model.objVal)
 
 
 if __name__ == '__main__':

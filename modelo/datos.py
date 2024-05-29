@@ -2,7 +2,7 @@ from faker import Faker
 import pandas as pd
 from os import path
 
-
+Faker.seed(0)
 '''
 Crear parametros
 \item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$. () cantidad autos
@@ -119,7 +119,7 @@ parametros_mit = {
     'D_mit': (M, I, T, Faker(), [40, 70], ruta_demanda, 'demanda'),
     'CC_mit': (M, I, T, Faker(), [1800000, 5500000], ruta_costo_int, 'costo_instalacion_cargador'),
     'CKW_mit': (M, I, T, Faker(), [72000, 144000], ruta_costo_kw, 'costo_energia_kw'),
-    'CM_mit': (M, I, T, Faker(), [70000, 120000], ruta_costo_man, 'costo_mantenimiento')
+    'CM_mit': (M, I, T, Faker(), [10000, 20000], ruta_costo_man, 'costo_mantenimiento')
 }
 
 parametros_mt = {
@@ -131,13 +131,13 @@ parametros_it = {
     'CI_it': (I, T, Faker(), [1707077, 40813109], 'costo_instalacion_electrica')
 }
 parametros_i = {
-    'EI_i': (I, Faker(), [0, 1], 'infraestructura_existente')
+    'EI_i': (I, Faker(), [0, 0], 'infraestructura_existente')
 }
 parametros_m = {
     'phi_m': ['capacidad_carga']
 }
 parametros_mi = {
-    'EC_mi': (M, I, Faker(), [0, 5], 'cargadores_existentes')
+    'EC_mi': (M, I, Faker(), [0, 0], 'cargadores_existentes')
 }
 
 
@@ -167,7 +167,7 @@ crear_csv(parametros_i.values(), 'i')
 crear_csv(parametros_m.values(), 'm')
 crear_csv(parametros_mi.values(), 'mi')
 parametros_sin_dimension(
-    'alpha', Faker().pyfloat(min_value=0.5, max_value=0.8))
+    'alpha', 1.3)
 parametros_sin_dimension('delta', 333)
 parametros_sin_dimension('K', 12960)
 parametros_sin_dimension('AM', 80)
