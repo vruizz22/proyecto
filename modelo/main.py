@@ -1,5 +1,5 @@
 import pandas as pd
-from gurobipy import GRB
+from gurobipy import GRB, quicksum
 import gurobipy as gp
 from os import path
 from math import inf
@@ -94,14 +94,14 @@ class Modelo:
             (m, i, t): leer_archivo(ruta_archivos_costo_man[f'costo_mantenimiento{t}'])[m - 1, i - 1]
             for m in self.M for i in self.I for t in self.T
         }
-        self.alpha = leer_archivo(ruta_archivos['alpha'])[0, 0]
-        self.delta = leer_archivo(ruta_archivos['delta'])[0, 0]
-        self.K = leer_archivo(ruta_archivos['K'])[0, 0]
+        self.alpha = leer_archivo(ruta_archivos['alpha']).flatten()[0]
+        self.delta = leer_archivo(ruta_archivos['delta']).flatten()[0]
+        self.K = leer_archivo(ruta_archivos['K']).flatten()[0]
         self.phi_m = {
             m: leer_archivo(ruta_archivos['capacidad_carga'])[m - 1, 0]
             for m in self.M
         }
-        self.AM = leer_archivo(ruta_archivos['AM'])[0, 0]
+        self.AM = leer_archivo(ruta_archivos['AM']).flatten()[0]
         self.EI_i = {
             i: leer_archivo(ruta_archivos['infraestructura_existente'])[
                 i - 1, 0]
@@ -208,34 +208,34 @@ class Modelo:
 
         # Restricciones
         model.addConstrs(
-            (S_mt[m, t - 1] + a_mt[m, t] == S_mt[m, t] + sum(b_mit[m, i, t] for i in self.I)
-             for m in self.M for t in self.T if t >= 1),
+            (S_mt[m, t - 1] + a_mt[m, t] == S_mt[m, t] + quicksum(b_mit[m, i, t] for i in self.I)
+             for m in self.M for t in self.T if t >= 2),
             name='restriccion_inventario'
         )
         model.addConstrs(
-            (a_mt[m, 1] == S_mt[m, 1] + sum(b_mit[m, i, 1] for i in self.I)
+            (a_mt[m, 1] == S_mt[m, 1] + quicksum(b_mit[m, i, 1] for i in self.I)
              for m in self.M),
             name='restriccion_inventario_inicial'
         )
-        N = inf
+        N = 10000000000
         model.addConstrs(
-            (N * sum(y_it[i, t_] for t_ in range(1, t + 1)) >= x_mit[m, i, t]
+            (N * quicksum(y_it[i, t_] for t_ in range(1, t + 1)) >= x_mit[m, i, t]
              for m in self.M for i in self.I for t in self.T),
             name='restriccion_infraestructura'
         )
         model.addConstrs(
-            (sum(y_it[i, t] for t in self.T) <= 1 - self.EI_i[i]
+            (quicksum(y_it[i, t] for t in self.T) <= 1 - self.EI_i[i]
              for i in self.I),
             name='restriccion_infraestructura_unica'
         )
         model.addConstrs(
-            (self.K >= sum(x_mit[m, i, t] * self.phi_m[m]
+            (quicksum(x_mit[m, i, t] * self.phi_m[m]
                            for m in self.M for i in self.I)
-             for t in self.T),
+             <= self.K for t in self.T),
             name='restriccion_capacidad'
         )
         model.addConstrs(
-            (z_it[i, t] <= sum(y_it[i, t_] for t_ in range(1, t + 1))
+            (z_it[i, t] <= quicksum(y_it[i, t_] for t_ in range(1, t + 1))
              for i in self.I for t in self.T),
             name='restriccion_infraestructura_existente'
         )
@@ -250,7 +250,7 @@ class Modelo:
             name='restriccion_infraestructura_existente_3'
         )
         model.addConstrs(
-            (sum(z_it[j, t] for j in self.I if j != i and self.d_ij[(i, j)] <= self.AM) >= 1
+            (quicksum(z_it[j, t] for j in self.I if j != i and self.d_ij[(i, j)] <= self.AM) >= 1
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
@@ -281,22 +281,20 @@ class Modelo:
                 $\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit} - b_{mit} \cdot CC_{mit}) - \sum_{t \in T} \sum_{m \in M} a_{mt} \cdot CP_{mt} - \sum_{t \in T}\sum_{m \in M} CS_{mt} \cdot S_{mt} - \sum_{t \in T} \sum_{i \in I} y_{it} \cdot CI_{it}$
             \end{center}
         '''
-        model.setObjective(sum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1)
+        model.setObjective(quicksum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1)
                                - x_mit[m, i, t] * self.CM_mit[(m, i, t)] - b_mit[m, i, t] * self.CC_mit[(m, i, t)]
                                for m in self.M for i in self.I for t in self.T)
-                           - sum(a_mt[m, t] * self.CP_mt[(m, t)]
+                           - quicksum(a_mt[m, t] * self.CP_mt[(m, t)]
                                  for t in self.T for m in self.M)
-                           - sum(self.CS_mt[(m, t)] * S_mt[m, t]
+                           - quicksum(self.CS_mt[(m, t)] * S_mt[m, t]
                                  for t in self.T for m in self.M)
-                           - sum(y_it[i, t] * self.CI_it[(i, t)] for t in self.T for i in self.I), GRB.MAXIMIZE)
+                           - quicksum(y_it[i, t] * self.CI_it[(i, t)] for t in self.T for i in self.I), GRB.MAXIMIZE)
 
         model.optimize()
-        if model.status == GRB.INFEASIBLE:
-            model.computeIIS()
-            model.write("iis.ilp")
 
         print('solucion: ', model.objVal)
 
 
 if __name__ == '__main__':
     modelo = Modelo()
+    modelo.implementar_modelo()
