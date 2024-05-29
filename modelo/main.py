@@ -15,7 +15,7 @@ class Modelo:
 
         # Cardinalidad de los conjuntos
         self.T = range(1, 61)
-        self.I = range(1, 14)
+        self.I = range(1, 13)
         self.M = range(1, 3)
 
         ruta_archivos = {
@@ -28,7 +28,8 @@ class Modelo:
             'alpha': path.join('parametros', 'alpha.csv'),
             'delta': path.join('parametros', 'delta.csv'),
             'K': path.join('parametros', 'K.csv'),
-            'AM': path.join('parametros', 'AM.csv')
+            'AM': path.join('parametros', 'AM.csv'),
+            'd_ij': path.join('parametros', 'distance.csv')
         }
         ruta_archivos_demanda = {
             f'demanda{t}': path.join('parametros', 'demanda', f'demanda{t}.csv')
@@ -110,8 +111,14 @@ class Modelo:
             (m, i): leer_archivo(ruta_archivos['cargadores_existentes'])[m - 1, i - 1]
             for m in self.M for i in self.I
         }
-
-        # FALTA DEFINIR d_ij
+        self.CS_mt = {
+            (m, t): leer_archivo(ruta_archivos['costo_almacenamiento'])[m - 1, t - 1]
+            for m in self.M for t in self.T
+        }
+        self.d_ij = {
+            (i, j): leer_archivo(ruta_archivos['d_ij'])[i - 1, j - 1]
+            for i in self.I for j in self.I if i != j
+        }
 
     def implementar_modelo(self):
         # Implementamos el modelo
@@ -243,7 +250,7 @@ class Modelo:
             name='restriccion_infraestructura_existente_3'
         )
         model.addConstrs(
-            (sum(z_it[j, t_] for j in self.I if j != i and d_ij <= self.AM) >= 1
+            (sum(z_it[j, t] for j in self.I if j != i and self.d_ij[(i, j)] <= self.AM) >= 1
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
@@ -274,8 +281,21 @@ class Modelo:
                 $\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit} - b_{mit} \cdot CC_{mit}) - \sum_{t \in T} \sum_{m \in M} a_{mt} \cdot CP_{mt} - \sum_{t \in T}\sum_{m \in M} CS_{mt} \cdot S_{mt} - \sum_{t \in T} \sum_{i \in I} y_{it} \cdot CI_{it}$
             \end{center}
         '''
-        model.setObjective(sum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1) for m in self.M for i in self.I for t in self.T)
-                           - sum(a_mt[m, t] * for t in self.T for m in self.M), GRB.MAXIMIZE)
+        model.setObjective(sum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1)
+                               - x_mit[m, i, t] * self.CM_mit[(m, i, t)] - b_mit[m, i, t] * self.CC_mit[(m, i, t)]
+                               for m in self.M for i in self.I for t in self.T)
+                           - sum(a_mt[m, t] * self.CP_mt[(m, t)]
+                                 for t in self.T for m in self.M)
+                           - sum(self.CS_mt[(m, t)] * S_mt[m, t]
+                                 for t in self.T for m in self.M)
+                           - sum(y_it[i, t] * self.CI_it[(i, t)] for t in self.T for i in self.I), GRB.MAXIMIZE)
+
+        model.optimize()
+        if model.status == GRB.INFEASIBLE:
+            model.computeIIS()
+            model.write("iis.ilp")
+
+        print('solucion: ', model.objVal)
 
 
 if __name__ == '__main__':

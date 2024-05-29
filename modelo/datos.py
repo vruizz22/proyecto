@@ -31,7 +31,7 @@ m \in {1, 2}
 '''
 
 T = range(1, 61)
-I = range(1, 14)
+I = range(1, 13)
 M = range(1, 3)
 
 ruta_costo_int = path.join('parametros', 'costo_inst')
@@ -41,13 +41,19 @@ ruta_demanda = path.join('parametros', 'demanda')
 
 
 def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
+    aumento = {
+        'costo_mantenimiento': 1 + (5/1200),
+        'costo_instalacion_cargador': 1 + (12/1200),
+        'demanda': 1 + (70/1200),
+        'costo_energia_kw': 1 + (25/1200)
+    }
     for t in T:
         df = pd.DataFrame(index=['Cargador ' + str(m) for m in M],
                           columns=['Estación ' + str(i) for i in I])
         for m in M:
             for i in I:
                 df.at['Cargador ' + str(m), 'Estación ' + str(i)] = fake.random_int(
-                    min=rango_random[0], max=rango_random[1])
+                    min=rango_random[0], max=rango_random[1]) * (aumento[nombre] ** (t-1))
         # Convertir el DataFrame a csv
         df.to_csv(f'{ruta}/{nombre}{t}.csv')
 
