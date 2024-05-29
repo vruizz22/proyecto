@@ -1,0 +1,96 @@
+\ Model _copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+Maximize
+ 
+Subject To
+ restriccion_capacidad[1]: 684 x_mit[1,1,1] + 684 x_mit[1,2,1]
+   + 684 x_mit[1,3,1] + 684 x_mit[1,4,1] + 684 x_mit[1,5,1]
+   + 684 x_mit[1,6,1] + 684 x_mit[1,7,1] + 684 x_mit[1,8,1]
+   + 684 x_mit[1,9,1] + 684 x_mit[1,10,1] + 684 x_mit[1,11,1]
+   + 684 x_mit[1,12,1] + 2592 x_mit[2,1,1] + 2592 x_mit[2,2,1]
+   + 2592 x_mit[2,3,1] + 2592 x_mit[2,4,1] + 2592 x_mit[2,5,1]
+   + 2592 x_mit[2,6,1] + 2592 x_mit[2,7,1] + 2592 x_mit[2,8,1]
+   + 2592 x_mit[2,9,1] + 2592 x_mit[2,10,1] + 2592 x_mit[2,11,1]
+   + 2592 x_mit[2,12,1] <= 12960
+ restriccion_cantidad_cargadores_inicial[1,1]: x_mit[1,1,1] - b_mit[1,1,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[1,2]: x_mit[1,2,1] - b_mit[1,2,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[1,3]: x_mit[1,3,1] - b_mit[1,3,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[1,4]: x_mit[1,4,1] - b_mit[1,4,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[1,5]: x_mit[1,5,1] - b_mit[1,5,1]
+   = 4
+ restriccion_cantidad_cargadores_inicial[1,6]: x_mit[1,6,1] - b_mit[1,6,1]
+   = 5
+ restriccion_cantidad_cargadores_inicial[1,7]: x_mit[1,7,1] - b_mit[1,7,1]
+   = 1
+ restriccion_cantidad_cargadores_inicial[1,8]: x_mit[1,8,1] - b_mit[1,8,1]
+   = 3
+ restriccion_cantidad_cargadores_inicial[1,9]: x_mit[1,9,1] - b_mit[1,9,1]
+   = 4
+ restriccion_cantidad_cargadores_inicial[1,10]: x_mit[1,10,1]
+   - b_mit[1,10,1] = 4
+ restriccion_cantidad_cargadores_inicial[1,11]: x_mit[1,11,1]
+   - b_mit[1,11,1] = 5
+ restriccion_cantidad_cargadores_inicial[1,12]: x_mit[1,12,1]
+   - b_mit[1,12,1] = 4
+ restriccion_cantidad_cargadores_inicial[2,1]: x_mit[2,1,1] - b_mit[2,1,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[2,2]: x_mit[2,2,1] - b_mit[2,2,1]
+   = 3
+ restriccion_cantidad_cargadores_inicial[2,3]: x_mit[2,3,1] - b_mit[2,3,1]
+   = 1
+ restriccion_cantidad_cargadores_inicial[2,4]: x_mit[2,4,1] - b_mit[2,4,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[2,5]: x_mit[2,5,1] - b_mit[2,5,1]
+   = 3
+ restriccion_cantidad_cargadores_inicial[2,6]: x_mit[2,6,1] - b_mit[2,6,1]
+   = 5
+ restriccion_cantidad_cargadores_inicial[2,7]: x_mit[2,7,1] - b_mit[2,7,1]
+   = 2
+ restriccion_cantidad_cargadores_inicial[2,8]: x_mit[2,8,1] - b_mit[2,8,1]
+   = 5
+ restriccion_cantidad_cargadores_inicial[2,10]: x_mit[2,10,1]
+   - b_mit[2,10,1] = 4
+ restriccion_cantidad_cargadores_inicial[2,11]: x_mit[2,11,1]
+   - b_mit[2,11,1] = 2
+ restriccion_cantidad_cargadores_inicial[2,12]: x_mit[2,12,1]
+   - b_mit[2,12,1] = 2
+Bounds
+ x_mit[1,1,1] free
+ x_mit[1,2,1] free
+ x_mit[1,3,1] free
+ x_mit[1,4,1] free
+ x_mit[1,5,1] free
+ x_mit[1,6,1] free
+ x_mit[1,7,1] free
+ x_mit[1,8,1] free
+ x_mit[1,9,1] free
+ x_mit[1,10,1] free
+ x_mit[1,11,1] free
+ x_mit[1,12,1] free
+ x_mit[2,1,1] free
+ x_mit[2,2,1] free
+ x_mit[2,3,1] free
+ x_mit[2,4,1] free
+ x_mit[2,5,1] free
+ x_mit[2,6,1] free
+ x_mit[2,7,1] free
+ x_mit[2,8,1] free
+ x_mit[2,10,1] free
+ x_mit[2,11,1] free
+ x_mit[2,12,1] free
+Generals
+ x_mit[1,1,1] x_mit[1,2,1] x_mit[1,3,1] x_mit[1,4,1] x_mit[1,5,1]
+ x_mit[1,6,1] x_mit[1,7,1] x_mit[1,8,1] x_mit[1,9,1] x_mit[1,10,1]
+ x_mit[1,11,1] x_mit[1,12,1] x_mit[2,1,1] x_mit[2,2,1] x_mit[2,3,1]
+ x_mit[2,4,1] x_mit[2,5,1] x_mit[2,6,1] x_mit[2,7,1] x_mit[2,8,1]
+ x_mit[2,9,1] x_mit[2,10,1] x_mit[2,11,1] x_mit[2,12,1] b_mit[1,1,1]
+ b_mit[1,2,1] b_mit[1,3,1] b_mit[1,4,1] b_mit[1,5,1] b_mit[1,6,1]
+ b_mit[1,7,1] b_mit[1,8,1] b_mit[1,9,1] b_mit[1,10,1] b_mit[1,11,1]
+ b_mit[1,12,1] b_mit[2,1,1] b_mit[2,2,1] b_mit[2,3,1] b_mit[2,4,1]
+ b_mit[2,5,1] b_mit[2,6,1] b_mit[2,7,1] b_mit[2,8,1] b_mit[2,10,1]
+ b_mit[2,11,1] b_mit[2,12,1]
+End

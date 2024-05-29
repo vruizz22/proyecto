@@ -250,7 +250,7 @@ class Modelo:
             name='restriccion_infraestructura_existente_3'
         )
         model.addConstrs(
-            (quicksum(z_it[j, t] for j in self.I if j != i and self.d_ij[(i, j)] <= self.AM) >= 1
+            (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= 1
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
@@ -292,7 +292,13 @@ class Modelo:
 
         model.optimize()
 
-        print('solucion: ', model.objVal)
+        if model.status == GRB.INFEASIBLE:
+            print('El modelo es infactible')
+            model.computeIIS()
+            model.write('modelo.ilp')
+        else:
+
+            print('solucion: ', model.ObjVal)
 
 
 if __name__ == '__main__':
