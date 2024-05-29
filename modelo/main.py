@@ -230,8 +230,7 @@ class Modelo:
         )
         model.addConstrs(
             (quicksum(x_mit[m, i, t] * self.phi_m[m]
-                      for m in self.M)
-             <= self.K for i in self.I for t in self.T),
+             for m in self.M) <= self.K for i in self.I for t in self.T),
             name='restriccion_capacidad'
         )
         model.addConstrs(
