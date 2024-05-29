@@ -230,8 +230,8 @@ class Modelo:
         )
         model.addConstrs(
             (quicksum(x_mit[m, i, t] * self.phi_m[m]
-                           for m in self.M for i in self.I)
-             <= self.K for t in self.T),
+                      for m in self.M)
+             <= self.K for i in self.I for t in self.T),
             name='restriccion_capacidad'
         )
         model.addConstrs(
@@ -282,12 +282,12 @@ class Modelo:
             \end{center}
         '''
         model.setObjective(quicksum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1)
-                               - x_mit[m, i, t] * self.CM_mit[(m, i, t)] - b_mit[m, i, t] * self.CC_mit[(m, i, t)]
-                               for m in self.M for i in self.I for t in self.T)
+                                    - x_mit[m, i, t] * self.CM_mit[(m, i, t)] - b_mit[m, i, t] * self.CC_mit[(m, i, t)]
+                                    for m in self.M for i in self.I for t in self.T)
                            - quicksum(a_mt[m, t] * self.CP_mt[(m, t)]
-                                 for t in self.T for m in self.M)
+                                      for t in self.T for m in self.M)
                            - quicksum(self.CS_mt[(m, t)] * S_mt[m, t]
-                                 for t in self.T for m in self.M)
+                                      for t in self.T for m in self.M)
                            - quicksum(y_it[i, t] * self.CI_it[(i, t)] for t in self.T for i in self.I), GRB.MAXIMIZE)
 
         model.optimize()
