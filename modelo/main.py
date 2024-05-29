@@ -268,6 +268,15 @@ class Modelo:
             name='restriccion_carga'
         )
 
+        # Función objetivo
+        '''
+        	\begin{center}
+                $\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit} - b_{mit} \cdot CC_{mit}) - \sum_{t \in T} \sum_{m \in M} a_{mt} \cdot CP_{mt} - \sum_{t \in T}\sum_{m \in M} CS_{mt} \cdot S_{mt} - \sum_{t \in T} \sum_{i \in I} y_{it} \cdot CI_{it}$
+            \end{center}
+        '''
+        model.setObjective(sum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1) for m in self.M for i in self.I for t in self.T)
+                           - sum(a_mt[m, t] * for t in self.T for m in self.M), GRB.MAXIMIZE)
+
 
 if __name__ == '__main__':
     modelo = Modelo()
