@@ -119,7 +119,7 @@ parametros_mit = {
     'D_mit': (M, I, T, Faker(), [40, 70], ruta_demanda, 'demanda'),
     'CC_mit': (M, I, T, Faker(), [1800000, 5500000], ruta_costo_int, 'costo_instalacion_cargador'),
     'CKW_mit': (M, I, T, Faker(), [72000, 144000], ruta_costo_kw, 'costo_energia_kw'),
-    'CM_mit': (M, I, T, Faker(), [10000, 20000], ruta_costo_man, 'costo_mantenimiento')
+    'CM_mit': (M, I, T, Faker(), [70000, 120000], ruta_costo_man, 'costo_mantenimiento')
 }
 
 parametros_mt = {
