@@ -3,9 +3,9 @@
 Maximize
  
 Subject To
- restriccion_infraestructura_existente[1,1]: - y_it[1,1] + z_it[1,1] <= 0
- restriccion_infraestructura_existente_3[1]: - y_it[1,1] + z_it[1,1] >= 1
+ restriccion_infraestructura_existente[2,1]: - y_it[2,1] + z_it[2,1] <= 0
+ restriccion_infraestructura_existente_3[2]: - y_it[2,1] + z_it[2,1] >= 1
 Bounds
 Binaries
- y_it[1,1] z_it[1,1]
+ y_it[2,1] z_it[2,1]
 End

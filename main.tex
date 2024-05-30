@@ -213,9 +213,9 @@ Víctor Ruiz 2320012J Sección 1\\
 		      \end{align*}
 		\item Solo puede haber infraestructura el\'ectrica en una ubicaci\'on ($z$) si se ha instalado anteriormente ($y$)
 		      \begin{align*}
-			       & z_{it} \leq \sum_{t'=1}^{t} y_{it'} &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\} \\
-			       & z_{it} \geq y_{it} + z_{i(t-1)}     &  & \forall \; i \in I, \;t \in \{2, \ldots, 60\}  \\
-			       & z_{i1} \geq y_{i1} + EI_i           &  & \forall \; i \in I
+			       & z_{it} \leq \sum_{t'=1}^{t} y_{it'} + EI_i &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\} \\
+			       & z_{it} \geq y_{it} + z_{i(t-1)}     		&  & \forall \; i \in I, \;t \in \{2, \ldots, 60\}  \\
+			       & z_{i1} \geq y_{i1} + EI_i           		&  & \forall \; i \in I
 		      \end{align*}
 		\item Solo puede haber un centro de carga en una ubicaci\'on $j$ existe al menos una estaci\'on cuya distancia es menor a la distancia m\'axima permitida ($AM$).
 		      \begin{align*}

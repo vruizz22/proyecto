@@ -2,8 +2,7 @@ import pandas as pd
 from gurobipy import GRB, quicksum
 import gurobipy as gp
 from os import path
-from math import inf
-
+import locale
 
 def leer_archivo(archivo: str) -> list:
     return pd.read_csv(archivo).iloc[:, 1:].values
@@ -120,6 +119,11 @@ class Modelo:
             for i in self.I for j in self.I if i != j
         }
 
+    def verificar_parametros(self):
+        print(list(self.EI_i.values()))
+        # Assert that every element in self.EI_i is either 0 or 1
+        assert all(value in [0, 1] for value in list(self.EI_i.values())), 'EI_i debe ser binario'
+
     def implementar_modelo(self):
         # Implementamos el modelo
         model = gp.Model()
@@ -235,7 +239,7 @@ class Modelo:
             name='restriccion_capacidad'
         )
         model.addConstrs(
-            (z_it[i, t] <= quicksum(y_it[i, t_] for t_ in range(1, t + 1))
+            (z_it[i, t] <= quicksum(y_it[i, t_] for t_ in range(1, t + 1)) + self.EI_i[i] 
              for i in self.I for t in self.T),
             name='restriccion_infraestructura_existente'
         )
@@ -294,14 +298,22 @@ class Modelo:
 
         model.optimize()
 
-        if model.status == GRB.INFEASIBLE or model.status == GRB.INF_OR_UNBD:
+        if model.status == GRB.INFEASIBLE:
             print('El modelo es infactible')
             model.computeIIS()
             model.write('modelo.ilp')
+            return None
+        elif  model.status == GRB.UNBOUNDED or model.status == GRB.INF_OR_UNBD:
+            print('El modelo es no acotado')
+            return None
         else:
-            print('Función objetivo:', model.objVal)
+            return model.ObjVal
 
 
 if __name__ == '__main__':
     modelo = Modelo()
-    modelo.implementar_modelo()
+    modelo.verificar_parametros()
+    ov = modelo.implementar_modelo()
+    if ov is not None:
+        locale.setlocale(locale.LC_ALL, '')
+        print(f'\033[1;31mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
