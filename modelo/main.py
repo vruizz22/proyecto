@@ -120,7 +120,6 @@ class Modelo:
         }
 
     def verificar_parametros(self):
-        print(list(self.EI_i.values()))
         # Assert that every element in self.EI_i is either 0 or 1
         assert all(value in [0, 1] for value in list(self.EI_i.values())), 'EI_i debe ser binario'
 
@@ -307,6 +306,22 @@ class Modelo:
             print('El modelo es no acotado')
             return None
         else:
+            # Print de la cantidad de cargadores instalados por estacion y tipo
+            for i in self.I:
+                for m in self.M:
+                    for t in self.T:
+                        if x_mit[m, i, t].X > 0:
+                            print(f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
+                        if y_it[i, t].X > 0:
+                            print(f'Para la estación {i} se instalaron {y_it[i, t].X} infraestructuras eléctricas en el periodo {t}')
+                        if d_mit[m, i, t].X > 0:
+                            print(f'Para la estación {i} se demandaron {d_mit[m, i, t].X} vehículos en el periodo {t}')
+                        if b_mit[m, i, t].X > 0:
+                            print(f'Para la estación {i} se instalaron {b_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
+                        if S_mt[m, t].X > 0:
+                            print(f'En el periodo {t} se almacenaron {S_mt[m, t].X} cargadores tipo {m}')
+                        if a_mt[m, t].X > 0:
+                            print(f'En el periodo {t} se compraron {a_mt[m, t].X} cargadores tipo {m}')
             return model.ObjVal
 
 

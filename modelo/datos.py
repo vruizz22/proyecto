@@ -44,7 +44,7 @@ def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
     aumento = {
         'costo_mantenimiento': 1 + (5/1200),
         'costo_instalacion_cargador': 1 + (12/1200),
-        'demanda': 1 + (70/1200),
+        'demanda': 1 + (70/120),
         'costo_energia_kw': 1 + (25/1200)
     }
     for t in T:
@@ -53,7 +53,7 @@ def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
         for m in M:
             for i in I:
                 df.at['Cargador ' + str(m), 'Estación ' + str(i)] = fake.random_int(
-                    min=rango_random[0], max=rango_random[1]) * (aumento[nombre] ** (t-1))
+                    min=int(rango_random[0] * aumento[nombre] ** (t/12)), max=int(rango_random[1]* aumento[nombre] ** (t/12)))
         # Convertir el DataFrame a csv
         df.to_csv(f'{ruta}/{nombre}{t}.csv')
 
@@ -96,8 +96,8 @@ def crear_datos_it(I, T, fake, rango_random, nombre):
 
 def crear_datos_m(nombre):
     capacidad_carga = {
-        'Cargador 1': 684,
-        'Cargador 2': 2592
+        'Cargador 1': 2520,
+        'Cargador 2': 7920
     }
     df = pd.DataFrame(index=capacidad_carga.keys(),
                       data=capacidad_carga.values())
@@ -116,14 +116,14 @@ def crear_datos_i(I, fake, rango_random, nombre):
 
 
 parametros_mit = {
-    'D_mit': (M, I, T, Faker(), [40, 70], ruta_demanda, 'demanda'),
-    'CC_mit': (M, I, T, Faker(), [1800000, 5500000], ruta_costo_int, 'costo_instalacion_cargador'),
+    'D_mit': (M, I, T, Faker(), [90, 110], ruta_demanda, 'demanda'),
+    'CC_mit': (M, I, T, Faker(), [500000, 700000], ruta_costo_int, 'costo_instalacion_cargador'),
     'CKW_mit': (M, I, T, Faker(), [72000, 144000], ruta_costo_kw, 'costo_energia_kw'),
     'CM_mit': (M, I, T, Faker(), [70000, 120000], ruta_costo_man, 'costo_mantenimiento')
 }
 
 parametros_mt = {
-    'CP_mt': (M, T, Faker(), [500000, 700000], 'costo_compra'),
+    'CP_mt': (M, T, Faker(), [10000000, 11000000], 'costo_compra'),
     'CS_mt': (M, T, Faker(), [20000, 40000], 'costo_almacenamiento')
 }
 
@@ -167,7 +167,7 @@ crear_csv(parametros_i.values(), 'i')
 crear_csv(parametros_m.values(), 'm')
 crear_csv(parametros_mi.values(), 'mi')
 parametros_sin_dimension(
-    'alpha', 1.3)
-parametros_sin_dimension('delta', 333)
-parametros_sin_dimension('K', 12960)
+    'alpha', 1.9)
+parametros_sin_dimension('delta', 300)
+parametros_sin_dimension('K', 22200)
 parametros_sin_dimension('AM', 80)

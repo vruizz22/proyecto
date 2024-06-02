@@ -52,7 +52,7 @@
 \makeatother
 
 \begin{document}
-
+\pagenumbering{gobble}
 \begin{minipage}[t]{.13\textwidth}
 	\vspace{-0.25in}
 	\begin{figure}[H]
@@ -80,13 +80,13 @@
 	\vspace*{4mm}
 	\hrule\vspace*{1pt}\hrule
 	\vspace*{4mm}
-	{\LARGE\bf Optimizar la posici\'on de electrolineras y su rentabilidad para Copec en la }\\
+	{\LARGE\bf Optimizar la posici\'on de electrolineras y su rentabilidad para Copec en la ciudad de Concepción, Chile}\\
 	\vspace*{4mm}
 	{\huge\bf Grupo 24 }\\
 	\vspace*{1mm}
 \end{center}
 
-\vspace*{30mm}
+\vspace*{50mm}
 \flushright
 
 Gabriel Cornejo 23647086 Sección 1\\
@@ -97,7 +97,7 @@ Víctor Ruiz 2320012J Sección 1\\
 
 
 \vspace*{5mm}
-{\large Fecha entrega: 07 de Mayo de 2024\\}
+{\large Fecha entrega: 02 de Junio de 2024\\}
 
 \newpage
 \begin{flushleft}
@@ -105,6 +105,7 @@ Víctor Ruiz 2320012J Sección 1\\
 \end{flushleft}
 
 \newpage
+\pagenumbering{arabic}
 \begin{flushleft}
 
 	\section{Descripción del Problema}
@@ -129,8 +130,8 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	Es en esta línea que se considera de gran valor el problema a optimizar, ya que, según Diego Mendoza, secretario general de ANAC (Asociación Nacional Automotriz de Chile) el parque electrificado a la fecha de septiembre del 2023 es de 4610 vehículos, y se espera que para el año 2025 el 5\% del mercado Automotriz sea de vehículos eléctricos. Tomando datos anteriores, en el año 2023 se comercializaron 313.865 vehículos \cite{chileautos} mientras que en el año 2022 la cifra fue de 426.772 \cite{Tercera-1}. Suponiendo que en el año 2025 en el mercado habran 350.000 vehículos en el mercado, si se cumple la proyección esperada se estarían comercializando 17.500 vehículos eléctricos aproximadamente. A su vez, asumiendo que habr\'a un crecimiento lineal de comercializaci\'on de veh\'iculos el\'ectricos y considerando los que ya hay en circulaci\'on, se puede estimar que para el año 2025 habr\'ian alrededor de 30.000 vehículos eléctricos en circulación lo cual representa el 650\% de la cantidad actual. Siguiendo en esta línea, considerando que Copec tiene la mayor implicancia en el mercado de puntos de carga para EVs para el año 2025, se habr\'ia ayudado a más de 10.000 vehículos eléctricos generando una red de puntos de carga óptima acorde al crecimiento esperado y que se está desarrollando en el país.
 	\subsection{Objetivo que persigue el tomador de decisiones}
-	El objetivo principal del equipo de planificación estratégica de Copec Voltex es maximizar la rentabilidad de las electrolineras, identificando las ubicaciones óptimas para instalar centros de carga para vehículos eléctricos considerando la cantidad de autos a satisfacer. Esto implica tomar decisiones sobre la cantidad de centros de carga a instalar, sus ubicaciones específicas y la capacidad de carga de cada uno. Las restricciones involucradas en este proceso de decisión incluyen limitaciones presupuestarias, restricciones regulatorias y consideraciones logísticas relacionadas con la infraestructura eléctrica disponible y sus ubicaciones.
-
+	El equipo de planificación de Copec Voltex busca maximizar la rentabilidad y promover la electromovilidad. Para lograr este objetivo, el tomador de decisiones evaluará diversos aspectos, incluida la cantidad óptima de cargadores a comprar por período considerando el costo y la demanda. También determinará el momento y lugar adecuados para instalar infraestructura de carga, teniendo en cuenta los requisitos específicos de cada ubicación y las restricciones, como la distancia entre estaciones para respetar la autonomía de los vehículos eléctricos. Además, se administrará el inventario de manera eficiente para garantizar un suministro adecuado. Todas estas decisiones se tomarán considerando los costos asociados y las restricciones necesarias para garantizar una solución realista y óptima
+	
 	\section{Modelación del problema}
 	\subsection*{Supuestos}
 	\begin{itemize}
@@ -160,6 +161,7 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$.
 		\item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$
 		\item $CS_{mt}$, el costo de almacenar un cargador tipo $m$ en el periodo $t$.
+		\item $AM$, la distancia máxima permitida entre electrolineras.
 	\end{itemize}
 	\subsection{Variables de decisión}
 	\begin{itemize}
@@ -250,11 +252,114 @@ Víctor Ruiz 2320012J Sección 1\\
 		\item $y_{it}$: Variable binaria que indica si se instala la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si se instala la infraestructura y 0 en cualquier otro caso.
 		\item $z_{it}$: Variable binaria que indica si existe la infraestructura eléctrica para la ubicación $i$ en el periodo $t$. Toma el valor 1 si la infraestructura existe y 0 en cualquier otro caso.
 	\end{itemize}
-	\subsection{Definición de datos}
+	\section{Definición de datos}
+	
+	Para la recolección y realización de este modelo, se restringe la zona de estudio a la ciudad de Concepción, Chile. Se considera que la ciudad de Concepción es una ciudad de tamaño mediano, con una población de aproximadamente 220.000 habitantes, y una densidad de población de 5.100 habitantes por kilómetro cuadrado \cite {INE}. Además, se considera que la ciudad de Concepción tiene una infraestructura eléctrica adecuada para soportar la instalación de electrolineras, y que la ciudad cuenta con una red de carreteras que conecta los principales puntos de la ciudad.
+
+	\subsection{Demanda de cargadores}
+
+	Considerando que el 53\% de los cargadores électricos se encuentran en regiones \cite{cargadores}, se estimará como un 11\% de este valor para Concepción. Ahora multiplicando 0.11 por el total de vehiculos eléctricos en Chile (900) \cite{autostot}, nos da un total de $\approx 100$ autos en Concepción. 
+	
+	Así, como se está llevando a cabo una extrapolación de los datos y se debe asumir un margen de error, se tendrá que la cantidad de vehículos variará entre 90 y 110 por período, aumentando exponencialmente en un 1.35\% anual (\cite{incremento-autos}).
+
+	\subsection{Costos}
+
+	\textbf{Costo de Instalación de Infraestructura Eléctrica:} Se estima que el costo de instalar la infraestructura eléctrica en una estación de carga es de \$1.707.077 CLP a \$40.813.109 CLP \cite{infraestructura}. Este rango se debe a que no se pudo recolectar información específica para Copec en Concepción, por lo que tomaremos un rango amplio para contemplar la variabilidad de los costos.
+
+	\textbf{Costo de Compra:} El costo de compra de cada cargador es de \$1.600.000 CLP (IVA incluido), según precio de mercado (\cite{charge-cost}). Sin embargo, considerando que COPEC ha suministrado más de 150 estaciones \cite{copec}, se estima que el costo de compra de un cargador para COPEC es de \$500.000  a \$700.000 CLP.
+
+	% https://www.electromov.cl/2022/01/12/costo-promedio-para-instalar-infraestructura-de-carga-en-chile-llega-a-los-77-millones/
+	% https://xolary.com/potencia-necesaria-para-cargar-tu-coche-electrico/
+	%Costo instalación m: 1.800.000 - 5.500.000 $CLP (1 solo cargador) Considerando que un cargador tiene una potencia de 4 a 22 kW
+	\textbf{Costo de Instalación de Cargador:} El costo de instalar un cargador de cualquier tipo se mueve en un rango de \$1.800.000 a \$5.500.000 CLP \cite{infraestructura}. Este rango se debe a que no se pudo recolectar información específica para Copec en Concepción, por lo que tomaremos un rango amplio para contemplar la variabilidad de los costos.
+	
+	%Costo Kwh/hora: 100 - 200 $CLP
+	%Referencias: 
+	%https://www.globalpetrolprices.com/Chile/electricity_prices/
+	\textbf{Costo de Energía Eléctrica:} El costo de energía eléctrica por kilowatt-hora es de \$100 a \$200 CLP \cite{kwh}. Con esto, se logra un precio competitivo con respecto a los combustibles fósiles y con la opción de implementar un sistema de carga particular.
+
+	%Costo de mantención m: 70.000 - 120.000 CLP (al mes)
+	%Referencias: 
+	%https://mobilityportal.lat/cuesta-mantener-punto-de-carga/
+	\textbf{Costo de Mantención:} El costo de mantención de un cargador es de \$70.000 a \$120.000 CLP al mes \cite{mantencion}. 
+
+	\textbf{Costo de Almacenaje:} Se va a considerar, a falta de información precisa, que el costo de almacenar un cargador significará un 10\% a 30\% del costo de compra del mismo. Así, se estima que el costo de almacenar un cargador es de \$50.000 a \$150.000 CLP.
+	\subsection{Transformadores}
+
+	\subsubsection{Coeficiente de Ganancia}
+
+	El coeficiente de ganancia es el multiplicador $\alpha$ que se aplica al precio de la electricidad vendida. Así, el precio es calculado en base al costo (haciéndolo lineal) y se le agrega un porcentaje de ganancia. Se estima que el coeficiente de ganancia es de 1.9, ya que COPEC Voltex tiene sus precios en \$295 CLP por KW \cite{copec}.
+
+	\subsubsection{Carga Promedio de KW en un Mes}
+
+	% Cantidad de KW que se espera que cargue un vehículo eléctrico en un mes: 225 - 375 kWh
+	%Referencias:
+	%https://motor.elpais.com/coches-electricos/cuanto-consume-un-coche-electrico-y-como-calcularlo/
+	%https://www.latercera.com/mtonline/noticia/cuanto-cuesta-recargar-un-auto-electrico-es-mas-barato-hacerlo-en-casa-o-en-una-electrolinera/VFLHTHA4YVFHZKRNBX3VL5GNAQ/
+	%https://movilidadconelectricidad.com/blog/cuantos-kwh-consume-un-coche-electrico/
+
+	Se estima que la cantidad de KW que se espera que cargue un vehículo eléctrico en un mes es de 225 a 375 kWh en promedio (\cite{delta1} \cite{delta2} \cite{delta3}). 
+
+	\subsubsection{Capacidad de Carga por Mes por Cargador}
+
+	Considerando que los cargadores a considerar tienen una potencia de 7 a 22 KW \cite{cargadores}, se estima que la capacidad de carga por mes de un cargador es:
+
+	\begin{align*}
+		\phi_m =
+		\begin{cases}
+			7 [\text{kW}] \cdot 12\; [\text{horas}] \cdot  30 \;[\text{días}] = 2520 \; \text{kWh}& \quad\text{si el cargador es de 7 KW} \\
+			22 [\text{kW}] \cdot 12\; [\text{horas}] \cdot  30 \;[\text{días}] = 7920 \;\text{kWh}& \quad\text{si el cargador es de 22 KW}
+		\end{cases}
+	\end{align*}
+
+	\subsubsection{Capacidad Estructural Eléctrica Máxima}
+
+	Para las electrolineras se construye una red eléctrica especial, es por esto que su capacidad eléctrica es mucho mayor a la de los particulares y planificada considerando el uso que se le va a dar (junto a su demanda). Por eso, se considera que el máximo de KW por mes que permite la infraestructura eléctrica es de:
+
+	\begin{align*}
+		K = \frac{2520 + 7920}{2} \cdot 5= 22.200 \; \text{kWh}
+	\end{align*}
+
+	\subsection{Elementos Existentes}
+
+	\subsubsection{Infraestructura Eléctrica}
+
+	Se considera que la infraestructura eléctrica no existe en ninguna de las ubicaciones, por lo que $EI_i = 0$ para todo $i \in I$.
+
+	\subsubsection{Cargadores Existentes}
+
+	Se considera que no existen cargadores en ninguna de las ubicaciones, por lo que $EC_{mi} = 0$ para todo $m \in M$ y $i \in I$.
+
+	\section{Implementación Computacional}
+
+	Para implementar el modelo se requiere contal con el archivo \texttt{parametros.zip} que contiene los datos necesarios para la ejecución del modelo, así como también se requiere \texttt{main.py}. A continuación se detalla el contenido de los archivos:
+
+	\textbf{main.py:} Archivo principal que contiene la implementación del modelo matemático, la lectura de los datos y la ejecución del modelo. Entrega la ganancia esperada al término del horizonte de tiempo.
+
+	\textbf{parametros.zip:} Archivo comprimido que contiene los datos necesarios para la ejecución del modelo. Contiene los siguientes archivos:
+
 	\begin{itemize}
-		\item $B$ es el presupuesto total disponible.
-		\item $D_{\text{max}}$ es la distancia máxima permitida para viajar desde cualquier ubicación hasta el centro de carga más cercano.
+		\item \texttt{demanda/ :} Directorio\footnote{carpeta} que contiene la demanda de cargadores para cada estación en cada mes (cada archivo representa un mes).
+		\item \texttt{costo\_inst/ :} Directorio que contiene los costos de instalación de infraestructura eléctrica.
+		\item \texttt{costo\_kw/ :} Directorio que contiene costos de la electricidad en CLP.
+		\item \texttt{costo\_man/ :} Directorio que contiene los costos de mantención de los cargadores.
+		\item \texttt{alpha.csv:} Archivo que contiene el coeficiente de ganancia esperado por el precio seleccionado.
+		\item \texttt{AM.csv:} Archivo que contiene la distancia máxima permitida entre electrolineras.
+		\item \texttt{capacidad\_carga.csv:} Archivo que contiene la capacidad de carga por mes de un cargador.
+		\item \texttt{cargadores\_existentes.csv:} Archivo que contiene la cantidad de cargadores existentes en cada estación.
+		\item \texttt{costo\_almacenamiento.csv:} Archivo que contiene el costo de almacenar un cargador en cada período.
+		\item \texttt{costo\_compra.csv:} Archivo que contiene el costo de compra de un cargador en cada período.
+		\item \texttt{costo\_instalacion\_electrica.csv:} Archivo que contiene el costo de instalar la infraestructura eléctrica en cada período.
+		\item \texttt{delta.csv:} Archivo que contiene la cantidad de KW que se espera que cargue un vehículo eléctrico en un mes.
+		\item \texttt{distance.csv:} Archivo que contiene la distancia real entre electrolineras.
+		\item \texttt{infraestructura\_existente.csv:} Archivo que contiene si ya existe la infraestructura eléctrica en la estación.
+		\item \texttt{K.csv:} Archivo que contiene la capacidad eléctrica máxima que permite la infraestructura eléctrica.
 	\end{itemize}
+
+	\textbf{Instrucciones de uso:} Para ejecutar el modelo, se debe descomprimir el archivo \texttt{parametros.zip} y ejecutar el archivo \texttt{main.py} en la misma carpeta que los archivos descomprimidos. El modelo entregará la ganancia esperada al término del horizonte de tiempo.
+
+	\section{Resultados}
+
 
 	\newpage
 
@@ -263,12 +368,13 @@ Víctor Ruiz 2320012J Sección 1\\
 		Statista. (2023, 15 octubre). Chile: volumen de ventas de vehículos eléctricos 2013-2022. Recuperado de \url{https://es.statista.com/estadisticas/1179792/volumen-ventas-vehiculos-electricos-chile/}
 
 		\bibitem{copec}
-		Nosotros. (s. f.). Tienda Copec Voltex. Recuperado de \url{https://copecvoltex.cl/pages/nosotros}
+		Copec Voltex. (s. f.). Tienda Copec Voltex - Nosotros. Recuperado de \url{https://copecvoltex.cl/pages/nosotros}
 		\bibitem{scheer}
 		Scheer, H. (2022). Mazda MX-30 EV no logra cruzar las distancias entre electrolineras en Chile. Recuperado de \url{https://www.scheer.cl/mazda-mx-30-ev-no-logra-cruzar-las-distancias-entre-electrolineras-en-chile/}
 
 		\bibitem{Gobierno 1}
 		Plataforma de Electromovilidad - políticas, estrategias de electromovilidad en Chile. (s. f.). Recuperado de\url{https://energia.gob.cl/electromovilidad/orientaciones-de-politicas-publicas#:~:text=Este%20documento%20fue%20el%20primero,sean%20el%2040%25%20del%20parque}
+		
 		\bibitem{Gobierno 2}
 		ShieldSquare Block. (s. f.). Recuperado de \url{https://www.energia.gob.cl/sites/default/files/energia_2050_-_politica_energetica_de_chile.pdf}
 
@@ -285,10 +391,42 @@ Víctor Ruiz 2320012J Sección 1\\
 		Gil, L. G. (2023, 8 septiembre). ¿Cuántos hay? ¿Cuánto valen? ¿Es factible? Radiografía al mercado de los autos eléctricos e híbridos en Chile. La Tercera. Recuperado de \url{https://www.latercera.com/mtonline/noticia/cuantos-hay-cuanto-valen-es-factible-radiografia-al-mercado-de-los-autos-electricos-e-hibridos-en-chile/KXXHOYPUSNHE3HOQ6J4VKOEYOM/#}
 
 		\bibitem{chileautos}
-		Loyola, A. (2024, 9 enero). Venta de autos nuevos registra caída de un 26,5\% en el 2023. Recuperado de \url{https://www.chileautos.cl/noticias/detalle/venta-de-autos-nuevos-registra-caida-de-un-265-en-el-2023--29449/#:~:text=Informe%20de%20ANAC%20se%C3%B1al%C3%B3%20que,5%25%20respecto%20del%20a%C3%B1o%20anterior}
+		Loyola, A. (2024, 9 enero). Venta de autos nuevos registra caída de un 26,5\% en el 2023. Recuperado de \url{https://www.chileautos.cl/noticias/detalle/venta-de-autos-nuevos-registra-caida-de-un-265-en-el-2023--29449/}
 
 		\bibitem{Tercera-1}
 		Gil, L. G. (2023a, enero 5). Chile logra récord histórico en venta de autos nuevos y nuevamente es el segundo mayor mercado de Sudamérica. La Tercera. Recupera de \url{https://www.google.com/amp/s/www.latercera.com/mtonline/noticia/venta-de-autos-supera-las-420-mil-unidades-y-chile-nuevamente-es-el-segundo-mayor-mercado-de-sudamerica/GHIJNCAWTBF5XFJSCYCGKGMNKA/%3foutputType=amp}
+
+		\bibitem{incremento-autos}
+		Gerlach, G. (2023). Los autos eléctricos aumentaron más de 130\% sus ventas en Chile. La Tercera. Recuperado de \url{https://www.latercera.com/mtonline/noticia/los-autos-electricos-aumentaron-mas-de-130-sus-ventas-en-chile/SSZ6SZ2HRZDPLMJ7I4GFCWPHUM/}
+		\bibitem{INE}
+		Instituto Nacional de Estadísticas. (s. f.). Censo 2017. Recuperado de \url{https://www.censo2017.cl/descargue-aqui-resultados-de-la-encuesta-censo-2017/}
+
+		\bibitem{cargadores}
+		Ministerio de Energía. (s. f.). Estudio de Capital Humano en Electromovilidad. Recuperado de \url{https://energia.gob.cl/electromovilidad/img/Estudio%20Electromovilidad%20Capital%20Humano.pdf}
+
+		\bibitem{autostot}
+		Enel X. (s. f.). Autos Eléctricos: los números de la electromovilidad en Chile. Recuperado de \url{https://www.enelx.com/cl/es/historias/autos-electricos-el-futuro-de-la-electromovilidad-en-chile}
+
+		\bibitem{infraestructura}
+		AgenciaSE. (2021, 10 febrero). Electromovilidad: costo de infraestructura de carga va de 17 millón a 40 millones en promedio. Recuperado de \url{https://www.agenciase.org/2021/02/10/electromovilidad-costo-de-infraestructura-de-carga-va-de-17-millon-a-40-millones-en-promedio/}
+
+		\bibitem{charge-cost}
+		Gil, L. G. (2023, 8 septiembre). ¿Cuánto cuesta recargar un auto eléctrico? Es más barato hacerlo en casa o en una electrolinera. La Tercera. Recuperado de \url{https://www.latercera.com/mtonline/noticia/cuanto-cuesta-recargar-un-auto-electrico-es-mas-barato-hacerlo-en-casa-o-en-una-electrolinera/VFLHTHA4YVFHZKRNBX3VL5GNAQ/}
+
+		\bibitem{kwh}
+		Global Petrol Prices. (s. f.). Chile Electricity Prices. Recuperado de \url{https://www.globalpetrolprices.com/Chile/electricity_prices/}
+
+		\bibitem{mantencion}
+		Movilidad con Electricidad. (s. f.). ¿Cuánto cuesta mantener un punto de carga? Recuperado de \url{https://movilidadconelectricidad.com/blog/cuantos-kwh-consume-un-coche-electrico/}
+
+		\bibitem{delta1}
+		El País. (s. f.). ¿Cuánto consume un coche eléctrico y cómo calcularlo? Recuperado de \url{https://motor.elpais.com/coches-electricos/cuanto-consume-un-coche-electrico-y-como-calcularlo/}
+
+		\bibitem{delta2}
+		La Tercera. (s. f.). ¿Cuánto cuesta recargar un auto eléctrico? Es más barato hacerlo en casa o en una electrolinera. Recuperado de \url{https://www.latercera.com/mtonline/noticia/cuanto-cuesta-recargar-un-auto-electrico-es-mas-barato-hacerlo-en-casa-o-en-una-electrolinera/VFLHTHA4YVFHZKRNBX3VL5GNAQ/}
+
+		\bibitem{delta3}
+		Movilidad con Electricidad. (s. f.). ¿Cuántos kWh consume un coche eléctrico? Recuperado de \url{https://movilidadconelectricidad.com/blog/cuantos-kwh-consume-un-coche-electrico/}
 	\end{thebibliography}
 
 	\newpage
