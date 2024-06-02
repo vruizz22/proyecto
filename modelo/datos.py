@@ -42,8 +42,8 @@ ruta_demanda = path.join('parametros', 'demanda')
 
 def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
     aumento = {
-        'costo_mantenimiento': 1 + (5/1200),
-        'costo_instalacion_cargador': 1 + (12/1200),
+        'costo_mantenimiento': 1 + (5/120),
+        'costo_instalacion_cargador': 1 + (12/120),
         'demanda': 1 + (70/120),
         'costo_energia_kw': 1 + (25/1200)
     }
@@ -116,15 +116,15 @@ def crear_datos_i(I, fake, rango_random, nombre):
 
 
 parametros_mit = {
-    'D_mit': (M, I, T, Faker(), [90, 110], ruta_demanda, 'demanda'),
-    'CC_mit': (M, I, T, Faker(), [500000, 700000], ruta_costo_int, 'costo_instalacion_cargador'),
+    'D_mit': (M, I, T, Faker(), [80, 100], ruta_demanda, 'demanda'),
+    'CC_mit': (M, I, T, Faker(), [1800000, 5500000], ruta_costo_int, 'costo_instalacion_cargador'),
     'CKW_mit': (M, I, T, Faker(), [72000, 144000], ruta_costo_kw, 'costo_energia_kw'),
     'CM_mit': (M, I, T, Faker(), [70000, 120000], ruta_costo_man, 'costo_mantenimiento')
 }
 
 parametros_mt = {
-    'CP_mt': (M, T, Faker(), [10000000, 11000000], 'costo_compra'),
-    'CS_mt': (M, T, Faker(), [20000, 40000], 'costo_almacenamiento')
+    'CP_mt': (M, T, Faker(), [1600000, 1700000], 'costo_compra'),
+    'CS_mt': (M, T, Faker(), [50000, 150000], 'costo_almacenamiento')
 }
 
 parametros_it = {

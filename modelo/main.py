@@ -242,6 +242,7 @@ class Modelo:
              for i in self.I for t in self.T),
             name='restriccion_infraestructura_existente'
         )
+        '''
         model.addConstrs(
             (z_it[i, t] >= y_it[i, t] + z_it[i, t - 1]
              for i in self.I for t in self.T if t >= 2),
@@ -252,7 +253,7 @@ class Modelo:
             (z_it[i, 1] >= y_it[i, 1] + self.EI_i[i]
              for i in self.I),
             name='restriccion_infraestructura_existente_3'
-        )
+        )'''
         model.addConstrs(
             (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= 1
              for i in self.I for t in self.T),
@@ -310,18 +311,8 @@ class Modelo:
             for i in self.I:
                 for m in self.M:
                     for t in self.T:
-                        if x_mit[m, i, t].X > 0:
+                        if x_mit[m, i, t].X > 0 and t == self.T[-1]:
                             print(f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
-                        if y_it[i, t].X > 0:
-                            print(f'Para la estación {i} se instalaron {y_it[i, t].X} infraestructuras eléctricas en el periodo {t}')
-                        if d_mit[m, i, t].X > 0:
-                            print(f'Para la estación {i} se demandaron {d_mit[m, i, t].X} vehículos en el periodo {t}')
-                        if b_mit[m, i, t].X > 0:
-                            print(f'Para la estación {i} se instalaron {b_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
-                        if S_mt[m, t].X > 0:
-                            print(f'En el periodo {t} se almacenaron {S_mt[m, t].X} cargadores tipo {m}')
-                        if a_mt[m, t].X > 0:
-                            print(f'En el periodo {t} se compraron {a_mt[m, t].X} cargadores tipo {m}')
             return model.ObjVal
 
 
