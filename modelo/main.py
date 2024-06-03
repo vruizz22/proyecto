@@ -9,36 +9,6 @@ def leer_archivo(archivo: str) -> list:
     return pd.read_csv(archivo).iloc[:, 1:].values
 
 
-def leer_archivo_mixto(archivo: str) -> list:
-    return pd.read_csv(archivo).values.tolist()
-
-
-def crear_resultados(I, T, valores_z_it, ei):
-    data = leer_archivo_mixto(path.join('mapa', 'data.csv'))
-
-    # Filtrar las estaciones que existen según ei
-    data_inicial = [data[i - 1] for i in I if ei[i] == 1]
-
-    # Crear data0.csv en la carpeta data
-    df_inicial = pd.DataFrame(
-        data_inicial, columns=['Latitude', 'Longitude', 'Title', 'Description'])
-    df_inicial.to_csv(path.join('mapa', 'data', 'data0.csv'), index=False)
-
-    for t in T:
-        dfs = []  # Lista para almacenar los dataframes
-        for i in I:
-            if valores_z_it[(i, t)]:  # Si la estación tiene infraestructura eléctrica
-                df = pd.DataFrame(
-                    data=[data[i - 1]], columns=['Latitude', 'Longitude', 'Title', 'Description'])
-                dfs.append(df)
-
-        # Concatenar todos los dataframes y eliminar filas con valores faltantes
-        df_final = pd.concat(dfs).dropna()
-
-        ruta = path.join('mapa', 'data', f'data{t}')
-        df_final.to_csv(f'{ruta}.csv', index=False)
-
-
 class Modelo:
 
     def __init__(self) -> None:
@@ -244,37 +214,6 @@ class Modelo:
             print('El modelo es no acotado')
             return None
         else:
-            for i in self.I:
-                for m in self.M:
-                    for t in self.T:
-                        if x_mit[m, i, t].X > 0 and t == self.T[-1]:
-                            print(
-                                f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
-
-            valores_z_it = {
-                (i, t): z_it[i, t].X for i in self.I for t in self.T
-            }
-            crear_resultados(self.I, self.T, valores_z_it, self.EI_i)
-            # Printear las variables
-            for m in self.M:
-                for i in self.I:
-                    for t in self.T:
-                        if t == self.T[-1]:
-                            print(f'x_mit[{m}, {i}, {t}] = {x_mit[m, i, t].X}')
-                            print(f'b_mit[{m}, {i}, {t}] = {b_mit[m, i, t].X}')
-                            print(f'd_mit[{m}, {i}, {t}] = {d_mit[m, i, t].X}')
-            print()
-            for i in self.I:
-                for t in self.T:
-                    if t == self.T[-1]:
-                        print(f'y_it[{i}, {t}] = {y_it[i, t].X}')
-                        print(f'z_it[{i}, {t}] = {z_it[i, t].X}')
-            print()
-            for m in self.M:
-                for t in self.T:
-                    if t == self.T[-1]:
-                        print(f'a_mt[{m}, {t}] = {a_mt[m, t].X}')
-                        print(f'S_mt[{m}, {t}] = {S_mt[m, t].X}')
             return model.ObjVal
 
 
@@ -284,4 +223,4 @@ if __name__ == '__main__':
     if ov is not None:
         locale.setlocale(locale.LC_ALL, '')
         print(
-            f'\033[1;31mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
+            f'\033[1;32mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
