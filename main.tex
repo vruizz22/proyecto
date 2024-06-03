@@ -332,11 +332,12 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\section{Implementación Computacional}
 
-	Para implementar el modelo se requiere contal con el archivo \texttt{parametros.zip} que contiene los datos necesarios para la ejecución del modelo, así como también se requiere \texttt{main.py}. A continuación se detalla el contenido de los archivos:
+	Para implementar el modelo se requiere contar con el archivo \texttt{24.zip} que contiene los archivos necesarios para la ejecución del modelo, así como también se requiere \texttt{main.py}, \texttt{parametros/} y se necesita de las librerias
+	\texttt{locale} y \texttt{pandas}. Además se requiere contar como parte de los resultados la visualización de la siguiente página \url{https://stupendous-genie-3fd288.netlify.app/}. A continuación se detalla el contenido de los archivos:
 
 	\textbf{main.py:} Archivo principal que contiene la implementación del modelo matemático, la lectura de los datos y la ejecución del modelo. Entrega la ganancia esperada al término del horizonte de tiempo.
 
-	\textbf{parametros.zip:} Archivo comprimido que contiene los datos necesarios para la ejecución del modelo. Contiene los siguientes archivos:
+	\textbf{parametros/:} Directorio que contiene los datos necesarios para la ejecución del modelo. Contiene los siguientes archivos:
 
 	\begin{itemize}
 		\item \texttt{demanda/ :} Directorio\footnote{carpeta} que contiene la demanda de cargadores para cada estación en cada mes (cada archivo representa un mes).
@@ -360,35 +361,43 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\section{Resultados}
 
-	Los gráficos de cada variable se encuentran en resultados.xlxs, en la hoja de cálculo de resultados. A continuación se presentan los resultados obtenidos para cada variable de decisión.
+	Los gráficos de cada variable se encuentran en \texttt{resultados.xlxs}, en la hoja de cálculo de resultados. A continuación se presentan los resultados obtenidos para cada variable de decisión.
 	
 	\subsection{$x_{mit}$}
 
 	Los siguientes gráficos muestran como para las 13 estaciones los valores de la variable “x” fueron variando en el tiempo para cada cargador. En el caso del cargador de tipo 1 se puede evidenciar que la evolución de la cantidad de cargadores por estación fue creciente o constante lo cual es de sumo interés ya que cumple la restricción de que no pueden desaparecer cargadores en el tiempo (restricción 7).
-	
+	Los gráficos estan en la hoja $x_{mit}$ y los nombres para los gráficos son: \texttt{Valores de x para cargador tipo 1} y \texttt{Valores de x para cargador tipo 2}.
 	\subsection{$y_{it}$}
 
 	En el gráfico es difícil de ver pero muestra los valores de la variable “y” para cada período de tiempo y para cada estación, donde se sabe que se parte con 2 estaciones de 12 habilitadas y que se habilitaron todas las estaciones al final del tiempo, por lo que tiene sentido de que la variable solo en un periodo t para cada estacón tome el valor 1 ya que solo se puede instalar una vez.
+	Los gráficos estan en la hoja $y_{it}$ y los nombres para los gráficos son: \texttt{Estación 1} y \texttt{Estación 2}.
 	
 	\subsection{$z_{it}$}
 
-	El gráfico es un poco complejo de leer pero lo que representa es que la infraestructura una vez que fue instalada se preserva su existencia hasta el final de los periodos ya que el valor toma el valor 1 en un t y luego se mantiene constante para todas las estaciones.
+	El gráfico es un poco complejo de leer, pero lo que representa es que la infraestructura una vez que fue instalada se preserva su existencia hasta el final de los periodos, ya que la variable toma el valor 1 en un t y luego se mantiene constante para todas las estaciones.
 	Para facilitar la lectura de la variable $z_{it}$, se presenta la siguiente recurso dinámico \url{https://stupendous-genie-3fd288.netlify.app/} en el cual se puede observar la instalación de infraestructura por periodo.
+	Los gráficos estan en la hoja $z_{it}$ y los nombres para los gráficos son: \texttt{Infraestructura presente por estación el tiempo}.
+	
 	\subsection{$a_{mt}$}
 
-	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos t, esto, además de demostrar que hubo un gasto en cargadores y que no aparecen de la nada, se relacionan con las variables $x_{mit}$, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable $b_{mit}$, que debería tambíen cuando se compran cargadores en un periodo $t$.
-	
+	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos t, esto, además de demostrar que hubo un gasto en cargadores, se relacionan con las variables $x_{mit}$, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable $b_{mit}$, que debería también cuando se compran cargadores en un periodo $t$.
+	Los gráficos estan en la hoja $a_{mt}$ y los nombres para los gráficos son: \texttt{Cantidad de cargadores comprados en cada periodo}.
+
 	\subsection{$b_{mit}$}
 
-	En este gráfico se muestra la cantidad de cargadores de ambos tipos que se instalan para cada estación en los periodos t que como se mencionó anteriormente tiene relación directa con $a_{mt}$ ya que si se compra en un periodo t en ese mismo periodo debe instalarse en alguna estación i un cargador de ese tipo.
-	
+	En este gráfico se muestra la cantidad de cargadores de ambos tipos que se instalan para cada estación en los periodos t que como se mencionó anteriormente tiene relación directa con $a_{mt}$, ya que si se compra en un periodo t en ese mismo periodo debe instalarse en alguna estación i un cargador de ese tipo.
+	Los gráficos estan en la hoja $b_{mit}$ y los nombres para los gráficos son: \texttt{Cantidad de Cargadores Tipo 1 Que Se Instalaron por Estación} y \texttt{Cantidad de Cargadores Tipo 2 Que Se Instalaron por Estación}.
+
 	\subsection{$d_{mit}$}
 
-	En el gráfico de esta variable para cada periodo t se puede evidenciar claramente como con el tiempo se pudo ir satisfaciendo cada vez más demanda lo cual tiene sentido ya que a largo plazo había que recuperar los costos que significaron todas las compras e instalaciones en un principio y así poder generar una rentabilidad óptima.
-	
+	En el gráfico de esta variable para cada periodo t se puede evidenciar claramente como con el tiempo se pudo ir satisfaciendo cada vez más demanda, lo cual tiene sentido, ya que a largo plazo había que recuperar los costos que significaron todas las compras e instalaciones en un principio y así poder generar una rentabilidad óptima.
+	Los gráficos estan en la hoja $d_{mit}$ y los nombres para los gráficos son: \texttt{Demanda a satisfacer cargador 1} y \texttt{Demanda a satisfacer cargador 2}.
 	\subsection{$S_{mt}$}
 
-	Como fué mencionado anteriormente el no hubo almacenamiento de cargadores por desición de guroby y esto tiene sentido con lo que muestra el gráfico y lo que muestran todas las variables relacionadas. En el siguiente gráfico podemos ver que el comportamiento de la satisfacción de demanda para cada periodo t en en una estacion i para los 2 tipos de cargadores…En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que habian en los periodos anteriores y sigueientes cumpliendo nuestra restricción.
+	Como fue mencionado anteriormente en 5.4, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremiento por periodo del costo de compra.
+	En el siguiente gráfico podemos ver que el comportamiento de la satisfacción de demanda para cada periodo t en en una estacion i para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que habían en los periodos previos y posteriores, cumpliendo nuestra restricción.
+	Los gráficos estan en la hoja $S_{mt}$ y los nombres para los gráficos son: \texttt{Cantidad de Cargadores Almacenados por Periodo}.
+	
 	\newpage
 
 	\begin{thebibliography}{15}
