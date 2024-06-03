@@ -4,8 +4,39 @@ import gurobipy as gp
 from os import path
 import locale
 
+
 def leer_archivo(archivo: str) -> list:
     return pd.read_csv(archivo).iloc[:, 1:].values
+
+
+def leer_archivo_mixto(archivo: str) -> list:
+    return pd.read_csv(archivo).values.tolist()
+
+
+def crear_resultados(I, T, valores_z_it, ei):
+    data = leer_archivo_mixto(path.join('mapa', 'data.csv'))
+
+    # Filtrar las estaciones que existen según ei
+    data_inicial = [data[i - 1] for i in I if ei[i] == 1]
+
+    # Crear data0.csv en la carpeta data
+    df_inicial = pd.DataFrame(
+        data_inicial, columns=['Latitude', 'Longitude', 'Title', 'Description'])
+    df_inicial.to_csv(path.join('mapa', 'data', 'data0.csv'), index=False)
+
+    for t in T:
+        dfs = []  # Lista para almacenar los dataframes
+        for i in I:
+            if valores_z_it[(i, t)]:  # Si la estación tiene infraestructura eléctrica
+                df = pd.DataFrame(
+                    data=[data[i - 1]], columns=['Latitude', 'Longitude', 'Title', 'Description'])
+                dfs.append(df)
+
+        # Concatenar todos los dataframes y eliminar filas con valores faltantes
+        df_final = pd.concat(dfs).dropna()
+
+        ruta = path.join('mapa', 'data', f'data{t}')
+        df_final.to_csv(f'{ruta}.csv', index=False)
 
 
 class Modelo:
@@ -47,28 +78,8 @@ class Modelo:
             for t in self.T
         }
 
-        # Lectura de archivos
-        # y creación de parametros
+        # Lectura de archivos y creación de parametros
 
-        '''
-        Crear parametros
-        \item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$. (cantidad de autos demandados)
-        \item $CI_{it}$, el costo de instalar la infraestructura el\'ectrica en el periodo $t$ para la estaci\'on $I$. (pesos)
-        \item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$. (pesos)
-        \item $CC_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$. (pesos)
-        \item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-mes para un cargador tipo $m$ en la estación $i$ en el periodo $t$. (pesos)
-        \item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$. (pesos)
-
-        \item $\alpha$, coeficiente de ganancia espera por el precio seleccionado, por KW de electricidad vendido. (sin dimensión)
-        \item $\delta$, cantidad de KW que se espera que cargue un vehículo eléctrico en un mes. (kw)
-        item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica. (kw/mes)
-
-        \item $\phi_m$, capacidad de carga por mes de un cargador tipo $m$ en KW. (kw/mes)
-        \item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$. (sin dimensión)(binaria)
-        \item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$ (sin dimensión)
-        \item $CS_{mt}$, el costo de almacenar un cargador tipo $m$ en el periodo $t$.(pesos)
-        \item $AM$, atonomía minimia de un vehículo eléctrico en KM. (km)
-        '''
         self.D_mit = {
             (m, i, t): leer_archivo(ruta_archivos_demanda[f'demanda{t}'])[m - 1, i - 1]
             for m in self.M for i in self.I for t in self.T
@@ -119,37 +130,9 @@ class Modelo:
             for i in self.I for j in self.I if i != j
         }
 
-    def verificar_parametros(self):
-        # Assert that every element in self.EI_i is either 0 or 1
-        assert all(value in [0, 1] for value in list(self.EI_i.values())), 'EI_i debe ser binario'
-
     def implementar_modelo(self):
         # Implementamos el modelo
         model = gp.Model()
-
-        '''
-        	\subsection{Variables de decisión}
-	\begin{itemize}
-		\item $x_{mit}$ cantidad de cargadores tipo $m$ en la estación $i$ para el periodo $t$.
-		\item \[
-			      y_{it} =
-			      \begin{cases}
-				      1 & \quad\text{si se instala la infraestructura eléctrica para }i\text{ en }t \\
-				      0 & \quad\text{en cualquier otro caso.}
-			      \end{cases}
-		      \]
-		\item \[
-			      z_{it} =
-			      \begin{cases}
-				      1 & \quad\text{si existe la infraestructura eléctrica para }i\text{ en }t \\
-				      0 & \quad\text{en cualquier otro caso.}
-			      \end{cases}
-		      \]
-		\item $a_{mt}$, cantidad de cargadores tipo $m$ que se compran en el periodo $t$.
-		\item $b_{mit}$, cantidad de cargadores tipo $m$ que se instalan en la estación $i$ en el periodo $t$.
-		\item $d_{mit}$, (Cant. de vehiculos)demanda que se va a satisfacer para cargadores tipo $m$ en la estación $i$ en el periodo $t$.
-		\item $S_{mt}$, cantidad de cargadores almacenados de tipo $m$ el periodo $t$.
-        '''
 
         # Variables de decisión
         x_mit = model.addVars(self.M, self.I, self.T,
@@ -164,48 +147,6 @@ class Modelo:
                               vtype=GRB.INTEGER, name='d_mit')
         S_mt = model.addVars(self.M, self.T, vtype=GRB.INTEGER, name='S_mt')
 
-        '''
-        		\item Restricción de inventario, incluyendo la condici\'on inicial (\textit{storage}).
-		      \begin{align*}
-			       & S_{m(t-1)} + a_{mt} = S_{mt} + \sum_{i \in I} b_{mit} &  & \forall \; m \in M, t \in \{2, \ldots, 60\} \\
-			       & a_{m1} = S_{m1} + \sum_{i \in I} b_{mi1}              &  & \forall \; m \in M
-		      \end{align*}
-		\item Restricción de cantidad de cargadores instalados ($x$) que solo puede ser mayor a $0$ cuando se instala la infraestructura eléctrica ($y$).
-		      \begin{align*}
-			       & N \cdot \sum_{t'=1}^{t} y_{it'} \geq x_{mit} &  & \forall \; m \in M, \; i \in I,\; t \in \{1, \ldots, 60\}
-		      \end{align*}
-		\item S\'olo se puede instalar la infraestructura el\'ectrica una vez si no se ha instalado antes ($EI$).
-		      \begin{align*}
-			       & \sum_{t \in T} y_{it} \leq 1 - EI_i &  & \forall \; i \in I
-		      \end{align*}
-		\item La capacidad en KW de los cargadores instalados ($x$) no puede superar la capacidad m\'axima de KW de la infraestructura el\'ectrica ($K$).
-		      \begin{align*}
-			       & K \geq \sum_{m \in M} \sum_{i \in I} x_{mit} \cdot \phi_m &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\}
-		      \end{align*}
-		\item Solo puede haber infraestructura el\'ectrica en una ubicaci\'on ($z$) si se ha instalado anteriormente ($y$)
-		      \begin{align*}
-			       & z_{it} \leq \sum_{t'=1}^{t} y_{it'} &  & \forall \; i \in I, \; t \in \{1, \ldots, 60\} \\
-			       & z_{it} \geq y_{it} + z_{i(t-1)}     &  & \forall \; i \in I, \;t \in \{2, \ldots, 60\}  \\
-			       & z_{i1} \geq y_{i1} + EI_i           &  & \forall \; i \in I
-		      \end{align*}
-		\item Solo puede haber un centro de carga en una ubicaci\'on $j$ existe al menos una estaci\'on cuya distancia es menor a la distancia m\'axima permitida ($AM$).
-		      \begin{align*}
-			       & \sum_{i \in I: i \neq j, d_{ij}\leq AM} z_{it} \geq 1 &  & \forall \; j \in I, \; t \in \{1, \ldots, 60\}
-		      \end{align*}
-		\item La cantidad de cargadores en una estaci\'on ($x$) debe ser igual a la cantidad instalada en el periodo más la existente en el periodo anterior, considerando la condici\'on inicial.
-		      \begin{align*}
-			       & x_{mit} = b_{mit} + x_{mi(t-1)} &  & \forall \; m \in M, \; i \in I, \; t \in \{2, \ldots, 60\} \\
-			       & x_{mi1} = b_{mi1} + EC_{mi}     &  & \forall \; m \in M, \; i \in I
-		      \end{align*}
-		\item La demanda a satisfacer, entendida como cantidad de vehículos, no puede superar la demanda total de cargadores en una estación.
-		      \begin{align*}
-			       & d_{mit} \leq D_{mit} &  & \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}
-		      \end{align*}
-		\item La cantidad de KW que se van a proveer no puede superar la capacidad de carga de los cargadores instalados.
-		      \begin{align*}
-			       & \delta \cdot d_{mit} \leq x_{mit} \cdot \phi_m &  & \forall \; m \in M, \; i \in I, \; t \in \{1, \ldots, 60\}
-		      \end{align*}
-        '''
         # Actualizamos el modelo
         model.update()
 
@@ -222,7 +163,7 @@ class Modelo:
         )
         N = 10000000000
         model.addConstrs(
-            (N * quicksum(y_it[i, t_] for t_ in range(1, t + 1)) >= x_mit[m, i, t]
+            (N * z_it[i, t] >= x_mit[m, i, t]
              for m in self.M for i in self.I for t in self.T),
             name='restriccion_infraestructura'
         )
@@ -238,11 +179,10 @@ class Modelo:
             name='restriccion_capacidad'
         )
         model.addConstrs(
-            (z_it[i, t] <= quicksum(y_it[i, t_] for t_ in range(1, t + 1)) + self.EI_i[i] 
+            (z_it[i, t] <= quicksum(y_it[i, t_] for t_ in range(1, t + 1)) + self.EI_i[i]
              for i in self.I for t in self.T),
             name='restriccion_infraestructura_existente'
         )
-        '''
         model.addConstrs(
             (z_it[i, t] >= y_it[i, t] + z_it[i, t - 1]
              for i in self.I for t in self.T if t >= 2),
@@ -253,7 +193,7 @@ class Modelo:
             (z_it[i, 1] >= y_it[i, 1] + self.EI_i[i]
              for i in self.I),
             name='restriccion_infraestructura_existente_3'
-        )'''
+        )
         model.addConstrs(
             (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= 1
              for i in self.I for t in self.T),
@@ -282,11 +222,6 @@ class Modelo:
         )
 
         # Función objetivo
-        '''
-        	\begin{center}
-                $\max \; \sum_{m \in M}\sum_{i \in I} \sum_{t=1}^{60} (d_{mit} \cdot CKW_{mit} \cdot (\alpha - 1) - x_{mit} \cdot CM_{mit} - b_{mit} \cdot CC_{mit}) - \sum_{t \in T} \sum_{m \in M} a_{mt} \cdot CP_{mt} - \sum_{t \in T}\sum_{m \in M} CS_{mt} \cdot S_{mt} - \sum_{t \in T} \sum_{i \in I} y_{it} \cdot CI_{it}$
-            \end{center}
-        '''
         model.setObjective(quicksum(d_mit[m, i, t] * self.CKW_mit[(m, i, t)] * (self.alpha - 1)
                                     - x_mit[m, i, t] * self.CM_mit[(m, i, t)] - b_mit[m, i, t] * self.CC_mit[(m, i, t)]
                                     for m in self.M for i in self.I for t in self.T)
@@ -296,30 +231,37 @@ class Modelo:
                                       for t in self.T for m in self.M)
                            - quicksum(y_it[i, t] * self.CI_it[(i, t)] for t in self.T for i in self.I), GRB.MAXIMIZE)
 
+        # Optimizamos el modelo
         model.optimize()
 
         if model.status == GRB.INFEASIBLE:
+            # Imprimir las restricciones que hacen que el modelo sea infactible
             print('El modelo es infactible')
             model.computeIIS()
             model.write('modelo.ilp')
             return None
-        elif  model.status == GRB.UNBOUNDED or model.status == GRB.INF_OR_UNBD:
+        elif model.status == GRB.UNBOUNDED or model.status == GRB.INF_OR_UNBD:
             print('El modelo es no acotado')
             return None
         else:
-            # Print de la cantidad de cargadores instalados por estacion y tipo
             for i in self.I:
                 for m in self.M:
                     for t in self.T:
                         if x_mit[m, i, t].X > 0 and t == self.T[-1]:
-                            print(f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
+                            print(
+                                f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
+
+            valores_z_it = {
+                (i, t): z_it[i, t].X for i in self.I for t in self.T
+            }
+            crear_resultados(self.I, self.T, valores_z_it, self.EI_i)
             return model.ObjVal
 
 
 if __name__ == '__main__':
     modelo = Modelo()
-    modelo.verificar_parametros()
     ov = modelo.implementar_modelo()
     if ov is not None:
         locale.setlocale(locale.LC_ALL, '')
-        print(f'\033[1;31mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
+        print(
+            f'\033[1;31mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')

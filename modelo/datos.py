@@ -53,7 +53,7 @@ def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
         for m in M:
             for i in I:
                 df.at['Cargador ' + str(m), 'Estación ' + str(i)] = fake.random_int(
-                    min=int(rango_random[0] * aumento[nombre] ** (t/12)), max=int(rango_random[1]* aumento[nombre] ** (t/12)))
+                    min=int(rango_random[0] * aumento[nombre] ** (t/12)), max=int(rango_random[1] * aumento[nombre] ** (t/12)))
         # Convertir el DataFrame a csv
         df.to_csv(f'{ruta}/{nombre}{t}.csv')
 
@@ -70,13 +70,13 @@ def crear_datos_mt(M, T, fake, rango_random, nombre):
     df.to_csv(f'{ruta}.csv')
 
 
-def crear_datos_mi(M, I, fake, rango_random, nombre):
+def crear_datos_mi(M, I, nombre):
     df = pd.DataFrame(index=['Cargador ' + str(m) for m in M],
                       columns=['Estación ' + str(i) for i in I])
     for m in M:
         for i in I:
-            df.at['Cargador ' + str(m), 'Estación ' + str(i)] = fake.random_int(
-                min=rango_random[0], max=rango_random[1])
+            df.at['Cargador ' + str(m), 'Estación ' + str(i)
+                  ] = 1 if i == 5 else (2 if i == 10 else 0)
 
     ruta = path.join('parametros', f'{nombre}')
     df.to_csv(f'{ruta}.csv')
@@ -105,9 +105,9 @@ def crear_datos_m(nombre):
     df.to_csv(f'{ruta}.csv')
 
 
-def crear_datos_i(I, fake, rango_random, nombre):
+def crear_datos_i(I, nombre):
     diccionario = {
-        f'Estación {i}': fake.random_int(min=rango_random[0], max=rango_random[1])
+        f'Estación {i}': 1 if i == 5 or i == 10 else 0
         for i in I
     }
     df = pd.DataFrame(index=diccionario.keys(), data=diccionario.values())
@@ -131,13 +131,13 @@ parametros_it = {
     'CI_it': (I, T, Faker(), [1707077, 40813109], 'costo_instalacion_electrica')
 }
 parametros_i = {
-    'EI_i': (I, Faker(), [0, 0], 'infraestructura_existente')
+    'EI_i': (I, 'infraestructura_existente')
 }
 parametros_m = {
     'phi_m': ['capacidad_carga']
 }
 parametros_mi = {
-    'EC_mi': (M, I, Faker(), [0, 0], 'cargadores_existentes')
+    'EC_mi': (M, I, 'cargadores_existentes')
 }
 
 
@@ -167,7 +167,7 @@ crear_csv(parametros_i.values(), 'i')
 crear_csv(parametros_m.values(), 'm')
 crear_csv(parametros_mi.values(), 'mi')
 parametros_sin_dimension(
-    'alpha', 1.9)
+    'alpha', 1.3)
 parametros_sin_dimension('delta', 300)
 parametros_sin_dimension('K', 22200)
 parametros_sin_dimension('AM', 80)
