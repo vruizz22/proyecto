@@ -255,6 +255,26 @@ class Modelo:
                 (i, t): z_it[i, t].X for i in self.I for t in self.T
             }
             crear_resultados(self.I, self.T, valores_z_it, self.EI_i)
+            # Printear las variables
+            for m in self.M:
+                for i in self.I:
+                    for t in self.T:
+                        if t == self.T[-1]:
+                            print(f'x_mit[{m}, {i}, {t}] = {x_mit[m, i, t].X}')
+                            print(f'b_mit[{m}, {i}, {t}] = {b_mit[m, i, t].X}')
+                            print(f'd_mit[{m}, {i}, {t}] = {d_mit[m, i, t].X}')
+            print()
+            for i in self.I:
+                for t in self.T:
+                    if t == self.T[-1]:
+                        print(f'y_it[{i}, {t}] = {y_it[i, t].X}')
+                        print(f'z_it[{i}, {t}] = {z_it[i, t].X}')
+            print()
+            for m in self.M:
+                for t in self.T:
+                    if t == self.T[-1]:
+                        print(f'a_mt[{m}, {t}] = {a_mt[m, t].X}')
+                        print(f'S_mt[{m}, {t}] = {S_mt[m, t].X}')
             return model.ObjVal
 
 

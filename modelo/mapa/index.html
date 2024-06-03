@@ -58,8 +58,15 @@
 // Variable global para el número de archivo
 var fileNumber = 0;
 
+// Crear un grupo de capas para los marcadores
+var markers = L.layerGroup().addTo(map);
+
 // Función para cargar los datos y actualizar el mapa
 function loadDataAndUpdateMap() {
+
+  // Eliminar todos los marcadores del mapa
+  markers.clearLayers();
+
   $.get('./data/data' + fileNumber + '.csv', function(csvString) {
     var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
     console.log(data);
@@ -74,26 +81,31 @@ function loadDataAndUpdateMap() {
             opacity: 1
           }).bindPopup(row.Title + "<br>" + row.Description);
           
-          marker.addTo(map);
+          // Agregar el marcador al grupo de capas
+          markers.addLayer(marker);
         }
       }
     }
   });
 }
 
-// Función para manejar el evento de clic del botón
+
 function handleButtonClick() {
   // Incrementar el número de archivo
   fileNumber++;
 
   // Si el número de archivo es mayor que 60, reiniciarlo a 1
   if (fileNumber > 60) {
-    fileNumber = 1;
+    fileNumber = 0;
   }
+
+  // Actualizar el texto del botón con el número de archivo
+  document.getElementById('loadButton').innerHTML = "Siguiente Periodo: " + fileNumber;
 
   // Cargar los datos y actualizar el mapa
   loadDataAndUpdateMap();
 }
+
 
 // Cargar los datos iniciales y actualizar el mapa
 loadDataAndUpdateMap();
