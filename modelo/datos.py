@@ -13,6 +13,25 @@ ruta_costo_kw = path.join('parametros', 'costo_kw')
 ruta_costo_man = path.join('parametros', 'costo_man')
 ruta_demanda = path.join('parametros', 'demanda')
 
+def crear_datos_demanda(M, I, T, fake, total_demand, ruta, nombre):
+    # Generate random proportions for each station and normalize them
+    demand_proportions = [fake.random_int(min=1, max=10) for _ in I]
+    demand_proportions = [x / sum(demand_proportions) for x in demand_proportions]
+    
+    aumento = {
+        'demanda': 1 + (35 / 100)
+    }
+    
+    for t in T:
+        df = pd.DataFrame(index=['Cargador ' + str(m) for m in M],
+                          columns=['Estación ' + str(i) for i in I])
+        for m in M:
+            for i in I:
+                base_demand = total_demand * demand_proportions[i-1]
+                df.at['Cargador ' + str(m), 'Estación ' + str(i)] = int(base_demand * aumento['demanda'] ** (t/12))
+        
+        # Convertir el DataFrame a csv
+        df.to_csv(f'{ruta}/{nombre}{t}.csv')
 
 def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
     aumento = {
@@ -90,7 +109,6 @@ def crear_datos_i(I, nombre):
 
 
 parametros_mit = {
-    'D_mit': (M, I, T, Faker(), [80, 100], ruta_demanda, 'demanda'),
     'CC_mit': (M, I, T, Faker(), [1800000, 5500000], ruta_costo_int, 'costo_instalacion_cargador'),
     'CKW_mit': (M, I, T, Faker(), [72000, 144000], ruta_costo_kw, 'costo_energia_kw'),
     'CM_mit': (M, I, T, Faker(), [70000, 120000], ruta_costo_man, 'costo_mantenimiento')
@@ -133,7 +151,8 @@ def crear_csv(parametros, conjunto):
     for args in parametros:
         conjuntos[conjunto](*args)
 
-
+# 'D_mit': (M, I, T, Faker(), [80, 100], ruta_demanda, 'demanda'),
+crear_datos_demanda(M, I, T, Faker(), 100, ruta_demanda, 'demanda')
 crear_csv(parametros_mit.values(), 'mit')
 crear_csv(parametros_mt.values(), 'mt')
 crear_csv(parametros_it.values(), 'it')
@@ -141,7 +160,7 @@ crear_csv(parametros_i.values(), 'i')
 crear_csv(parametros_m.values(), 'm')
 crear_csv(parametros_mi.values(), 'mi')
 parametros_sin_dimension(
-    'alpha', 1.3)
+    'alpha', 1.9)
 parametros_sin_dimension('delta', 300)
 parametros_sin_dimension('K', 22200)
 parametros_sin_dimension('AM', 80)
