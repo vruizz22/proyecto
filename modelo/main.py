@@ -49,7 +49,6 @@ class Modelo:
         }
 
         # Lectura de archivos y creación de parametros
-
         self.D_mit = {
             (m, i, t): leer_archivo(ruta_archivos_demanda[f'demanda{t}'])[m - 1, i - 1]
             for m in self.M for i in self.I for t in self.T
@@ -142,7 +141,6 @@ class Modelo:
              for i in self.I),
             name='restriccion_infraestructura_unica'
         )
-        ###
         model.addConstrs(
             (quicksum(x_mit[m, i, t] * self.phi_m[m]
              for m in self.M) <= self.K for i in self.I for t in self.T),
