@@ -359,20 +359,35 @@ Víctor Ruiz 2320012J Sección 1\\
 	\textbf{Instrucciones de uso:} Para ejecutar el modelo, se debe descomprimir el archivo \texttt{24.zip} y ejecutar el archivo \texttt{main.py} en la misma carpeta que los archivos descomprimidos. El modelo entregará la ganancia esperada al término del horizonte de tiempo.
 
 	\section{Resultados}
+
 	Los gráficos de cada variable se encuentran en resultados.xlxs, en la hoja de cálculo de resultados. A continuación se presentan los resultados obtenidos para cada variable de decisión.
+	
 	\subsection{$x_{mit}$}
+
 	Los siguientes gráficos muestran como para las 13 estaciones los valores de la variable “x” fueron variando en el tiempo para cada cargador. En el caso del cargador de tipo 1 se puede evidenciar que la evolución de la cantidad de cargadores por estación fue creciente o constante lo cual es de sumo interés ya que cumple la restricción de que no pueden desaparecer cargadores en el tiempo (restricción 7).
+	
 	\subsection{$y_{it}$}
+
 	En el gráfico es difícil de ver pero muestra los valores de la variable “y” para cada período de tiempo y para cada estación, donde se sabe que se parte con 2 estaciones de 12 habilitadas y que se habilitaron todas las estaciones al final del tiempo, por lo que tiene sentido de que la variable solo en un periodo t para cada estacón tome el valor 1 ya que solo se puede instalar una vez.
+	
 	\subsection{$z_{it}$}
+
 	El gráfico es un poco complejo de leer pero lo que representa es que la infraestructura una vez que fue instalada se preserva su existencia hasta el final de los periodos ya que el valor toma el valor 1 en un t y luego se mantiene constante para todas las estaciones.
+	Para facilitar la lectura de la variable $z_{it}$, se presenta la siguiente recurso dinámico \url{https://stupendous-genie-3fd288.netlify.app/} en el cual se puede observar la instalación de infraestructura por periodo.
 	\subsection{$a_{mt}$}
+
 	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos t, esto, además de demostrar que hubo un gasto en cargadores y que no aparecen de la nada, se relacionan con las variables $x_{mit}$, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable $b_{mit}$, que debería tambíen cuando se compran cargadores en un periodo $t$.
+	
 	\subsection{$b_{mit}$}
+
 	En este gráfico se muestra la cantidad de cargadores de ambos tipos que se instalan para cada estación en los periodos t que como se mencionó anteriormente tiene relación directa con $a_{mt}$ ya que si se compra en un periodo t en ese mismo periodo debe instalarse en alguna estación i un cargador de ese tipo.
+	
 	\subsection{$d_{mit}$}
+
 	En el gráfico de esta variable para cada periodo t se puede evidenciar claramente como con el tiempo se pudo ir satisfaciendo cada vez más demanda lo cual tiene sentido ya que a largo plazo había que recuperar los costos que significaron todas las compras e instalaciones en un principio y así poder generar una rentabilidad óptima.
+	
 	\subsection{$S_{mt}$}
+
 	Como fué mencionado anteriormente el no hubo almacenamiento de cargadores por desición de guroby y esto tiene sentido con lo que muestra el gráfico y lo que muestran todas las variables relacionadas. En el siguiente gráfico podemos ver que el comportamiento de la satisfacción de demanda para cada periodo t en en una estacion i para los 2 tipos de cargadores…En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que habian en los periodos anteriores y sigueientes cumpliendo nuestra restricción.
 	\newpage
 
