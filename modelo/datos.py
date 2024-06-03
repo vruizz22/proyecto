@@ -3,32 +3,6 @@ import pandas as pd
 from os import path
 
 Faker.seed(0)
-'''
-Crear parametros
-\item $D_{mit}$, demanda total de cargadores tipo $m$ en la estación $i$ para el periodo $t$. () cantidad autos
-\item $CI_{it}$, el costo de instalar la infraestructura el\'ectrica en el periodo $t$ para la estaci\'on $I$. 
-\item $CP_{mt}$, el costo de comprar un cargador tipo $m$ en el periodo $t$.
-\item $CC_{mit}$, el costo de instalar un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-\item $CKW_{mit}$, el costo de energía eléctrica por kilowatt-hora para un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-\item $CM_{mit}$, el costo de mantención de un cargador tipo $m$ en la estación $i$ en el periodo $t$.
-
-\item $\alpha$, coeficiente de ganancia espera por el precio seleccionado, por KW de electricidad vendido.
-\item $\delta$, cantidad de KW que se espera que cargue un vehículo eléctrico en un mes.
-\item $K$, la capacidad eléctrica máxima que permite la infraestructura eléctrica.
-
-\item $\phi_m$, capacidad de carga por mes de un cargador tipo $m$ en KW.
-\item $EI_{i}$, si ya existe la infraestructura eléctrica en la estación $i$.
-\item $EC_{mi}$, la cantidad de estaciones de carga de tipo $m$ que ya existen en la estación $i$ en el mes $t$
-\item $CS_{mt}$, el costo de almacenar un cargador tipo $m$ en el periodo $t$.
-\item $AM$, atonomía minimia de un vehículo eléctrico en KM.
-'''
-
-'''
-conjuntos:
-t \in {1, 60}
-i \in {1, 25}
-m \in {1, 2}
-'''
 
 T = range(1, 61)
 I = range(1, 13)
