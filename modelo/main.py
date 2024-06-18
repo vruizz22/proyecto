@@ -194,8 +194,9 @@ class Modelo:
              for i in self.I),
             name='restriccion_infraestructura_existente_3'
         )
+
         model.addConstrs(
-            (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= 1
+            (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= z_it[i, t]
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
@@ -240,8 +241,11 @@ class Modelo:
             model.computeIIS()
             model.write('modelo.ilp')
             return None
-        elif model.status == GRB.UNBOUNDED or model.status == GRB.INF_OR_UNBD:
+        elif model.status == GRB.UNBOUNDED:
             print('El modelo es no acotado')
+            return None
+        elif model.status == GRB.INF_OR_UNBD:
+            print('El modelo es infactible o no acotado')
             return None
         else:
             for i in self.I:
