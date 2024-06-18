@@ -255,6 +255,7 @@ class Modelo:
                 (i, t): z_it[i, t].X for i in self.I for t in self.T
             }
             crear_resultados(self.I, self.T, valores_z_it, self.EI_i)
+
             # Printear las variables
             for m in self.M:
                 for i in self.I:

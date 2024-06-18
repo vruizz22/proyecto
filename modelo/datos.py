@@ -13,25 +13,29 @@ ruta_costo_kw = path.join('parametros', 'costo_kw')
 ruta_costo_man = path.join('parametros', 'costo_man')
 ruta_demanda = path.join('parametros', 'demanda')
 
+
 def crear_datos_demanda(M, I, T, fake, total_demand, ruta, nombre):
     # Generate random proportions for each station and normalize them
     demand_proportions = [fake.random_int(min=1, max=10) for _ in I]
-    demand_proportions = [x / sum(demand_proportions) for x in demand_proportions]
-    
+    demand_proportions = [x / sum(demand_proportions)
+                          for x in demand_proportions]
+
     aumento = {
         'demanda': 1 + (35 / 100)
     }
-    
+
     for t in T:
         df = pd.DataFrame(index=['Cargador ' + str(m) for m in M],
                           columns=['Estación ' + str(i) for i in I])
         for m in M:
             for i in I:
                 base_demand = total_demand * demand_proportions[i-1]
-                df.at['Cargador ' + str(m), 'Estación ' + str(i)] = int(base_demand * aumento['demanda'] ** (t/12))
-        
+                df.at['Cargador ' + str(m), 'Estación ' + str(i)
+                      ] = int(base_demand * aumento['demanda'] ** (t/12))
+
         # Convertir el DataFrame a csv
         df.to_csv(f'{ruta}/{nombre}{t}.csv')
+
 
 def crear_datos_mit(M, I, T, fake, rango_random, ruta, nombre):
     aumento = {
@@ -150,6 +154,7 @@ def crear_csv(parametros, conjunto):
     }
     for args in parametros:
         conjuntos[conjunto](*args)
+
 
 # 'D_mit': (M, I, T, Faker(), [80, 100], ruta_demanda, 'demanda'),
 crear_datos_demanda(M, I, T, Faker(), 100, ruta_demanda, 'demanda')
