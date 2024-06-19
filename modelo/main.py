@@ -172,7 +172,6 @@ class Modelo:
              for i in self.I),
             name='restriccion_infraestructura_unica'
         )
-        ###
         model.addConstrs(
             (quicksum(x_mit[m, i, t] * self.phi_m[m]
              for m in self.M) <= self.K for i in self.I for t in self.T),
@@ -188,19 +187,16 @@ class Modelo:
              for i in self.I for t in self.T if t >= 2),
             name='restriccion_infraestructura_existente_2'
         )
-
         model.addConstrs(
             (z_it[i, 1] >= y_it[i, 1] + self.EI_i[i]
              for i in self.I),
             name='restriccion_infraestructura_existente_3'
         )
-
         model.addConstrs(
             (quicksum(z_it[j, t] for j in self.I if j != i and float(self.d_ij[(i, j)]) <= float(self.AM)) >= z_it[i, t]
              for i in self.I for t in self.T),
             name='restriccion_distancia'
         )
-
         model.addConstrs(
             (x_mit[m, i, t] == b_mit[m, i, t] + x_mit[m, i, t - 1]
              for m in self.M for i in self.I for t in self.T if t >= 2),
@@ -241,45 +237,20 @@ class Modelo:
             model.computeIIS()
             model.write('modelo.ilp')
             return None
+
         elif model.status == GRB.UNBOUNDED:
             print('El modelo es no acotado')
             return None
+
         elif model.status == GRB.INF_OR_UNBD:
             print('El modelo es infactible o no acotado')
             return None
-        else:
-            for i in self.I:
-                for m in self.M:
-                    for t in self.T:
-                        if x_mit[m, i, t].X > 0 and t == self.T[-1]:
-                            print(
-                                f'Para la estación {i} se instalaron {x_mit[m, i, t].X} cargadores tipo {m} en el periodo {t}')
 
+        else:
             valores_z_it = {
                 (i, t): z_it[i, t].X for i in self.I for t in self.T
             }
             crear_resultados(self.I, self.T, valores_z_it, self.EI_i)
-
-            # Printear las variables
-            for m in self.M:
-                for i in self.I:
-                    for t in self.T:
-                        if t == self.T[-1]:
-                            print(f'x_mit[{m}, {i}, {t}] = {x_mit[m, i, t].X}')
-                            print(f'b_mit[{m}, {i}, {t}] = {b_mit[m, i, t].X}')
-                            print(f'd_mit[{m}, {i}, {t}] = {d_mit[m, i, t].X}')
-            print()
-            for i in self.I:
-                for t in self.T:
-                    if t == self.T[-1]:
-                        print(f'y_it[{i}, {t}] = {y_it[i, t].X}')
-                        print(f'z_it[{i}, {t}] = {z_it[i, t].X}')
-            print()
-            for m in self.M:
-                for t in self.T:
-                    if t == self.T[-1]:
-                        print(f'a_mt[{m}, {t}] = {a_mt[m, t].X}')
-                        print(f'S_mt[{m}, {t}] = {S_mt[m, t].X}')
             return model.ObjVal
 
 
@@ -289,4 +260,4 @@ if __name__ == '__main__':
     if ov is not None:
         locale.setlocale(locale.LC_ALL, '')
         print(
-            f'\033[1;31mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
+            f'\033[1;32mLa ganancia esperada es de {locale.currency(ov, grouping=True)}\033[0m')
