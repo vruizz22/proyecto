@@ -27,6 +27,7 @@
 \usepackage{pgfplots}
 
 
+
 \newcommand{\mytitle}{Informe}
 \newcommand{\myauthor}{Grupo 24}
 \newcommand{\mydate}{\today}
@@ -364,6 +365,66 @@ Víctor Ruiz 2320012J Sección 1\\
 	\section{Resultados}
 	
 	\section{Análisis de Sensibilidad}
+
+
+	\subsection*{Coeficiente de Ganancia Esperada por el Precio Seleccionado ($\alpha$)}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{Coeficiente de ganancia esperada} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
+	\hline
+	$1.9 \times 70\% = 1.615$ & -78.37\% & \$435,338,090 \\
+	$1.9 \times 85\% = 1.615$ & -40.59\% & \$1,195,887,520 \\
+	\textbf{Valor original: 1.9} & \textbf{0\%} & \textbf{\$2,013,071,275} \\
+	$1.9 \times 115\% = 1.615$ & +41\% & \$2,838,576,671 \\
+	$1.9 \times 130\% = 1.615$ & +82\% & \$3,666,357,631 \\
+	\hline
+	\end{tabular}
+	\\ \\ \\
+	Como se puede evidenciar en la tabla anterior, la rentabilidad del modelo es casi completamente lineal con relación al coeficiente de ganancia esperada. Esto era predecible y ahora se confirma como adecuado, ya que cualquier aumento en el coeficiente $\alpha$ resulta en un incremento en las ganancias, afectando positivamente la rentabilidad. 
+	Además, es crucial notar que el modelo muestra una alta sensibilidad a los cambios en este parámetro, lo que sugiere que el precio de venta de la electricidad es un factor clave y crítico para la viabilidad financiera del proyecto.
+	Sin embargo, es importante recalcar que el modelo asume un contexto monopólico, en el que se supone que todos los autos de la zona seleccionada siempre nos comprarán a nosotros, sin considerar la competencia. Por lo tanto, es fundamental cuestionar si estas suposiciones sobre la demanda y la elasticidad del precio son realistas a largo plazo.
+
+	\subsection*{Distancia Máxima Permitida entre Electrolineras (AM)}
+
+	\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{Distancia máxima [km]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
+	\hline
+	$80 \times 1.275\% = 1.02$ & - & Sin solución óptima \\
+	$80 \times 1.5\% = 1.2$ & -19.47\% & \$1,621,033,610 \\
+	$80 \times 1.74\% = 1.4$ & -19.47\% & \$1,621,033,610 \\
+	$80 \times 5\% = 4$ & -9.3\% & \$1,825,839,215 \\
+	$80 \times 9.76\% = 7.808$ & -0.0053\% & \$2,012,965,506 \\
+	$80 \times 0.5 = 40$ & 0\% & \$2,013,071,275 \\
+	\textbf{Valor original: 80} & \textbf{0\%} & \textbf{\$2,013,071,275} \\
+	$80 \times 125\% = 100$ & 0\% & \$2,013,071,275 \\
+	\hline
+	\end{tabular}
+	\\ \\ \\
+	Antes de empezar con el análisis de datos, es importante contextualizar que la ciudad modelo seleccionada fue Concepción, por lo que considerar distancias radiales mayores a 80 km no tendría sentido, ya que excedería los límites de la localización correspondiente. A primera vista, se observa que las distancias muy pequeñas tienden a ser no óptimas o incluso inviables, sugiriendo una relación no lineal. Esto nos indica que existe una distancia óptima en la que las electrolineras están suficientemente distribuidas para maximizar la rentabilidad sin incurrir en costos adicionales significativos.
+	Aunque se notó que entre 80 km y 8 km la rentabilidad era la misma, en términos de localización esto no es lo más adecuado, ya que incitaría al modelo a colocar electrolineras demasiado cerca unas de otras, lo que desatendería las zonas periféricas de la ciudad. Esto destaca la falta de un parámetro o variable de decisión que refleje la fluctuación de la demanda en diferentes zonas de la ciudad.
+	Finalmente, es importante notar que, aunque disminuir las distancias máximas en un margen adecuado no afecta significativamente la rentabilidad del modelo, como sí lo hace el coeficiente $\alpha$, puede resultar inconveniente en términos geográficos y de comodidad para los usuarios de la ciudad.
+
+	\subsection*{Capacidad Eléctrica Máxima que Permite la Infraestructura (K)}
+
+	\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{Capacidad eléctrica máxima [kWh]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
+	\hline
+	$22,200 \times 94.04\% = 20,879$ & - & Infactible o sin solución óptima \\
+	$22,200 \times 94.05\% = 20,880$ & -0.01\% & \$2,012,870,573 \\
+	$22,200 \times 94.6\% = 21,000$ & 0\% & \$2,013,071,275 \\
+	\textbf{Valor original: 22,200} & \textbf{0\%} & \textbf{\$2,013,071,275} \\
+	$22,200 \times 112.6\% = 25,000$ & +2.23\% & \$2,057,991,441 \\
+	$22,200 \times 135.14\% = 30,000$ & +6.44\% & \$2,142,723,960 \\
+	$22,200 \times 225.23\% = 50,000$ & +6.53\% & \$2,144,551,068 \\
+	\hline
+	\end{tabular}
+	\\ \\ \\
+
+	A partir de los datos, es posible notar que incrementos tanto de pequeña como de gran escala en la capacidad aumentan la rentabilidad del modelo, aunque no de manera tan significativa a medida que este incremento supera el doble del valor original. Esto es lógico, ya que aumentar la capacidad eléctrica de la infraestructura implica un aumento en la cantidad de cargadores en la sucursal, permitiendo satisfacer la demanda de manera más eficiente y, por ende, incrementando las ganancias.
+	Sin embargo, agregar un gran número de cargadores no es tan eficiente si la demanda es limitada, ya que siempre habría espacios sin ocupar, y la idea es minimizar su cantidad para que sea lo justo y necesario. Además, es crucial destacar que una disminución de la capacidad puede significar la inviabilidad del modelo, ya que provocaría saturaciones en las distintas estaciones, afectando la eficiencia y disminuyendo las ganancias a largo plazo. 
+	Por último, es fundamental cuestionar la estabilidad de la demanda proyectada y la capacidad de la infraestructura existente para soportar expansiones significativas. Esto garantizará que las inversiones en capacidad eléctrica sean efectivas y sostenibles a largo plazo.
 
 	\begin{tikzpicture}
 	\begin{axis}[
