@@ -457,35 +457,7 @@ Víctor Ruiz 2320012J Sección 1\\
 	\end{axis}
 	\end{tikzpicture}
 
-	\begin{tikzpicture}
-	\begin{axis}[
-		title={Relación entre K y Ganancia Esperada},
-		xlabel={$K \times 10^3$},
-		ylabel={Ganancia Esperada (CLP)},
-		xmin=20, xmax=22,
-		ymin=2012870573, ymax=2013071275,
-		xtick={20.88, 21, 22},
-		ytick={2012870573, 2013071275},
-		yticklabel style={/pgf/number format/.cd, set thousands separator={}},
-		legend pos=north west,
-		ymajorgrids=true,
-		grid style=dashed,
-		scaled y ticks=false,
-		width=10cm,
-		height=7cm,
-	]
 
-	\addplot[
-		color=blue,
-		mark=star,
-		]
-		coordinates {
-		(20.88,2012870573)(21,2013071275)(22,2013071275)
-		};
-		\addlegendentry{Ganancia Esperada}
-
-	\end{axis}
-	\end{tikzpicture}
 
 	\begin{tikzpicture}
 		\begin{axis}[
