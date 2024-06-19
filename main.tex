@@ -426,6 +426,96 @@ Víctor Ruiz 2320012J Sección 1\\
 	
 	\end{axis}
 	\end{tikzpicture}
+
+	\begin{tikzpicture}
+	\begin{axis}[
+		title={Relación entre AM y Ganancia Esperada},
+		xlabel={AM (Distancia máxima)},
+		ylabel={Ganancia Esperada (CLP)},
+		xmin=0, xmax=10,
+		ymin=1600000000, ymax=2100000000,
+		xtick={0,40,80,120},
+		ytick={1600000000,1800000000,2000000000,2100000000},
+		yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+		legend pos=north west,
+		ymajorgrids=true,
+		grid style=dashed,
+		scaled y ticks=false,
+		width=10cm,
+		height=7cm,
+	]
+	
+	\addplot[
+		color=red,
+		mark=triangle,
+		]
+		coordinates {
+		(80,2013071275)(120,2013071275)(40,2013071275)(7.808,2012965506)(4,1825839215)(1.4,1621033610)(1.2,1621033610)
+		};
+		\addlegendentry{Ganancia Esperada}
+	
+	\end{axis}
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+	\begin{axis}[
+		title={Relación entre K y Ganancia Esperada},
+		xlabel={$K \times 10^3$},
+		ylabel={Ganancia Esperada (CLP)},
+		xmin=20, xmax=22,
+		ymin=2012870573, ymax=2013071275,
+		xtick={20.88, 21, 22},
+		ytick={2012870573, 2013071275},
+		yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+		legend pos=north west,
+		ymajorgrids=true,
+		grid style=dashed,
+		scaled y ticks=false,
+		width=10cm,
+		height=7cm,
+	]
+
+	\addplot[
+		color=blue,
+		mark=star,
+		]
+		coordinates {
+		(20.88,2012870573)(21,2013071275)(22,2013071275)
+		};
+		\addlegendentry{Ganancia Esperada}
+
+	\end{axis}
+	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		\begin{axis}[
+			title={Relación entre K y Ganancia Esperada},
+			xlabel={$K \times 10^3$},
+			ylabel={Ganancia Esperada (CLP)},
+			xmin=20, xmax=50,
+			ymin=2000000000, ymax=2150000000, % Ajustado para acotar el eje Y
+			xtick={20, 25, 30, 50},
+			ytick={2000000000, 2020000000, 2040000000, 2060000000, 2080000000, 2100000000, 2120000000, 2140000000, 2150000000},
+			yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+			legend pos=north west,
+			ymajorgrids=true,
+			grid style=dashed,
+			scaled y ticks=false,
+			width=10cm,
+			height=7cm,
+		]
+		
+		\addplot[
+			color=blue,
+			mark=star,
+			]
+			coordinates {
+			(20.88,2012870573)(21,2013071275)(22,2013071275)(25,2057991441)(30,2142723960)(50,2144551068)
+			};
+		\addlegendentry{Ganancia Esperada}
+		
+		\end{axis}
+	\end{tikzpicture}
 	
 	\newpage
 

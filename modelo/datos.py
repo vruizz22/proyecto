@@ -167,7 +167,7 @@ crear_csv(parametros_mi.values(), 'mi')
 parametros_sin_dimension(
     'alpha', 1.9)
 parametros_sin_dimension('delta', 300)
-parametros_sin_dimension('K', 22200)
+parametros_sin_dimension('K', 21000)
 parametros_sin_dimension('AM', 80)  # 7.815866119766775
 # 1.4614333708523881 => 1.0373461679979014
 # 1.4
