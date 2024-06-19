@@ -363,7 +363,38 @@ Víctor Ruiz 2320012J Sección 1\\
 	\textbf{Instrucciones de uso:} Para ejecutar el modelo, se debe descomprimir el archivo \texttt{parametros.zip} y ejecutar el archivo \texttt{main.py} en la misma carpeta que los archivos descomprimidos. El modelo entregará la ganancia esperada al término del horizonte de tiempo.
 
 	\section{Resultados}
-	
+
+	Los gráficos de cada variable se encuentran en \textit{resultados.xlsx}, en la hoja de cálculo de resultados. A continuación, se presentan los resultados obtenidos para cada variable de decisión.
+
+	\subsection{$x_{mit}$}
+
+	Los siguientes gráficos muestran cómo para las 13 estaciones los valores de la variable “x” fueron variando en el tiempo para cada cargador. En el caso del cargador de tipo 1 se puede evidenciar que la evolución de la cantidad de cargadores por estación fue creciente o constante, lo cual es de sumo interés ya que cumple la restricción de que no pueden desaparecer cargadores en el tiempo (restricción 7). Los gráficos están en la hoja \textit{xmit} y los nombres para los gráficos son: \textit{Valores de x para cargador tipo 1} y \textit{Valores de x para cargador tipo 2}.
+
+	\subsection{$y_{it}$}
+
+	En el gráfico es difícil de ver, pero muestra los valores de la variable “y” para cada período de tiempo y para cada estación. Se sabe que se parte con 2 estaciones de 12 habilitadas y que se habilitaron todas las estaciones al final del tiempo, por lo que tiene sentido que la variable solo en un periodo $t$ para cada estación tome el valor 1, ya que solo se puede instalar una vez. Los gráficos están en la hoja \textit{yit} y los nombres para los gráficos son: \textit{Estación 1} y \textit{Estación 2}.
+
+	\subsection{$z_{it}$}
+
+	El gráfico es un poco complejo de leer, pero lo que representa es que la infraestructura una vez que fue instalada, preserva su existencia hasta el final de los periodos, ya que la variable toma el valor 1 en un $t$ y luego se mantiene constante para todas las estaciones. Para facilitar la lectura de la variable \textit{zit}, se presenta el siguiente recurso dinámico: \url{https://stupendous-genie-3fd288.netlify.app/} en el cual se puede observar la instalación de infraestructura por periodo. Los gráficos están en la hoja \textit{zit} y los nombres para los gráficos son: \textit{Infraestructura presente por estación en el tiempo}.
+
+	\subsection{$a_{mt}$}
+
+	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos $t$. Esto, además de demostrar que hubo un gasto en cargadores, se relaciona con las variables \textit{xmit}, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable \textit{bmit}, que debería también cuando se compran cargadores en un periodo $t$. Los gráficos están en la hoja \textit{amt} y los nombres para los gráficos son: \textit{Cantidad de cargadores comprados en cada periodo}.
+
+	\subsection{$b_{mit}$}
+
+	En este gráfico se muestra la cantidad de cargadores de ambos tipos que se instalan para cada estación en los periodos $t$. Como se mencionó anteriormente, tiene relación directa con \textit{amt}, ya que si se compra en un periodo $t$, en ese mismo periodo debe instalarse en alguna estación $i$ un cargador de ese tipo. Los gráficos están en la hoja \textit{bmit} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Tipo 1 Que Se Instalaron por Estación} y \textit{Cantidad de Cargadores Tipo 2 Que Se Instalaron por Estación}.
+
+	\subsection{$d_{mit}$}
+
+	En el gráfico de esta variable para cada periodo $t$ se puede evidenciar claramente cómo con el tiempo se pudo ir satisfaciendo cada vez más demanda. Esto tiene sentido, ya que a largo plazo había que recuperar los costos que significaron todas las compras e instalaciones en un principio y así poder generar una rentabilidad óptima. Los gráficos están en la hoja \textit{dmit} y los nombres para los gráficos son: \textit{Demanda a satisfacer cargador 1} y \textit{Demanda a satisfacer cargador 2}.
+
+	\subsection{$S_{mt}$}
+
+	Como fue mencionado anteriormente en \S 5.4, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremento por periodo del costo de compra. En el siguiente gráfico podemos ver el comportamiento de la satisfacción de demanda para cada periodo $t$ en una estación $i$ para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que había en los periodos previos y posteriores, cumpliendo nuestra restricción. Los gráficos están en la hoja \textit{Smt} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Almacenados por Periodo}.
+
+	\newpage
 	\section{Análisis de Sensibilidad}
 
 
@@ -425,7 +456,7 @@ Víctor Ruiz 2320012J Sección 1\\
 	A partir de los datos, es posible notar que incrementos tanto de pequeña como de gran escala en la capacidad aumentan la rentabilidad del modelo, aunque no de manera tan significativa a medida que este incremento supera el doble del valor original. Esto es lógico, ya que aumentar la capacidad eléctrica de la infraestructura implica un aumento en la cantidad de cargadores en la sucursal, permitiendo satisfacer la demanda de manera más eficiente y, por ende, incrementando las ganancias.
 	Sin embargo, agregar un gran número de cargadores no es tan eficiente si la demanda es limitada, ya que siempre habría espacios sin ocupar, y la idea es minimizar su cantidad para que sea lo justo y necesario. Además, es crucial destacar que una disminución de la capacidad puede significar la inviabilidad del modelo, ya que provocaría saturaciones en las distintas estaciones, afectando la eficiencia y disminuyendo las ganancias a largo plazo. 
 	Por último, es fundamental cuestionar la estabilidad de la demanda proyectada y la capacidad de la infraestructura existente para soportar expansiones significativas. Esto garantizará que las inversiones en capacidad eléctrica sean efectivas y sostenibles a largo plazo.
-
+	\\ \\ \\
 	\begin{tikzpicture}
 	\begin{axis}[
 		title={Relación entre Alpha y Ganancia Esperada},
@@ -632,6 +663,87 @@ Víctor Ruiz 2320012J Sección 1\\
 		\includegraphics[scale=0.5]{grafica-2}
 		\caption{Número de autos privados \cite{paredes}}
 		\label{fig:grafica2}
+	\end{figure}
+	\newpage
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{anexo_xmit1.png}
+		\caption{Gráfico 1 de la variable $x_{mit}$.}
+		\label{fig:grafica3}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{anexo_xmit2.png}
+		\caption{Gráfico 2 de la variable $x_{mit}$.}
+		\label{fig:grafica4}
+	\end{figure}
+	\newpage
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{ymit1.png}
+		\caption{Gráfico 1 de la variable $y_{mit}$.}
+		\label{fig:grafica5}
+	\end{figure}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{ymit2.png}
+		\caption{Gráfico 2 de la variable $y_{mit}$.}
+		\label{fig:grafica6}		
+	\end{figure}
+	\newpage
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{zit.png}
+		\caption{Gráfico de la variable $z_{it}$.}
+		\label{fig:grafica7}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{amt.png}
+		\caption{Gráfico de la variable $a_{mt}$.}
+		\label{fig:grafica8}
+	\end{figure}
+	\newpage
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{bmit1.png}
+		\caption{Gráfico 1 de la variable $b_{mit}$.}
+		\label{fig:grafica9}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.9]{bmit2.png}
+		\caption{Gráfico 2 de la variable $b_{mit}$.}
+		\label{fig:grafica10}
+	\end{figure}
+	\newpage
+
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.6]{dmit1.png}
+		\caption{Gráfico 1 de la variable $d_{mit}$.}
+		\label{fig:grafica11}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.6]{dmit2.png}
+		\caption{Gráfico 2 de la variable $d_{mit}$.}
+		\label{fig:grafica12}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.6]{smt.png}
+		\caption{Gráfico de la variable $S_{mt}$.}
+		\label{fig:grafica13}
 	\end{figure}
 
 \end{flushleft}
