@@ -9,7 +9,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{float}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{ragged2e}
 
 \graphicspath{ {./figures/} }
@@ -60,7 +60,7 @@
 \begin{minipage}[t]{.13\textwidth}
 	\vspace{-0.25in}
 	\begin{figure}[H]
-		\includegraphics[width=0.90\textwidth]{LogoUC.jpg}
+		\includegraphics[width=0.90\textwidth]{imagenes/LogoUC.jpg}
 	\end{figure}
 \end{minipage}
 \hfill
@@ -403,7 +403,8 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\subsection*{Coeficiente de Ganancia Esperada por el Precio Seleccionado ($\alpha$)}
 
-	\begin{center}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|}
 			\hline
 			\textbf{Coeficiente de ganancia esperada} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
@@ -415,7 +416,8 @@ Víctor Ruiz 2320012J Sección 1\\
 			$1.9 \times 130\% = 1.615$                & +82\%                      & \$3,666,357,631             \\
 			\hline
 		\end{tabular}
-	\end{center}
+		\caption{Análisis de Sensibilidad del Coeficiente de Ganancia Esperada}
+	\end{table}
 
 	Como se puede evidenciar en la tabla anterior, la rentabilidad del modelo es casi completamente lineal con relación al coeficiente de ganancia esperada. Esto era predecible y ahora se confirma como adecuado, ya que cualquier aumento en el coeficiente $\alpha$ resulta en un incremento en las ganancias, afectando positivamente la rentabilidad.
 
@@ -425,7 +427,8 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\subsection*{Distancia Máxima Permitida entre Electrolineras (AM)}
 
-	\begin{center}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|}
 			\hline
 			\textbf{Distancia máxima [km]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
@@ -440,7 +443,8 @@ Víctor Ruiz 2320012J Sección 1\\
 			$80 \times 125\% = 100$        & 0\%                        & \$2,013,071,275             \\
 			\hline
 		\end{tabular}
-	\end{center}
+		\caption{Análisis de Sensibilidad de la Distancia Máxima Permitida}
+	\end{table}
 
 	Antes de empezar con el análisis de datos, es importante contextualizar que la ciudad modelo seleccionada fue Concepción, por lo que considerar distancias radiales mayores a 80 km no tendría sentido, ya que excedería los límites de la localización correspondiente. A primera vista, se observa que las distancias muy pequeñas tienden a ser no óptimas o incluso inviables, sugiriendo una relación no lineal. Esto nos indica que existe una distancia óptima en la que las electrolineras están suficientemente distribuidas para maximizar la rentabilidad sin incurrir en costos adicionales significativos.
 
@@ -450,7 +454,8 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\subsection*{Capacidad Eléctrica Máxima que Permite la Infraestructura (K)}
 
-	\begin{center}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|}
 			\hline
 			\textbf{Capacidad eléctrica máxima [kWh]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]}      \\
@@ -464,7 +469,8 @@ Víctor Ruiz 2320012J Sección 1\\
 			$22,200 \times 225.23\% = 50,000$         & +6.53\%                    & \$2,144,551,068                  \\
 			\hline
 		\end{tabular}
-	\end{center}
+		\caption{Análisis de Sensibilidad de la Capacidad Eléctrica Máxima}
+	\end{table}
 
 	A partir de los datos, es posible notar que incrementos tanto de pequeña como de gran escala en la capacidad aumentan la rentabilidad del modelo, aunque no de manera tan significativa a medida que este incremento supera el doble del valor original. Esto es lógico, ya que aumentar la capacidad eléctrica de la infraestructura implica un aumento en la cantidad de cargadores en la sucursal, permitiendo satisfacer la demanda de manera más eficiente y, por ende, incrementando las ganancias.
 
@@ -472,10 +478,11 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	Por último, es fundamental cuestionar la estabilidad de la demanda proyectada y la capacidad de la infraestructura existente para soportar expansiones significativas. Esto garantizará que las inversiones en capacidad eléctrica sean efectivas y sostenibles a largo plazo.
 
-	\begin{center}
+	\begin{figure}
+		\centering
+		\caption{Relación entre Alpha y Ganancia Esperada}
 		\begin{tikzpicture}
 			\begin{axis}[
-					title={Relación entre Alpha y Ganancia Esperada},
 					xlabel={Alpha},
 					ylabel={Ganancia Esperada (CLP)},
 					xmin=1.3, xmax=2.5,
@@ -502,14 +509,15 @@ Víctor Ruiz 2320012J Sección 1\\
 
 			\end{axis}
 		\end{tikzpicture}
-	\end{center}
+	\end{figure}
 
 
 	\newpage
-	\begin{center}
+	\begin{figure}[h]
+		\centering
+		\caption{Relación entre AM y Ganancia Esperada (1)}
 		\begin{tikzpicture}
 			\begin{axis}[
-					title={Relación entre AM y Ganancia Esperada},
 					xlabel={AM (Distancia máxima)},
 					ylabel={Ganancia Esperada (CLP)},
 					xmin=0, xmax=130,
@@ -536,12 +544,13 @@ Víctor Ruiz 2320012J Sección 1\\
 
 			\end{axis}
 		\end{tikzpicture}
-	\end{center}
+	\end{figure}
 
-	\begin{center}
+	\begin{figure}[h]
+		\centering
+		\caption{Relación entre AM y Ganancia Esperada (2)}
 		\begin{tikzpicture}
 			\begin{axis}[
-					title={Relación entre AM y Ganancia Esperada},
 					xlabel={AM (Distancia máxima)},
 					ylabel={Ganancia Esperada (CLP)},
 					xmin=0, xmax=10,
@@ -568,7 +577,7 @@ Víctor Ruiz 2320012J Sección 1\\
 
 			\end{axis}
 		\end{tikzpicture}
-	\end{center}
+	\end{figure}
 
 
 	\begin{figure}[h]
@@ -676,28 +685,28 @@ Víctor Ruiz 2320012J Sección 1\\
 	\section{Anexos}
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.4]{grafica-1}
+		\includegraphics[scale=0.4]{imagenes/grafica-1}
 		\caption{Número de vehículos eléctricos vendidos en Chile entre 2013 y 2022. \cite{statista}}
 		\label{fig:grafica1}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.5]{grafica-2}
+		\includegraphics[scale=0.5]{imagenes/grafica-2}
 		\caption{Número de autos privados \cite{paredes}}
 		\label{fig:grafica2}
 	\end{figure}
 	\newpage
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{anexo_xmit1.png}
+		\includegraphics[scale=0.9]{imagenes/anexo_xmit1.png}
 		\caption{Gráfico 1 de la variable $x_{mit}$.}
 		\label{fig:grafica3}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{anexo_xmit2.png}
+		\includegraphics[scale=0.9]{imagenes/anexo_xmit2.png}
 		\caption{Gráfico 2 de la variable $x_{mit}$.}
 		\label{fig:grafica4}
 	\end{figure}
@@ -705,13 +714,13 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{ymit1.png}
+		\includegraphics[scale=0.9]{imagenes/ymit1.png}
 		\caption{Gráfico 1 de la variable $y_{mit}$.}
 		\label{fig:grafica5}
 	\end{figure}
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{ymit2.png}
+		\includegraphics[scale=0.9]{imagenes/ymit2.png}
 		\caption{Gráfico 2 de la variable $y_{mit}$.}
 		\label{fig:grafica6}
 	\end{figure}
@@ -719,14 +728,14 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{zit.png}
+		\includegraphics[scale=0.9]{imagenes/zit.png}
 		\caption{Gráfico de la variable $z_{it}$.}
 		\label{fig:grafica7}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{amt.png}
+		\includegraphics[scale=0.9]{imagenes/amt.png}
 		\caption{Gráfico de la variable $a_{mt}$.}
 		\label{fig:grafica8}
 	\end{figure}
@@ -734,14 +743,14 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{bmit1.png}
+		\includegraphics[scale=0.9]{imagenes/bmit1.png}
 		\caption{Gráfico 1 de la variable $b_{mit}$.}
 		\label{fig:grafica9}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.9]{bmit2.png}
+		\includegraphics[scale=0.9]{imagenes/bmit2.png}
 		\caption{Gráfico 2 de la variable $b_{mit}$.}
 		\label{fig:grafica10}
 	\end{figure}
@@ -750,21 +759,21 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.6]{dmit1.png}
+		\includegraphics[scale=0.6]{imagenes/dmit1.png}
 		\caption{Gráfico 1 de la variable $d_{mit}$.}
 		\label{fig:grafica11}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.6]{dmit2.png}
+		\includegraphics[scale=0.6]{imagenes/dmit2.png}
 		\caption{Gráfico 2 de la variable $d_{mit}$.}
 		\label{fig:grafica12}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[scale=0.6]{smt.png}
+		\includegraphics[scale=0.6]{imagenes/smt.png}
 		\caption{Gráfico de la variable $S_{mt}$.}
 		\label{fig:grafica13}
 	\end{figure}
