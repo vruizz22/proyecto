@@ -381,7 +381,7 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	El gráfico es un poco complejo de leer, pero lo que representa es que la infraestructura una vez que fue instalada, preserva su existencia hasta el final de los periodos, ya que la variable toma el valor 1 en un $t$ y luego se mantiene constante para todas las estaciones. Para facilitar la lectura de la variable \textit{zit}, se presenta el siguiente recurso dinámico: \url{https://stupendous-genie-3fd288.netlify.app/} en el cual se puede observar la instalación de infraestructura por periodo. Los gráficos están en la hoja \textit{zit} y los nombres para los gráficos son: \textit{Infraestructura presente por estación en el tiempo}.
 
-	\subsection{$a_{mt}$}
+	\subsection{$a_{mt}$} \label{sec:amt}
 
 	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos $t$. Esto, además de demostrar que hubo un gasto en cargadores, se relaciona con las variables \textit{xmit}, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable \textit{bmit}, que debería también cuando se compran cargadores en un periodo $t$. Los gráficos están en la hoja \textit{amt} y los nombres para los gráficos son: \textit{Cantidad de cargadores comprados en cada periodo}.
 
@@ -395,8 +395,14 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\subsection{$S_{mt}$}
 
-	Como fue mencionado anteriormente en \S 5.4, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremento por periodo del costo de compra. En el siguiente gráfico podemos ver el comportamiento de la satisfacción de demanda para cada periodo $t$ en una estación $i$ para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que había en los periodos previos y posteriores, cumpliendo nuestra restricción. Los gráficos están en la hoja \textit{Smt} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Almacenados por Periodo}.
+	Como fue mencionado anteriormente en \ref{sec:amt}, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremento por periodo del costo de compra. En el siguiente gráfico podemos ver el comportamiento de la satisfacción de demanda para cada periodo $t$ en una estación $i$ para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que había en los periodos previos y posteriores, cumpliendo nuestra restricción. Los gráficos están en la hoja \textit{Smt} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Almacenados por Periodo}.
 
+
+	\subsection{Análisis}
+
+	Los valores que tomaron las variables demuestran factibilidad y coherencia con el objetivo del modelo. En el caso de la variable \(x_{mit}\), se observa que la cantidad de cargadores no disminuyó en el tiempo (Figuras \ref{fig:grafica-xmit} \ref{fig:grafica-xmit2}), lo cual es coherente con la naturaleza creciente de la demanda. Las variables \(z_{it}\) y \(y_{it}\) muestran que las estaciones fueron instaladas solo una vez y se mantuvieron operativas en el tiempo, sin disminución (Figuras \ref{fig:grafica-zit} y \ref{fig:grafica-ymit1}), lo que se relaciona directamente con el incremento del parámetro de la demanda y, a su vez, con el aumento continuo de la variable \(d_{mit}\) (Figura \ref{fig:grafica-dmit1}). A medida que se instalaron más estaciones, mayor fue la cantidad de demanda que se pudo satisfacer.
+	
+	La variable \(a_{mt}\) indica que hubo compra de cargadores en distintos periodos, con el consiguiente gasto asociado, evidenciado en la Figura \ref{fig:grafica-amt}. Asimismo, la variable \(b_{mit}\) revela que los cargadores comprados en un periodo fueron instalados en el mismo periodo (Figuras \ref{fig:grafica-bmit1} y \ref{fig:grafica-bmit2}), dado que la variable \(S_{mt}\) muestra que no hubo almacenamiento de cargadores debido a los altos costos asociados (Figura \ref{fig:grafica-smt}). Por lo tanto, al cumplirse las restricciones, la obtención de una ganancia positiva resulta coherente y factible.
 	\newpage
 	\section{Análisis de Sensibilidad}
 
@@ -701,14 +707,14 @@ Víctor Ruiz 2320012J Sección 1\\
 		\centering
 		\includegraphics[scale=0.9]{imagenes/anexo_xmit1.png}
 		\caption{Gráfico 1 de la variable $x_{mit}$.}
-		\label{fig:grafica3}
+		\label{fig:grafica-xmit}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.9]{imagenes/anexo_xmit2.png}
 		\caption{Gráfico 2 de la variable $x_{mit}$.}
-		\label{fig:grafica4}
+		\label{fig:grafica-xmit2}
 	\end{figure}
 	\newpage
 
@@ -716,13 +722,13 @@ Víctor Ruiz 2320012J Sección 1\\
 		\centering
 		\includegraphics[scale=0.9]{imagenes/ymit1.png}
 		\caption{Gráfico 1 de la variable $y_{mit}$.}
-		\label{fig:grafica5}
+		\label{fig:grafica-ymit1}
 	\end{figure}
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.9]{imagenes/ymit2.png}
 		\caption{Gráfico 2 de la variable $y_{mit}$.}
-		\label{fig:grafica6}
+		\label{fig:grafica-ymit2}
 	\end{figure}
 	\newpage
 
@@ -730,14 +736,14 @@ Víctor Ruiz 2320012J Sección 1\\
 		\centering
 		\includegraphics[scale=0.9]{imagenes/zit.png}
 		\caption{Gráfico de la variable $z_{it}$.}
-		\label{fig:grafica7}
+		\label{fig:grafica-zit}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.9]{imagenes/amt.png}
 		\caption{Gráfico de la variable $a_{mt}$.}
-		\label{fig:grafica8}
+		\label{fig:grafica-amt}
 	\end{figure}
 	\newpage
 
@@ -745,14 +751,14 @@ Víctor Ruiz 2320012J Sección 1\\
 		\centering
 		\includegraphics[scale=0.9]{imagenes/bmit1.png}
 		\caption{Gráfico 1 de la variable $b_{mit}$.}
-		\label{fig:grafica9}
+		\label{fig:grafica-bmit1}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.9]{imagenes/bmit2.png}
 		\caption{Gráfico 2 de la variable $b_{mit}$.}
-		\label{fig:grafica10}
+		\label{fig:grafica-bmit2}
 	\end{figure}
 	\newpage
 
@@ -761,21 +767,21 @@ Víctor Ruiz 2320012J Sección 1\\
 		\centering
 		\includegraphics[scale=0.6]{imagenes/dmit1.png}
 		\caption{Gráfico 1 de la variable $d_{mit}$.}
-		\label{fig:grafica11}
+		\label{fig:grafica-dmit1}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.6]{imagenes/dmit2.png}
 		\caption{Gráfico 2 de la variable $d_{mit}$.}
-		\label{fig:grafica12}
+		\label{fig:grafica-dmit2}
 	\end{figure}
 
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[scale=0.6]{imagenes/smt.png}
 		\caption{Gráfico de la variable $S_{mt}$.}
-		\label{fig:grafica13}
+		\label{fig:grafica-smt}
 	\end{figure}
 
 \end{flushleft}
