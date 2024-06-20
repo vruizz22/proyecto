@@ -398,11 +398,48 @@ Víctor Ruiz 2320012J Sección 1\\
 	Como fue mencionado anteriormente en \ref{sec:amt}, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremento por periodo del costo de compra. En el siguiente gráfico podemos ver el comportamiento de la satisfacción de demanda para cada periodo $t$ en una estación $i$ para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que había en los periodos previos y posteriores, cumpliendo nuestra restricción. Los gráficos están en la hoja \textit{Smt} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Almacenados por Periodo}.
 
 
-	\subsection{Análisis}
+	\subsection{Validación de los Resultados}
 
 	Los valores que tomaron las variables demuestran factibilidad y coherencia con el objetivo del modelo. En el caso de la variable \(x_{mit}\), se observa que la cantidad de cargadores no disminuyó en el tiempo (Figuras \ref{fig:grafica-xmit} \ref{fig:grafica-xmit2}), lo cual es coherente con la naturaleza creciente de la demanda. Las variables \(z_{it}\) y \(y_{it}\) muestran que las estaciones fueron instaladas solo una vez y se mantuvieron operativas en el tiempo, sin disminución (Figuras \ref{fig:grafica-zit} y \ref{fig:grafica-ymit1}), lo que se relaciona directamente con el incremento del parámetro de la demanda y, a su vez, con el aumento continuo de la variable \(d_{mit}\) (Figura \ref{fig:grafica-dmit1}). A medida que se instalaron más estaciones, mayor fue la cantidad de demanda que se pudo satisfacer.
-	
+
 	La variable \(a_{mt}\) indica que hubo compra de cargadores en distintos periodos, con el consiguiente gasto asociado, evidenciado en la Figura \ref{fig:grafica-amt}. Asimismo, la variable \(b_{mit}\) revela que los cargadores comprados en un periodo fueron instalados en el mismo periodo (Figuras \ref{fig:grafica-bmit1} y \ref{fig:grafica-bmit2}), dado que la variable \(S_{mt}\) muestra que no hubo almacenamiento de cargadores debido a los altos costos asociados (Figura \ref{fig:grafica-smt}). Por lo tanto, al cumplirse las restricciones, la obtención de una ganancia positiva resulta coherente y factible.
+
+	\subsubsection{Análisis Cuantitativo}
+
+	Desde el inicio, ante una demanda que no era totalmente satisfecha, se generó un avance en cada
+	periodo al ir instalando cargadores constantemente. Esto se debe a que la demanda no cesa de
+	aumentar. Así, se observó un incremento en la cantidad de vehículos a satisfacer, que pasó de
+	74 a 650 en el periodo considerado, lo cual corresponde a un aumento aproximado del $800\%$.
+	Esta demanda se fue cumpliendo de manera cada vez más eficiente a lo largo de los periodos,
+	como se puede notar al comparar la demanda total ($D_{mit}$) en el periodo 1, que era de $192$ vehículos, mientras que la demanda a satisfacer, $d_{mit}$, era de $74$ vehículos, lo que corresponde a un $38.54\%$ de la demanda total. En cambio, en el periodo 60, la demanda total era de $884$ vehículos, mientras que la demanda a satisfacer era de $650$ vehículos, lo que corresponde a un $50\%$ de la demanda total y una mejora del $11.46\%$ en la satisfacción de la demanda.
+
+	De manera gráfica, esto se puede evidenciar en la siguiente figura:
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{imagenes/comparacion_demandas.png}
+		\caption{Comparación de la demanda total y la demanda a satisfacer en el tiempo}
+		\label{fig:comparacion_demanda}
+	\end{figure}
+
+	Además, se puede afirmar que la solución encontrada tiene un valor agregado significativo, ya
+	que mitiga los gastos asociados al inventario. Para ejemplificar de manera clara, supongamos
+	que, para la estación 1 se compra un cargador de más en el periodo 1, el cual se va a inventario
+	para terminar instalándolo en el periodo 10, al realizar los cálculos, el costo por comprar
+	este cargador en el periodo 1 (1.623.244) más el costo de almacenamiento asociado a los días
+	correspondientes (1-9) y el costo de instalación en el periodo 10 para la estación 1 (5.878.729)
+	resultan \$8.382.898 de gasto total. En cambio, si se compra el cargador en el periodo 10 para
+	instalarlo inmediatamente, considerando el precio en este periodo (\$1.627.499) más el costo de
+	instalación correspondiente (\$5.878.729) se obtienen \$7.506.228 de gasto. Comparando estos
+	valores, se reducen los gastos en un 10,5\% al comprar en el periodo correspondiente asumiendo
+	la subida de precio del cargador para así evitar el precio de mantener un inventario, precio
+	que es claramente menos conveniente, y recordando que para el final de los periodos queda
+	montada una gran red de cargadores, la “ganancia” por evitar gastos de inventario se eleva
+	mucho, considerando que en el ejemplo dado se ahorraron \$876.670. Es por esta razón que se
+	considera mucho mejor opción este modelo periodos de tiempo relativamente cortos.
+
+	Finalmente, se considera que el modelo no solo proporciona una solución factible, sino que probablemente roza la optimalidad. Esto se refleja en que las ganancias no cesan a lo largo de los periodos y el modelo se beneficia del comportamiento ante las situaciones mencionadas
+
 	\newpage
 	\section{Análisis de Sensibilidad}
 
