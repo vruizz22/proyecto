@@ -365,62 +365,28 @@ Víctor Ruiz 2320012J Sección 1\\
 
 	\textbf{Instrucciones de uso:} Para ejecutar el modelo, se debe descomprimir el archivo \texttt{parametros.zip} y ejecutar el archivo \texttt{main.py} en la misma carpeta que los archivos descomprimidos. El modelo entregará la ganancia esperada al término del horizonte de tiempo.
 
-	\section{Resultados}
-
-	Los gráficos de cada variable se encuentran en \textit{resultados.xlsx}, en la hoja de cálculo de resultados. A continuación, se presentan los resultados obtenidos para cada variable de decisión.
-
-	\subsection{\texorpdfstring{$x_{mit}$}{xmit}}
-
-	Los siguientes gráficos muestran cómo para las 13 estaciones los valores de la variable “x” fueron variando en el tiempo para cada cargador. En el caso del cargador de tipo 1 se puede evidenciar que la evolución de la cantidad de cargadores por estación fue creciente o constante, lo cual es de sumo interés ya que cumple la restricción de que no pueden desaparecer cargadores en el tiempo (restricción 7). Los gráficos están en la hoja \textit{xmit} y los nombres para los gráficos son: \textit{Valores de x para cargador tipo 1} y \textit{Valores de x para cargador tipo 2}.
-
-	\subsection{\texorpdfstring{$y_{it}$}{yit}}
-
-	En el gráfico es difícil de ver, pero muestra los valores de la variable “y” para cada período de tiempo y para cada estación. Se sabe que se parte con 2 estaciones de 12 habilitadas y que se habilitaron todas las estaciones al final del tiempo, por lo que tiene sentido que la variable solo en un periodo $t$ para cada estación tome el valor 1, ya que solo se puede instalar una vez. Los gráficos están en la hoja \textit{yit} y los nombres para los gráficos son: \textit{Estación 1} y \textit{Estación 2}.
-
-	\subsection{\texorpdfstring{$z_{it}$}{zit}}
-
-	El gráfico es un poco complejo de leer, pero lo que representa es que la infraestructura una vez que fue instalada, preserva su existencia hasta el final de los periodos, ya que la variable toma el valor 1 en un $t$ y luego se mantiene constante para todas las estaciones. Para facilitar la lectura de la variable \textit{zit}, se presenta el siguiente recurso dinámico: \url{https://stupendous-genie-3fd288.netlify.app/} en el cual se puede observar la instalación de infraestructura por periodo. Los gráficos están en la hoja \textit{zit} y los nombres para los gráficos son: \textit{Infraestructura presente por estación en el tiempo}.
-
-	\subsection{\texorpdfstring{$a_{mt}$}{amt}} \label{sec:amt}
-
-	En el gráfico se puede observar que hubo compras de cargadores en distintos periodos $t$. Esto, además de demostrar que hubo un gasto en cargadores, se relaciona con las variables \textit{xmit}, que debería aumentar en alguna estación en un periodo donde haya compra ya que no hay almacenamiento, y con la variable \textit{bmit}, que debería también cuando se compran cargadores en un periodo $t$. Los gráficos están en la hoja \textit{amt} y los nombres para los gráficos son: \textit{Cantidad de cargadores comprados en cada periodo}.
-
-	\subsection{\texorpdfstring{$b_{mit}$}{bmit}}
-
-	En este gráfico se muestra la cantidad de cargadores de ambos tipos que se instalan para cada estación en los periodos $t$. Como se mencionó anteriormente, tiene relación directa con \textit{amt}, ya que si se compra en un periodo $t$, en ese mismo periodo debe instalarse en alguna estación $i$ un cargador de ese tipo. Los gráficos están en la hoja \textit{bmit} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Tipo 1 Que Se Instalaron por Estación} y \textit{Cantidad de Cargadores Tipo 2 Que Se Instalaron por Estación}.
-
-	\subsection{\texorpdfstring{$d_{mit}$}{dmit}}
-
-	En el gráfico de esta variable para cada periodo $t$ se puede evidenciar claramente cómo con el tiempo se pudo ir satisfaciendo cada vez más demanda. Esto tiene sentido, ya que a largo plazo había que recuperar los costos que significaron todas las compras e instalaciones en un principio y así poder generar una rentabilidad óptima. Los gráficos están en la hoja \textit{dmit} y los nombres para los gráficos son: \textit{Demanda a satisfacer cargador 1} y \textit{Demanda a satisfacer cargador 2}.
-
-	\subsection{\texorpdfstring{$S_{mt}$}{Smt}}
-
-	Como fue mencionado anteriormente en \ref{sec:amt}, no hubo almacenamiento de cargadores ya que el costo de almacenamiento era superior al incremento por periodo del costo de compra. En el siguiente gráfico podemos ver el comportamiento de la satisfacción de demanda para cada periodo $t$ en una estación $i$ para los 2 tipos de cargadores. En el siguiente gráfico podemos ver que la cantidad de cargadores almacenados de ambos tipos en cada periodo tiene una correcta relación con las cantidades que había en los periodos previos y posteriores, cumpliendo nuestra restricción. Los gráficos están en la hoja \textit{Smt} y los nombres para los gráficos son: \textit{Cantidad de Cargadores Almacenados por Periodo}.
-
-
-	\subsection{Validación de los Resultados}
+	\section{Validación de los Resultados}
 
 	Los valores que tomaron las variables demuestran factibilidad y coherencia con el objetivo del modelo. En el caso de la variable \(x_{mit}\), se observa que la cantidad de cargadores no disminuyó en el tiempo (Figuras \ref{fig:grafica-xmit} \ref{fig:grafica-xmit2}), lo cual es coherente con la naturaleza creciente de la demanda. Las variables \(z_{it}\) y \(y_{it}\) muestran que las estaciones fueron instaladas solo una vez y se mantuvieron operativas en el tiempo, sin disminución (Figuras \ref{fig:grafica-zit} y \ref{fig:grafica-ymit1}), lo que se relaciona directamente con el incremento del parámetro de la demanda y, a su vez, con el aumento continuo de la variable \(d_{mit}\) (Figura \ref{fig:grafica-dmit1}). A medida que se instalaron más estaciones, mayor fue la cantidad de demanda que se pudo satisfacer.
 
 	La variable \(a_{mt}\) indica que hubo compra de cargadores en distintos periodos, con el consiguiente gasto asociado, evidenciado en la Figura \ref{fig:grafica-amt}. Asimismo, la variable \(b_{mit}\) revela que los cargadores comprados en un periodo fueron instalados en el mismo periodo (Figuras \ref{fig:grafica-bmit1} y \ref{fig:grafica-bmit2}), dado que la variable \(S_{mt}\) muestra que no hubo almacenamiento de cargadores debido a los altos costos asociados (Figura \ref{fig:grafica-smt}). Por lo tanto, al cumplirse las restricciones, la obtención de una ganancia positiva resulta coherente y factible.
 
-	\subsubsection{Análisis Cuantitativo}
+	\subsection{Análisis Cuantitativo}
 
 	Desde el inicio, ante una demanda que no era totalmente satisfecha, se generó un avance en cada
 	periodo al ir instalando cargadores constantemente. Esto se debe a que la demanda no cesa de
 	aumentar. Así, se observó un incremento en la cantidad de vehículos a satisfacer, que pasó de
 	$74$ a $650$ en el periodo considerado, lo cual corresponde a un aumento aproximado del $800\%$.
 	Esta demanda se fue cumpliendo de manera cada vez más eficiente a lo largo de los periodos,
-	como se puede notar al comparar la demanda total ($D_{mit}$) en el periodo 1, que era de $192$ vehículos, mientras que la demanda a satisfacer, $d_{mit}$, era de $74$ vehículos, lo que corresponde a un $38.54\%$ de la demanda total. En cambio, en el periodo 60, la demanda total era de $884$ vehículos, mientras que la demanda a satisfacer era de $650$ vehículos, lo que corresponde a un $50\%$ de la demanda total y una mejora del $11.46\%$ en la satisfacción de la demanda.
+	como se puede notar al comparar la demanda total ($D_{mit}$) en el periodo 1, que era de $192$ 
+	vehículos, mientras que la demanda a satisfacer, $d_{mit}$, era de $74$ vehículos, lo que corresponde 
+	a un $38.54\%$ de la demanda total. En cambio, en el periodo 60, la demanda total era de $884$ vehículos, 
+	mientras que la demanda a satisfacer era de $650$ vehículos, lo que corresponde a un $50\%$ de la 
+	demanda total y una mejora del $11.46\%$ en la satisfacción de la demanda.
 
-	De manera gráfica, esto se puede evidenciar en la siguiente figura:
-
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.8\textwidth]{imagenes/comparacion_demandas.png}
-		\caption{Comparación de la demanda total y la demanda a satisfacer en el tiempo}
-		\label{fig:comparacion_demanda}
-	\end{figure}
+	De manera gráfica, esto se puede evidenciar en la Figura \ref{fig:comparacion_demanda}, donde se
+	observa que la demanda total y la demanda a satisfacer se mantienen en un rango similar, lo que
+	indica que la demanda a satisfacer se acerca a la demanda total a medida que avanzan los periodos.
 
 	Además, se puede afirmar que la solución encontrada tiene un valor agregado significativo, ya
 	que mitiga los gastos asociados al inventario. Para ejemplificar de manera clara, supongamos
@@ -442,221 +408,32 @@ Víctor Ruiz 2320012J Sección 1\\
 		es óptimo. Esto se refleja en que las ganancias no cesan a lo largo de los periodos y el modelo
 		se beneficia del comportamiento ante las situaciones mencionadas
 
-		\newpage
-		\section{Análisis de Sensibilidad}
+	\section{Análisis de Sensibilidad}
 
 
-		\subsection*{Coeficiente de Ganancia Esperada por el Precio Seleccionado ($\alpha$)}
+	\subsection{Coeficiente de Ganancia Esperada por el Precio Seleccionado (\texorpdfstring{$\alpha$}{alpha})}
 
-		\begin{table}[H]
-			\centering
-			\begin{tabular}{|c|c|c|}
-				\hline
-				\textbf{Coeficiente de ganancia esperada} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
-				\hline
-				$1.9 \times 70\% = 1.615$                 & -78.37\%                   & \$435,338,090               \\
-				$1.9 \times 85\% = 1.615$                 & -40.59\%                   & \$1,195,887,520             \\
-				\textbf{Valor original: 1.9}              & \textbf{0\%}               & \textbf{\$2,013,071,275}    \\
-				$1.9 \times 115\% = 1.615$                & +41\%                      & \$2,838,576,671             \\
-				$1.9 \times 130\% = 1.615$                & +82\%                      & \$3,666,357,631             \\
-				\hline
-			\end{tabular}
-			\caption{Análisis de Sensibilidad del Coeficiente de Ganancia Esperada}
-		\end{table}
+	Como se puede evidenciar en la Tabla \ref{tab:alpha} y visualmente en la Figura \ref{fig:grafica-alpha}, la rentabilidad del modelo es casi completamente lineal con relación al coeficiente de ganancia esperada. Esto era predecible y ahora se confirma como adecuado, ya que cualquier aumento en el coeficiente $\alpha$ resulta en un incremento en las ganancias, afectando positivamente la rentabilidad.
 
-		Como se puede evidenciar en la tabla anterior, la rentabilidad del modelo es casi completamente lineal con relación al coeficiente de ganancia esperada. Esto era predecible y ahora se confirma como adecuado, ya que cualquier aumento en el coeficiente $\alpha$ resulta en un incremento en las ganancias, afectando positivamente la rentabilidad.
+	Además, es crucial notar que el modelo muestra una alta sensibilidad a los cambios en este parámetro, lo que sugiere que el precio de venta de la electricidad es un factor clave y crítico para la viabilidad financiera del proyecto.
 
-		Además, es crucial notar que el modelo muestra una alta sensibilidad a los cambios en este parámetro, lo que sugiere que el precio de venta de la electricidad es un factor clave y crítico para la viabilidad financiera del proyecto.
+	Sin embargo, es importante recalcar que el modelo asume un contexto monopólico, en el que se supone que todos los autos de la zona seleccionada siempre nos comprarán a nosotros, sin considerar la competencia. Por lo tanto, es fundamental cuestionar si estas suposiciones sobre la demanda y la elasticidad del precio son realistas a largo plazo.
 
-		Sin embargo, es importante recalcar que el modelo asume un contexto monopólico, en el que se supone que todos los autos de la zona seleccionada siempre nos comprarán a nosotros, sin considerar la competencia. Por lo tanto, es fundamental cuestionar si estas suposiciones sobre la demanda y la elasticidad del precio son realistas a largo plazo.
+	\subsection{Distancia Máxima Permitida entre Electrolineras (AM)}
 
-		\subsection*{Distancia Máxima Permitida entre Electrolineras (AM)}
+	Antes de empezar con el análisis de datos, es importante contextualizar que la ciudad modelo seleccionada fue Concepción, por lo que considerar distancias radiales mayores a 80 km no tendría sentido, ya que excedería los límites de la localización correspondiente, como se evidencia en la Figura \ref{fig:grafica-am}. A partir de la Tabla \ref{tab:am}, se observa que las distancias muy pequeñas tienden a ser no óptimas o incluso inviables, sugiriendo una relación no lineal. Esto nos indica que existe una distancia óptima en la que las electrolineras están suficientemente distribuidas para maximizar la rentabilidad sin incurrir en costos adicionales significativos.
 
-		\begin{table}[H]
-			\centering
-			\begin{tabular}{|c|c|c|}
-				\hline
-				\textbf{Distancia máxima [km]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
-				\hline
-				$80 \times 1.275\% = 1.02$     & -                          & Sin solución óptima         \\
-				$80 \times 1.5\% = 1.2$        & -19.47\%                   & \$1,621,033,610             \\
-				$80 \times 1.74\% = 1.4$       & -19.47\%                   & \$1,621,033,610             \\
-				$80 \times 5\% = 4$            & -9.3\%                     & \$1,825,839,215             \\
-				$80 \times 9.76\% = 7.808$     & -0.0053\%                  & \$2,012,965,506             \\
-				$80 \times 0.5 = 40$           & 0\%                        & \$2,013,071,275             \\
-				\textbf{Valor original: 80}    & \textbf{0\%}               & \textbf{\$2,013,071,275}    \\
-				$80 \times 125\% = 100$        & 0\%                        & \$2,013,071,275             \\
-				\hline
-			\end{tabular}
-			\caption{Análisis de Sensibilidad de la Distancia Máxima Permitida}
-		\end{table}
+	Aunque se notó que entre 80 km y 8 km la rentabilidad era la misma, en términos de localización esto no es lo más adecuado, ya que incitaría al modelo a colocar electrolineras demasiado cerca unas de otras, lo que desatendería las zonas periféricas de la ciudad. Esto destaca la falta de un parámetro o variable de decisión que refleje la fluctuación de la demanda en diferentes zonas de la ciudad.
 
-		Antes de empezar con el análisis de datos, es importante contextualizar que la ciudad modelo seleccionada fue Concepción, por lo que considerar distancias radiales mayores a 80 km no tendría sentido, ya que excedería los límites de la localización correspondiente. A primera vista, se observa que las distancias muy pequeñas tienden a ser no óptimas o incluso inviables, sugiriendo una relación no lineal. Esto nos indica que existe una distancia óptima en la que las electrolineras están suficientemente distribuidas para maximizar la rentabilidad sin incurrir en costos adicionales significativos.
+	Finalmente, es importante notar que, aunque disminuir las distancias máximas en un margen adecuado no afecta significativamente la rentabilidad del modelo, como sí lo hace el coeficiente $\alpha$, puede resultar inconveniente en términos geográficos y de comodidad para los usuarios de la ciudad.
 
-		Aunque se notó que entre 80 km y 8 km la rentabilidad era la misma, en términos de localización esto no es lo más adecuado, ya que incitaría al modelo a colocar electrolineras demasiado cerca unas de otras, lo que desatendería las zonas periféricas de la ciudad. Esto destaca la falta de un parámetro o variable de decisión que refleje la fluctuación de la demanda en diferentes zonas de la ciudad.
+	\subsection{Capacidad Eléctrica Máxima que Permite la Infraestructura (K)}
 
-		Finalmente, es importante notar que, aunque disminuir las distancias máximas en un margen adecuado no afecta significativamente la rentabilidad del modelo, como sí lo hace el coeficiente $\alpha$, puede resultar inconveniente en términos geográficos y de comodidad para los usuarios de la ciudad.
-
-	\subsection*{Capacidad Eléctrica Máxima que Permite la Infraestructura (K)}
-
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{|c|c|c|}
-			\hline
-			\textbf{Capacidad eléctrica máxima [kWh]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]}      \\
-			\hline
-			$22,200 \times 94.04\% = 20,879$          & -                          & Infactible o sin solución óptima \\
-			$22,200 \times 94.05\% = 20,880$          & -0.01\%                    & \$2,012,870,573                  \\
-			$22,200 \times 94.6\% = 21,000$           & 0\%                        & \$2,013,071,275                  \\
-			\textbf{Valor original: 22,200}           & \textbf{0\%}               & \textbf{\$2,013,071,275}         \\
-			$22,200 \times 112.6\% = 25,000$          & +2.23\%                    & \$2,057,991,441                  \\
-			$22,200 \times 135.14\% = 30,000$         & +6.44\%                    & \$2,142,723,960                  \\
-			$22,200 \times 225.23\% = 50,000$         & +6.53\%                    & \$2,144,551,068                  \\
-			\hline
-		\end{tabular}
-		\caption{Análisis de Sensibilidad de la Capacidad Eléctrica Máxima}
-	\end{table}
-
-	A partir de los datos, es posible notar que incrementos tanto de pequeña como de gran escala en la capacidad aumentan la rentabilidad del modelo, aunque no de manera tan significativa a medida que este incremento supera el doble del valor original. Esto es lógico, ya que aumentar la capacidad eléctrica de la infraestructura implica un aumento en la cantidad de cargadores en la sucursal, permitiendo satisfacer la demanda de manera más eficiente y, por ende, incrementando las ganancias.
+	A partir de la Tabla \ref{tab:k} y observando visualmente en la Figura \ref{fig:grafica-k}, es posible notar que incrementos tanto de pequeña como de gran escala en la capacidad aumentan la rentabilidad del modelo, aunque no de manera tan significativa a medida que este incremento supera el doble del valor original. Esto es lógico, ya que aumentar la capacidad eléctrica de la infraestructura implica un aumento en la cantidad de cargadores en la sucursal, permitiendo satisfacer la demanda de manera más eficiente y, por ende, incrementando las ganancias.
 
 	Sin embargo, agregar un gran número de cargadores no es tan eficiente si la demanda es limitada, ya que siempre habría espacios sin ocupar, y la idea es minimizar su cantidad para que sea lo justo y necesario. Además, es crucial destacar que una disminución de la capacidad puede significar la inviabilidad del modelo, ya que provocaría saturaciones en las distintas estaciones, afectando la eficiencia y disminuyendo las ganancias a largo plazo.
 
 	Por último, es fundamental cuestionar la estabilidad de la demanda proyectada y la capacidad de la infraestructura existente para soportar expansiones significativas. Esto garantizará que las inversiones en capacidad eléctrica sean efectivas y sostenibles a largo plazo.
-
-	\begin{figure}
-		\centering
-		\caption{Relación entre Alpha y Ganancia Esperada}
-		\begin{tikzpicture}
-			\begin{axis}[
-					xlabel={Alpha},
-					ylabel={Ganancia Esperada (CLP)},
-					xmin=1.3, xmax=2.5,
-					ymin=0, ymax=4000000000,
-					xtick={1.3,1.6,2.0,2.2,2.5},
-					ytick={0,1000000000,2000000000,3000000000,4000000000},
-					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
-					legend pos=north west,
-					ymajorgrids=true,
-					grid style=dashed,
-					scaled y ticks=false,
-					width=10cm,
-					height=7cm,
-				]
-
-				\addplot[
-					color=blue,
-					mark=square,
-				]
-				coordinates {
-						(1.615,1195887520)(1.33,435338090)(2.185,2838576671)(2.47,3666357631)
-					};
-				\addlegendentry{Ganancia Esperada}
-
-			\end{axis}
-		\end{tikzpicture}
-	\end{figure}
-
-
-	\newpage
-	\begin{figure}[h]
-		\centering
-		\caption{Relación entre AM y Ganancia Esperada (1)}
-		\begin{tikzpicture}
-			\begin{axis}[
-					xlabel={AM (Distancia máxima)},
-					ylabel={Ganancia Esperada (CLP)},
-					xmin=0, xmax=130,
-					ymin=1600000000, ymax=2100000000,
-					xtick={0,40,80,120},
-					ytick={1600000000,1800000000,2000000000,2100000000},
-					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
-					legend pos=north west,
-					ymajorgrids=true,
-					grid style=dashed,
-					scaled y ticks=false,
-					width=10cm,
-					height=7cm,
-				]
-
-				\addplot[
-					color=red,
-					mark=triangle,
-				]
-				coordinates {
-						(80,2013071275)(120,2013071275)(40,2013071275)(7.808,2012965506)(4,1825839215)(1.4,1621033610)(1.2,1621033610)
-					};
-				\addlegendentry{Ganancia Esperada}
-
-			\end{axis}
-		\end{tikzpicture}
-	\end{figure}
-
-	\begin{figure}[h]
-		\centering
-		\caption{Relación entre AM y Ganancia Esperada (2)}
-		\begin{tikzpicture}
-			\begin{axis}[
-					xlabel={AM (Distancia máxima)},
-					ylabel={Ganancia Esperada (CLP)},
-					xmin=0, xmax=10,
-					ymin=1600000000, ymax=2100000000,
-					xtick={0,40,80,120},
-					ytick={1600000000,1800000000,2000000000,2100000000},
-					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
-					legend pos=north west,
-					ymajorgrids=true,
-					grid style=dashed,
-					scaled y ticks=false,
-					width=10cm,
-					height=7cm,
-				]
-
-				\addplot[
-					color=red,
-					mark=triangle,
-				]
-				coordinates {
-						(80,2013071275)(120,2013071275)(40,2013071275)(7.808,2012965506)(4,1825839215)(1.4,1621033610)(1.2,1621033610)
-					};
-				\addlegendentry{Ganancia Esperada}
-
-			\end{axis}
-		\end{tikzpicture}
-	\end{figure}
-
-
-	\begin{figure}[h]
-		\centering
-		\caption{Relación entre K y Ganancia Esperada}
-		\begin{tikzpicture}
-			\begin{axis}[
-					xlabel={$K \times 10^3$ (KW)}, % Add units here
-					ylabel={Ganancia Esperada (CLP)}, % Add units here
-					xmin=20, xmax=50,
-					ymin=2000000000, ymax=2150000000, % Ajustado para acotar el eje Y
-					xtick={20, 25, 30, 50},
-					ytick={2000000000, 2020000000, 2040000000, 2060000000, 2080000000, 2100000000, 2120000000, 2140000000, 2150000000},
-					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
-					legend pos=north west,
-					ymajorgrids=true,
-					grid style=dashed,
-					scaled y ticks=false,
-					width=10cm,
-					height=7cm,
-				]
-
-				\addplot[
-					color=blue,
-					mark=star,
-				]
-				coordinates {
-						(20.88,2012870573)(21,2013071275)(22,2013071275)(25,2057991441)(30,2142723960)(50,2144551068)
-					};
-				\addlegendentry{Ganancia Esperada}
-
-			\end{axis}
-		\end{tikzpicture}
-	\end{figure}
 
 	\newpage
 
@@ -821,6 +598,206 @@ Víctor Ruiz 2320012J Sección 1\\
 		\includegraphics[scale=0.6]{imagenes/smt.png}
 		\caption{Gráfico de la variable $S_{mt}$.}
 		\label{fig:grafica-smt}
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{imagenes/comparacion_demandas.png}
+		\caption{Comparación de la demanda total y la demanda a satisfacer en el tiempo}
+		\label{fig:comparacion_demanda}
+	\end{figure}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Coeficiente de ganancia esperada} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
+			\hline
+			$1.9 \times 70\% = 1.615$                 & -78.37\%                   & \$435,338,090               \\
+			$1.9 \times 85\% = 1.615$                 & -40.59\%                   & \$1,195,887,520             \\
+			\textbf{Valor original: 1.9}              & \textbf{0\%}               & \textbf{\$2,013,071,275}    \\
+			$1.9 \times 115\% = 1.615$                & +41\%                      & \$2,838,576,671             \\
+			$1.9 \times 130\% = 1.615$                & +82\%                      & \$3,666,357,631             \\
+			\hline
+		\end{tabular}
+		\caption{Análisis de Sensibilidad del Coeficiente de Ganancia Esperada}
+		\label{tab:alpha}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Distancia máxima [km]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]} \\
+			\hline
+			$80 \times 1.275\% = 1.02$     & -                          & Sin solución óptima         \\
+			$80 \times 1.5\% = 1.2$        & -19.47\%                   & \$1,621,033,610             \\
+			$80 \times 1.74\% = 1.4$       & -19.47\%                   & \$1,621,033,610             \\
+			$80 \times 5\% = 4$            & -9.3\%                     & \$1,825,839,215             \\
+			$80 \times 9.76\% = 7.808$     & -0.0053\%                  & \$2,012,965,506             \\
+			$80 \times 0.5 = 40$           & 0\%                        & \$2,013,071,275             \\
+			\textbf{Valor original: 80}    & \textbf{0\%}               & \textbf{\$2,013,071,275}    \\
+			$80 \times 125\% = 100$        & 0\%                        & \$2,013,071,275             \\
+			\hline
+		\end{tabular}
+		\caption{Análisis de Sensibilidad de la Distancia Máxima Permitida}
+		\label{tab:am}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Capacidad eléctrica máxima [kWh]} & \textbf{Cambio porcentual} & \textbf{Rentabilidad [CLP]}      \\
+			\hline
+			$22,200 \times 94.04\% = 20,879$          & -                          & Infactible o sin solución óptima \\
+			$22,200 \times 94.05\% = 20,880$          & -0.01\%                    & \$2,012,870,573                  \\
+			$22,200 \times 94.6\% = 21,000$           & 0\%                        & \$2,013,071,275                  \\
+			\textbf{Valor original: 22,200}           & \textbf{0\%}               & \textbf{\$2,013,071,275}         \\
+			$22,200 \times 112.6\% = 25,000$          & +2.23\%                    & \$2,057,991,441                  \\
+			$22,200 \times 135.14\% = 30,000$         & +6.44\%                    & \$2,142,723,960                  \\
+			$22,200 \times 225.23\% = 50,000$         & +6.53\%                    & \$2,144,551,068                  \\
+			\hline
+		\end{tabular}
+		\caption{Análisis de Sensibilidad de la Capacidad Eléctrica Máxima}
+		\label{tab:k}
+	\end{table}
+
+	\begin{figure}
+		\centering
+		\caption{Relación entre Alpha y Ganancia Esperada}
+		\begin{tikzpicture}
+			\begin{axis}[
+					xlabel={Alpha},
+					ylabel={Ganancia Esperada (CLP)},
+					xmin=1.3, xmax=2.5,
+					ymin=0, ymax=4000000000,
+					xtick={1.3,1.6,2.0,2.2,2.5},
+					ytick={0,1000000000,2000000000,3000000000,4000000000},
+					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					scaled y ticks=false,
+					width=10cm,
+					height=7cm,
+				]
+
+				\addplot[
+					color=blue,
+					mark=square,
+				]
+				coordinates {
+						(1.615,1195887520)(1.33,435338090)(2.185,2838576671)(2.47,3666357631)
+					};
+				\addlegendentry{Ganancia Esperada}
+
+			\end{axis}
+		\end{tikzpicture}
+
+		\label{fig:grafica-alpha}
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\caption{Relación entre AM y Ganancia Esperada (1)}
+		\begin{tikzpicture}
+			\begin{axis}[
+					xlabel={AM (Distancia máxima)},
+					ylabel={Ganancia Esperada (CLP)},
+					xmin=0, xmax=130,
+					ymin=1600000000, ymax=2100000000,
+					xtick={0,40,80,120},
+					ytick={1600000000,1800000000,2000000000,2100000000},
+					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					scaled y ticks=false,
+					width=10cm,
+					height=7cm,
+				]
+
+				\addplot[
+					color=red,
+					mark=triangle,
+				]
+				coordinates {
+						(80,2013071275)(120,2013071275)(40,2013071275)(7.808,2012965506)(4,1825839215)(1.4,1621033610)(1.2,1621033610)
+					};
+				\addlegendentry{Ganancia Esperada}
+
+			\end{axis}
+		\end{tikzpicture}
+		\label{fig:grafica-am}
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\caption{Relación entre AM y Ganancia Esperada (2)}
+		\begin{tikzpicture}
+			\begin{axis}[
+					xlabel={AM (Distancia máxima)},
+					ylabel={Ganancia Esperada (CLP)},
+					xmin=0, xmax=10,
+					ymin=1600000000, ymax=2100000000,
+					xtick={0,40,80,120},
+					ytick={1600000000,1800000000,2000000000,2100000000},
+					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					scaled y ticks=false,
+					width=10cm,
+					height=7cm,
+				]
+
+				\addplot[
+					color=red,
+					mark=triangle,
+				]
+				coordinates {
+						(80,2013071275)(120,2013071275)(40,2013071275)(7.808,2012965506)(4,1825839215)(1.4,1621033610)(1.2,1621033610)
+					};
+				\addlegendentry{Ganancia Esperada}
+
+			\end{axis}
+		\end{tikzpicture}
+		\label{fig:grafica-am2}
+	\end{figure}
+
+
+	\begin{figure}[h]
+		\centering
+		\caption{Relación entre K y Ganancia Esperada}
+		\begin{tikzpicture}
+			\begin{axis}[
+					xlabel={$K \times 10^3$ (KW)}, % Add units here
+					ylabel={Ganancia Esperada (CLP)}, % Add units here
+					xmin=20, xmax=50,
+					ymin=2000000000, ymax=2150000000, % Ajustado para acotar el eje Y
+					xtick={20, 25, 30, 50},
+					ytick={2000000000, 2020000000, 2040000000, 2060000000, 2080000000, 2100000000, 2120000000, 2140000000, 2150000000},
+					yticklabel style={/pgf/number format/.cd, set thousands separator={}},
+					legend pos=north west,
+					ymajorgrids=true,
+					grid style=dashed,
+					scaled y ticks=false,
+					width=10cm,
+					height=7cm,
+				]
+
+				\addplot[
+					color=blue,
+					mark=star,
+				]
+				coordinates {
+						(20.88,2012870573)(21,2013071275)(22,2013071275)(25,2057991441)(30,2142723960)(50,2144551068)
+					};
+				\addlegendentry{Ganancia Esperada}
+			\end{axis}
+		\end{tikzpicture}
+		\label{fig:grafica-k}
 	\end{figure}
 
 \end{flushleft}
