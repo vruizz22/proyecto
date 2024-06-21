@@ -13,3 +13,5 @@
 # Considerar .tex y .pdf
 !*.tex
 !*.pdf
+
+!main.tex
