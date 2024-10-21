@@ -1,0 +1,17 @@
+# Ignorar todos los archivos
+*
+
+# Leer directorios
+!*/
+
+# Considerar .gitignore
+!.gitignore
+
+# Considerar imágenes
+!imagenes/*
+
+# Considerar .tex y .pdf
+!*.tex
+!*.pdf
+
+!main.tex
